@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
-    public string CardName;
+    public string cardName;
+    public string cardDescription;
 
     // Start is called before the first frame update
     void Start()

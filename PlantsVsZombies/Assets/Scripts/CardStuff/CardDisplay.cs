@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     public Card card;
-    public Text nameText;
-    public Text descriptionText;
+    public TextMesh nameText;
+    public TextMesh descriptionText;
     public Image art;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(card.CardName);
+        nameText.text = card.cardName;
+        descriptionText.text = card.cardDescription;
     }
 
     // Update is called once per frame

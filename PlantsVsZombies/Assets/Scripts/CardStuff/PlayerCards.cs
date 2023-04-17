@@ -42,10 +42,13 @@ public class PlayerCards : MonoBehaviour
             Vector3 tempPosition = tempObject.transform.position;
             float tempCardWidth = cardObject.GetComponent<Renderer>().bounds.size.x;
             float tempHandSlot = ((float)(handCards.Count - 1) / 2) - tempCounter;
-            tempObject.transform.position = tempPosition + new Vector3(tempHandSlot * (tempCardWidth + handCardDistance), 0, 0);
+            tempObject.transform.position = transform.position + new Vector3(tempHandSlot * (tempCardWidth + handCardDistance), 0, 0);
+            //tempObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 
+            //    transform.rotation.z + tempHandSlot, transform.rotation.w);
 
             tempCards[tempCounter] = tempObject;
             tempCounter++;
+            Debug.Log(tempCounter + " - " + tempHandSlot);
         }
     }
 

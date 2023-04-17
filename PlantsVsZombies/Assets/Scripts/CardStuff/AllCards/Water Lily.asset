@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388f49ce43e2d2468b96a678982e01c, type: 3}
   m_Name: Water Lily
   m_EditorClassIdentifier: 
-  cardName: 
-  cardDescription: 
+  cardName: Water Lily
+  cardDescription: Gain 1 Water

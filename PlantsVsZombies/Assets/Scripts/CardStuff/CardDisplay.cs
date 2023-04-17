@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
+    HoldingCard holdingCard;
     public Card card;
     public TextMesh nameText;
     public TextMesh descriptionText;
@@ -13,6 +14,7 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        holdingCard = GameObject.FindGameObjectWithTag("Holding Card").GetComponent<HoldingCard>();
         nameText.text = card.cardName;
         descriptionText.text = card.cardDescription;
     }
@@ -21,5 +23,14 @@ public class CardDisplay : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnMouseDown()
+    {
+        if (!holdingCard.isHolding)
+        {
+            holdingCard.card.GetComponent<CardDisplay>().card = card;
+            holdingCard.isHolding = true;
+        }
     }
 }

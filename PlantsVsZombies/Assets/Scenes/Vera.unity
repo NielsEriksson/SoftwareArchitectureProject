@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 740387400}
   m_Layer: 0
   m_Name: Holding Card
-  m_TagString: Untagged
+  m_TagString: Holding Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d78d0e3b8d9abd449833d72cb599a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 0}
+  isHolding: 0
 --- !u!4 &740387401
 Transform:
   m_ObjectHideFlags: 0
@@ -161,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 740387399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1191369820}
@@ -262,10 +264,18 @@ PrefabInstance:
     - target: {fileID: 534726980575133480, guid: 9aba43ded82eec143ab5847db7a418f4, type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: 5ecc8322b7bb69f4297f48ddfc544707, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516597987876487236, guid: 9aba43ded82eec143ab5847db7a418f4, type: 3}
       propertyPath: m_Name
       value: Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516597987876487236, guid: 9aba43ded82eec143ab5847db7a418f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516597987876487236, guid: 9aba43ded82eec143ab5847db7a418f4, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5339493423052351685, guid: 9aba43ded82eec143ab5847db7a418f4, type: 3}
       propertyPath: m_RootOrder
@@ -344,9 +354,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1418519975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41c0c137b69e29444891d8ee50105d1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 69ca183eb256b6e4e8d083acaf8fe086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardObject: {fileID: 4516597987876487236, guid: 9aba43ded82eec143ab5847db7a418f4, type: 3}
+  tempCard: {fileID: 11400000, guid: 5ecc8322b7bb69f4297f48ddfc544707, type: 2}
+  tempCard2: {fileID: 11400000, guid: 310e88e418e97ff449ce22fa7d494926, type: 2}
+  handLimit: 8
 --- !u!4 &1418519977
 Transform:
   m_ObjectHideFlags: 0
@@ -355,9 +369,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418519975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51899487, y: 0.18413559, z: 0.056207456}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

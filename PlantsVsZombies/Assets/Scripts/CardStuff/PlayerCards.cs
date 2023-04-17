@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class PlayerCards : MonoBehaviour
 {
-    public int handLimit = 3;
+    public GameObject cardObject;
+    public Card tempCard;
+    public Card tempCard2;
+    public int handLimit;
     List<Card> handCards = new List<Card>();
     List<Card> deckCards = new List<Card>();
     List<Card> discardCards = new List<Card>();
 
+    float handCardDistance = 0.2f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        while (handCards.Count < handLimit)
+        {
+            handCards.Add(tempCard);
+            //handCards.Add(tempCard2);
+        }
+        UpdateHand();
     }
 
     // Update is called once per frame
@@ -21,11 +31,41 @@ public class PlayerCards : MonoBehaviour
         
     }
 
-    public void DrawCard()
+    void UpdateHand()
     {
-        if (handCards.Count < handLimit && deckCards.Count > 0) 
+        GameObject[] tempCards = new GameObject[handCards.Count];
+        int tempCounter = 0;
+        foreach (Card card in handCards)
         {
-            Card tempCard = deckCards[Random.Range(0, deckCards.Count)];
+            GameObject tempObject = Instantiate(cardObject, transform);
+            tempObject.GetComponent<CardDisplay>().card = card;
+            Vector3 tempPosition = tempObject.transform.position;
+            float tempCardWidth = cardObject.GetComponent<Renderer>().bounds.size.x;
+            float tempHandSlot = ((float)(handCards.Count - 1) / 2) - tempCounter;
+            tempObject.transform.position = tempPosition + new Vector3(tempHandSlot * (tempCardWidth + handCardDistance), 0, 0);
+
+            tempCards[tempCounter] = tempObject;
+            tempCounter++;
         }
+    }
+
+    public void DrawCard(int anAmount)
+    {
+        for (int i = 0; i < anAmount; i++)
+        {
+            if (handCards.Count < handLimit && deckCards.Count > 0)
+            {
+                Card tempCard = deckCards[Random.Range(0, deckCards.Count)];
+            }
+        }
+    }
+
+    public void ShuffleDiscardIntoDeck()
+    {
+        foreach (Card card in discardCards) 
+        { 
+            deckCards.Add(card);
+        }
+        discardCards.Clear();
     }
 }

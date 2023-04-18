@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb;
     [SerializeField] protected float speed;
     protected Vector2 direction = new Vector2(-1, 0);
+    public int enemyWeigth;
     // Start is called before the first frame update
     public virtual void Start()
     {

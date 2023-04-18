@@ -11,4 +11,20 @@ public class Level : ScriptableObject
     public int waves;
     public int enemiesPerWave;
     public int enemy1SpawnChance, enemy2SpawnChance, enemy3SpawnChance, enemy4SpawnChance;
+
+    public void UpdateChances()
+    {
+        if(enemy2SpawnChance > 0) 
+        {
+            enemy2SpawnChance += enemy1SpawnChance;
+        }
+        if(enemy3SpawnChance > 0)
+        {
+            enemy3SpawnChance += enemy2SpawnChance;
+        }
+        if(enemy4SpawnChance > 0)
+        {
+            enemy4SpawnChance += enemy3SpawnChance;
+        }
+    }
 }

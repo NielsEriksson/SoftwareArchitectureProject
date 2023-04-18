@@ -7,7 +7,7 @@ public class Enemy3 : Enemy
     // Start is called before the first frame update
     public override void Start()
     {
-
+        enemyWeigth = 3;
         base.Start();
     }
 

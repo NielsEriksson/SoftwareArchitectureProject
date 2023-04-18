@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 3070061992003157600, guid: 2548e04a2493f5e42834839bef52397f, type: 3}
   - {fileID: 6378675300979826436, guid: 63bd6796fb91e684492514b3cc614ea1, type: 3}
   - {fileID: 5096978823103823486, guid: bbf3527f1a9208745bcf6bbd28662b3c, type: 3}
-  enemyMaxWieght: 100
+  enemyMaxWieght: 80
   waves: 10
   enemiesPerWave: 10
   enemy1SpawnChance: 60

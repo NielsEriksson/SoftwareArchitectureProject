@@ -337,6 +337,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 75b0d24d5c6916742a8d54b4fb5d063a, type: 2}
   - {fileID: 11400000, guid: 6283bf47b34acf44c940e5a9ec197198, type: 2}
   - {fileID: 11400000, guid: 631074d2ff0c8d2468aa7be689f86928, type: 2}
+  currentEnemy: 0
+  enemiesInLevel: []
+  spawnWaveTimer: 0
+  spawnWaveTimerReset: 45
+  spawnEnemyDelay: 1
 --- !u!4 &1527009906
 Transform:
   m_ObjectHideFlags: 0

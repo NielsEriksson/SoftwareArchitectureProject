@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
+    public virtual void Update()
+    {
+        Move();
+    }
     public virtual void Move()
     {
         rb.velocity = direction * speed;

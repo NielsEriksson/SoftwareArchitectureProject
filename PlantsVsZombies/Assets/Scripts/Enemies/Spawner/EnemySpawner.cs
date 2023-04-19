@@ -9,37 +9,38 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<Level> levels;
     private Level currentLevel;
     private int currentLevelNum;
-    private int currentEnemy;
-    List<Enemy> enemiesInLevel;
+    [SerializeField] private int currentEnemy;
+    [SerializeField] List<Enemy> enemiesInLevel;
     private Enemy enemyToSpawn;
     [SerializeField] float spawnWaveTimer;
-    float spawnWaveTimerReset;
-    //[SerializeField] float spawnEnemyDelay;
-    //float spawnEnemyDelayReset;
+    [SerializeField] float spawnWaveTimerReset;
+    [SerializeField] float spawnEnemyDelay;
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        spawnWaveTimerReset = spawnWaveTimer; 
-        //spawnEnemyDelayReset = spawnEnemyDelay;
+        enemiesInLevel = new List<Enemy>();
         currentEnemy = 0;
-        currentLevelNum = 0;
+        currentLevelNum = 0;        
         currentLevel = levels[currentLevelNum];
         currentLevel.UpdateChances();
+
         GenerateLevel();
+        Debug.Log("enemies per wave :" + currentLevel.enemiesPerWave);
     }
     public void FixedUpdate()
     {
-        spawnWaveTimer -= Time.deltaTime;
-        if (spawnWaveTimer < 0 ) 
+        if (currentEnemy <= enemiesInLevel.Count)
         {
-            for ( int i = 0; i < currentLevel.enemiesPerWave; i++ )
+            spawnWaveTimer -= Time.deltaTime;
+           
+            if (spawnWaveTimer < 0)
             {
-                SpawnNextEnemy();
+               StartCoroutine(SpawnWave());
             }
-            spawnWaveTimer = spawnWaveTimerReset;
         }
-        
+
     }
     public void ChangeLevel()
     {
@@ -48,45 +49,72 @@ public class EnemySpawner : MonoBehaviour
     }
     public void GenerateLevel()
     {
-        enemiesInLevel.Clear();
-        for (int i = 0; i < currentLevel.enemyMaxWieght;)
+        if (enemiesInLevel.Count > 0) { enemiesInLevel.Clear(); }
+
+        for (int i = 0; i <= currentLevel.enemyMaxWieght;i++)
         {
             int enemySpawnChance = Random.Range(0, 100);
-            if(enemySpawnChance <= currentLevel.enemy1SpawnChance && currentLevel.enemy1SpawnChance >0)
+            if (enemySpawnChance <= currentLevel.enemy1SpawnChance && currentLevel.enemy1SpawnChance > 0)
             {
-                enemiesInLevel.Add(currentLevel.availableEnemies[3]);
+                enemiesInLevel.Add(currentLevel.availableEnemies[0]);
                 i += currentLevel.availableEnemies[0].enemyWeigth;
             }
             else if (enemySpawnChance <= currentLevel.enemy2SpawnChance && currentLevel.enemy2SpawnChance > 0)
             {
-                enemiesInLevel.Add(currentLevel.availableEnemies[3]);
+                enemiesInLevel.Add(currentLevel.availableEnemies[1]);
                 i += currentLevel.availableEnemies[1].enemyWeigth;
+
             }
             else if (enemySpawnChance <= currentLevel.enemy3SpawnChance && currentLevel.enemy3SpawnChance > 0)
             {
-                enemiesInLevel.Add(currentLevel.availableEnemies[3]);
+                enemiesInLevel.Add(currentLevel.availableEnemies[2]);
                 i += currentLevel.availableEnemies[2].enemyWeigth;
+
             }
             else if (enemySpawnChance <= currentLevel.enemy4SpawnChance && currentLevel.enemy4SpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[3]);
                 i += currentLevel.availableEnemies[3].enemyWeigth;
+
             }
+            Debug.Log("i = " + i);
         }
-        currentLevel.enemiesPerWave = enemiesInLevel.Count/currentLevel.waves;
+        if (enemiesInLevel.Count % currentLevel.waves == 0)
+        {
+            currentLevel.enemiesPerWave = enemiesInLevel.Count / currentLevel.waves;
+
+        }
+        else
+        {
+            currentLevel.enemiesPerWave = enemiesInLevel.Count / currentLevel.waves + 1;
+        }
 
     }
-    public void SpawnNextEnemy()
+    public IEnumerator SpawnWave()
     {
-        int enemySpawPoint = Random.Range(0, spawnPoints.Count - 1);
-        enemyToSpawn = enemiesInLevel[currentEnemy];
-        GameObject.Instantiate(enemyToSpawn, spawnPoints[enemySpawPoint].transform.position, Quaternion.identity);
-        currentEnemy++;
+
+        for (int i = 0; i < currentLevel.enemiesPerWave; i++)
+        {
+            int enemySpawPoint = Random.Range(0, spawnPoints.Count);
+            enemyToSpawn = enemiesInLevel[currentEnemy];
+            yield return new WaitForSeconds(1);
+            GameObject.Instantiate(enemyToSpawn, spawnPoints[enemySpawPoint].transform.position, Quaternion.identity);
+            currentEnemy++;
+           
+        }
+        spawnWaveTimer = spawnWaveTimerReset;
+       
     }
     public void SpawnExtraEnemy()
     {
         enemyToSpawn = currentLevel.availableEnemies[0];
         int SpawnPoint = Random.Range(0, spawnPoints.Count-1); 
         GameObject.Instantiate(enemyToSpawn, spawnPoints[SpawnPoint].transform.position, Quaternion.identity);
+    }
+    private IEnumerator Wait(float seconds)
+    {
+        Debug.Log("waiting");
+        yield return new WaitForSeconds(seconds);
+        Debug.Log("wait end");
     }
 }

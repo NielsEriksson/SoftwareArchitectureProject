@@ -8,7 +8,7 @@ public abstract class Plant : MonoBehaviour
     protected Rigidbody2D rb;
     [SerializeField] public BoxCollider2D rangeHitBox;
     [SerializeField] protected int startRange;
-
+    [HideInInspector] public bool isInRange;
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,7 +25,21 @@ public abstract class Plant : MonoBehaviour
         rangeHitBox.size = new Vector2(width, rangeHitBox.size.y);
         rangeHitBox.offset = new Vector2(width / 2, rangeHitBox.offset.y);
     }
-    
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        Debug.Log("COLLIDING!!!!");
+        if (other.gameObject.tag == "Enemy")
+        {
+            isInRange = true;
+            //Physics2D.BoxCast
+        }
+    }
+    //private void NotInRange()
+    //{
+    //    List<Collider2D> contacts = new List<Collider2D>();
+    //    rangeHitBox.OverlapCollider(ContactFilter2D.NormalAngleUpperLimit, contacts);
+    //}
     // Update is called once per frame
     public abstract void Attack();
     public abstract void Action();

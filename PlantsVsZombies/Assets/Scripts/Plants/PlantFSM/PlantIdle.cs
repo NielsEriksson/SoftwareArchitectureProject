@@ -13,20 +13,10 @@ public class PlantIdle : PlantBaseState
     }
     public override void Transition()
     {
-        if (sm.isInRange)
+        Debug.Log("PlantIdle Transition");
+        if (sm.plant.isInRange)
         {
             sm.ChangeState(sm.attackState);
-            sm.isInRange = false;
-        }
-
-    }
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("COLLIDING!!!!");
-        if (other.gameObject.tag == "Enemy")
-        {
-            sm.isInRange = true;
-            //Physics2D.BoxCast
         }
     }
 }

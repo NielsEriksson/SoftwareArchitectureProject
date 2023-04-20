@@ -17,6 +17,6 @@ public class ShootingPlant : Plant
     }
     public override void Action()
     {
-        
+
     }
 }

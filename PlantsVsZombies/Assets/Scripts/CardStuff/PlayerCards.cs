@@ -28,6 +28,7 @@ public class PlayerCards : MonoBehaviour
         while (handCards.Count < handLimit)
         {
             handCards.Add(tempCard);
+            deckCards.Add(tempCard);
             //handCards.Add(tempCard2);
         }
         CreateHand();
@@ -38,6 +39,11 @@ public class PlayerCards : MonoBehaviour
     {
         deckText.text = deckCards.Count.ToString();
         discardText.text = discardCards.Count.ToString();
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            DrawCard(2);
+        }
     }
 
     void CreateHand()
@@ -48,20 +54,29 @@ public class PlayerCards : MonoBehaviour
         float halfViewport = (cam.orthographicSize * cam.aspect);
         Debug.Log(halfViewport);
 
-        foreach (Card card in handCards)
+        for (int i = 0; i < handCards.Count; i++)
         {
-            GameObject tempObject = Instantiate(baseCard, transform);
-            tempObject.GetComponent<CardDisplay>().card = card;
-            Vector3 tempPosition = tempObject.transform.position;
-            //tempObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 
-            //    transform.rotation.z + tempHandSlot, transform.rotation.w);
-            tempObject.transform.position = GetHandPosition(tempCounter, handCards.Count);
-            tempObject.GetComponent<DragDrop>().handIndex = tempCounter + 1;
-
-            cardObjects.Add(tempObject);
-            tempCounter++;
-            //Debug.Log(tempCardWidth);
+            CreateCard(i);
         }
+
+        //foreach (Card card in handCards)
+        //{
+        //    tempCounter++;
+        //    //Debug.Log(tempCardWidth);
+        //}
+    }
+
+    void CreateCard(int aCard)
+    {
+        GameObject tempObject = Instantiate(baseCard, transform);
+        tempObject.GetComponent<CardDisplay>().card = handCards[aCard];
+        Vector3 tempPosition = tempObject.transform.position;
+        //tempObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 
+        //    transform.rotation.z + tempHandSlot, transform.rotation.w);
+        tempObject.transform.position = GetHandPosition(aCard, handCards.Count);
+        tempObject.GetComponent<DragDrop>().handIndex = aCard + 1;
+
+        cardObjects.Add(tempObject);
     }
 
     public void UpdateHand()
@@ -116,7 +131,13 @@ public class PlayerCards : MonoBehaviour
         {
             if (handCards.Count < handLimit && deckCards.Count > 0)
             {
-                Card tempCard = deckCards[Random.Range(0, deckCards.Count)];
+                int tempIndex = Random.Range(0, deckCards.Count);
+                Card tempCard = deckCards[tempIndex];
+                deckCards.RemoveAt(tempIndex);
+                handCards.Add(tempCard);
+                CreateCard(handCards.Count - 1);
+                UpdateHand();
+                Debug.Log("draw card");
             }
         }
     }

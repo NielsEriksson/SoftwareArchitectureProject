@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Holding Card
+  - Input
   layers:
   - Default
   - TransparentFX

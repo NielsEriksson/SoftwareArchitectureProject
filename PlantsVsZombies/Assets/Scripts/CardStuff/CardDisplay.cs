@@ -14,9 +14,15 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        holdingCard = GameObject.FindGameObjectWithTag("Holding Card").GetComponent<HoldingCard>();
-        nameText.text = card.cardName;
-        descriptionText.text = card.cardDescription;
+        //BoxCollider2D tempCollision = GetComponent<BoxCollider2D>();
+        //tempCollision.size = GetComponent<RectTransform>().sizeDelta;
+
+        //holdingCard = GameObject.FindGameObjectWithTag("Holding Card").GetComponent<HoldingCard>();
+        if (card != null)
+        {
+            //descriptionText.text = card.cardDescription;
+            //nameText.text = card.cardName;
+        }
     }
 
     // Update is called once per frame
@@ -27,10 +33,10 @@ public class CardDisplay : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!holdingCard.isHolding)
-        {
-            holdingCard.card.GetComponent<CardDisplay>().card = card;
-            holdingCard.isHolding = true;
-        }
+        //if (!holdingCard.isHolding)
+        //{
+        //    holdingCard.card.GetComponent<CardDisplay>().card = card;
+        //    holdingCard.isHolding = true;
+        //}
     }
 }

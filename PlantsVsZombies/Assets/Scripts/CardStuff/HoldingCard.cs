@@ -19,16 +19,16 @@ public class HoldingCard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 
-            Mathf.Abs(Camera.main.transform.position.z - transform.position.z)));
-        tempPos.z = transform.position.z;
-        transform.position = tempPos;
+        //Vector3 tempPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 
+        //    Mathf.Abs(Camera.main.transform.position.z - transform.position.z)));
+        //tempPos.z = transform.position.z;
+        //transform.position = tempPos;
 
-        card.SetActive(isHolding);
+        //card.SetActive(isHolding);
 
-        if (isHolding && Input.GetMouseButtonUp(0))
-        {
-            isHolding = false;
-        }
+        //if (/*isHolding &&*/ Input.GetMouseButtonUp(0))
+        //{
+        //    isHolding = false;
+        //}
     }
 }

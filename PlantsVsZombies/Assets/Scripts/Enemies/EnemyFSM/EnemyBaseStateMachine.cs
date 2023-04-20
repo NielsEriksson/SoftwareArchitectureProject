@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class BaseStateMachine : MonoBehaviour
+public class EnemyBaseStateMachine : MonoBehaviour
 {
-    protected BaseState currentState;
+    protected EnemyBaseState currentState;
 
     void Start()
     {
@@ -27,13 +27,13 @@ public class BaseStateMachine : MonoBehaviour
         GameObject.Find("CUrrentState").GetComponent<TMP_Text>().text = currentState.name;
     }
    
-    public void ChangeState(BaseState newState)
+    public void ChangeState(EnemyBaseState newState)
     {
         currentState.Exit();
         currentState = newState;
         currentState.Enter();
     }
-    protected virtual BaseState GetInitialState()
+    protected virtual EnemyBaseState GetInitialState()
     {
         return null;
     }    

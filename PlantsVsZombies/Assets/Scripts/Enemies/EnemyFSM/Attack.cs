@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : BaseState
+public class Attack : EnemyBaseState
 {
-    private AiStateMachine sm;
+    private EnemyAiStateMachine sm;
     public float bulletSpeed;
     Vector2 bulletdirection;
     public float shotDelay;
-    public Shoot(AiStateMachine stateMachine) : base("Shoot", stateMachine) { sm = (AiStateMachine)stateMachine; }
+    public Attack(EnemyAiStateMachine stateMachine) : base("Shoot", stateMachine) { sm = (EnemyAiStateMachine)stateMachine; }
     public override void Enter() {
         bulletSpeed = 9f;
         shotDelay = 0.75f;
@@ -32,13 +32,6 @@ public class Shoot : BaseState
     }
     public override void Transition() 
     {
-        if (Vector2.Distance(sm.AIrb.transform.position, sm.playerrb.transform.position) < 6)
-        {
-            sm.ChangeState(sm.evadeState);
-        }
-        if (Vector2.Distance(sm.AIrb.transform.position, sm.playerrb.transform.position) > 10)
-        {
-            sm.ChangeState(sm.idleState);
-        }
+  
     }
 }

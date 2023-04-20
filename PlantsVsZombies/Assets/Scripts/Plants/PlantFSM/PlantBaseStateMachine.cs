@@ -24,16 +24,16 @@ public class PlantBaseStateMachine : MonoBehaviour
             currentState.Update();
             currentState.Transition();
         }
-        GameObject.Find("CUrrentState").GetComponent<TMP_Text>().text = currentState.name;
+        //GameObject.Find("CUrrentState").GetComponent<TMP_Text>().text = currentState.name;
     }
    
-    public void ChangeState(BaseState newState)
+    public void ChangeState(PlantBaseState newState)
     {
         currentState.Exit();
         currentState = newState;
         currentState.Enter();
     }
-    protected virtual BaseState GetInitialState()
+    protected virtual PlantBaseState GetInitialState()
     {
         return null;
     }    

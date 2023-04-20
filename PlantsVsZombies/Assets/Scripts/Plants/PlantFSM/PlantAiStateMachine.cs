@@ -6,26 +6,22 @@ using TMPro;
 public class PlantAiStateMachine : PlantBaseStateMachine
 {
     [HideInInspector]
-    public Idle idleState;
+    public PlantIdle idleState;
     [HideInInspector]
-    public Shoot shootState;
-    [HideInInspector]
-    public Evade evadeState;
-    public Rigidbody2D AIrb;
-    public Rigidbody2D playerrb;
-    public GameObject bullet;
+    public PlantAttack attackState;
 
+    public bool isInRange;
 
+    public Plant plant;
+    
 
     private void Awake()
     {
-        Debug.Log(Vector2.Distance(AIrb.position, playerrb.position));
-        idleState = new Idle(this);
-        shootState = new Attack(this);
-        evadeState = new Evade(this);
+        idleState = new PlantIdle(this);
+        attackState = new PlantAttack(this);
     }
 
-    protected override BaseState GetInitialState()
+    protected override PlantBaseState GetInitialState()
     {
         return idleState;
     }

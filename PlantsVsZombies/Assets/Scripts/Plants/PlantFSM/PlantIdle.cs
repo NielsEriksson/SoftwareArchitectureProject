@@ -6,18 +6,27 @@ public class PlantIdle : PlantBaseState
 {
     private PlantAiStateMachine sm;
     public PlantIdle(PlantAiStateMachine stateMachine) : base("Idle", stateMachine) { sm = (PlantAiStateMachine)stateMachine; }
-    public override void Enter() { sm.AIrb.velocity = Vector2.zero; }
-    public override void Update() { }
-    public override void Transition() 
+    public override void Enter() { }
+    public override void Update()
     {
-        if (Vector2.Distance(sm.AIrb.transform.position , sm.playerrb.transform.position) < 6)
+        sm.plant.Idle();
+    }
+    public override void Transition()
+    {
+        if (sm.isInRange)
         {
-            sm.ChangeState(sm.evadeState);
+            sm.ChangeState(sm.attackState);
+            sm.isInRange = false;
         }
-        if (Vector2.Distance(sm.AIrb.transform.position, sm.playerrb.transform.position) < 10)
+
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("COLLIDING!!!!");
+        if (other.gameObject.tag == "Enemy")
         {
-            sm.ChangeState(sm.shootState);
+            sm.isInRange = true;
+            //Physics2D.BoxCast
         }
     }
-    
 }

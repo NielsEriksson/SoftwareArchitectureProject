@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantBaseState 
+public class PlantBaseState : MonoBehaviour
 {
-    public string name;
+    public string stateName;
     protected PlantBaseStateMachine stateMachine;
     public PlantBaseState(string name, PlantBaseStateMachine stateMachine)
     {
-        this.name = name;
+        this.stateName = name;
         this.stateMachine = stateMachine;
     }
     public virtual void Enter() { }

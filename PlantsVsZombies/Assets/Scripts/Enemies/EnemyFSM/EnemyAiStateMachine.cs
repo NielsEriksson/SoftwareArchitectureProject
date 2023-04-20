@@ -8,18 +8,13 @@ public class EnemyAiStateMachine : EnemyBaseStateMachine
     [HideInInspector] 
     public EnemyAttack attackState;
     [HideInInspector]
-    public Rigidbody2D AIrb;
-    public Rigidbody2D playerrb;
-    public GameObject bullet;
+    public Enemy enemy;
 
 
 
     private void Awake()
-    {
-        Debug.Log(Vector2.Distance(AIrb.position, playerrb.position));
-   
-        attackState = new EnemyAttack(this);
-     
+    {        
+        attackState = new EnemyAttack(this);     
     }
 
     protected override EnemyBaseState GetInitialState()

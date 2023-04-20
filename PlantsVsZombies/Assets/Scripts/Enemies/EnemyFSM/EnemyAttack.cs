@@ -12,11 +12,10 @@ public class EnemyAttack : EnemyBaseState
     }
     public override void Update() 
     {
-
-
+        sm.enemy.Attack();
     }
     public override void Transition() 
     {
-  
+        BoxCollider2D coll;
     }
 }

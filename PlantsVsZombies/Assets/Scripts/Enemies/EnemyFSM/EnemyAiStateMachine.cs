@@ -6,7 +6,7 @@ using TMPro;
 public class EnemyAiStateMachine : EnemyBaseStateMachine
 {
     [HideInInspector] 
-    public Attack attackState;
+    public EnemyAttack attackState;
     [HideInInspector]
     public Rigidbody2D AIrb;
     public Rigidbody2D playerrb;
@@ -18,7 +18,7 @@ public class EnemyAiStateMachine : EnemyBaseStateMachine
     {
         Debug.Log(Vector2.Distance(AIrb.position, playerrb.position));
    
-        attackState = new Attack(this);
+        attackState = new EnemyAttack(this);
      
     }
 

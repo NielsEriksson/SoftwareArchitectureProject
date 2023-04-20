@@ -16,7 +16,7 @@ public class MouseManager : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if(Input.GetMouseButtonDown(0) && mapManager.GetTileIsEmpty(mousePos)){ //if we press the button and position is empty
+        if(Input.GetMouseButtonDown(0) && mapManager.GetTileIsFull()){ //if we press the button and position is empty
         //     print("hello");
         //     GameObject newObject = Instantiate(spawnObject); //spawn object
         //     newObject.transform.position = mapManager.GetTilePos(mousePos); //set pos

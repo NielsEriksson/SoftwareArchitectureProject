@@ -5,41 +5,48 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap map;
-    [SerializeField] private List<TileData> tileDatas;
-    private Dictionary <TileBase, TileData> dataFromTiles;
+    [SerializeField] private Tilemap tilemap;
+    private Dictionary <TileBase, bool> dataFromTiles;
+    private TileBase clickedTile;
 
     void Awake(){
-        dataFromTiles = new Dictionary<TileBase, TileData>();
-        foreach (var tileData in tileDatas){
-            foreach (var tile in tileData.tiles){
-                dataFromTiles.Add(tile, tileData);
-            }
+        dataFromTiles = new Dictionary<TileBase, bool>();   //init dic
+        BoundsInt bounds = tilemap.cellBounds;              //get bounds
+        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);//save array of tiles
+        foreach (TileBase tile in allTiles)
+        {
+            if (tile == null) return;
+            dataFromTiles.Add(tile, false);                 //save info in dic with all bools being false0
         }
     }
     private void Update()
     {
+        clickedTile = GetClickedTile();
         if(Input.GetMouseButtonDown(0)){
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridPosition = map.WorldToCell(mousePosition);
-            TileBase clickedTile = map.GetTile(gridPosition);
-
-            bool isEmpty = dataFromTiles[clickedTile].isEmpty;
-
-            print("Position " + gridPosition + " is empty " + isEmpty);
+            if (!GetTileIsFull())
+            {
+                print(clickedTile + " is not occupied yet");
+                OccupyTile();
+            }
+            else print("is occupied");
         }
     }
 
-    public bool GetTileIsEmpty (Vector2 worldPosition){
-        Vector3Int gridPosition = map.WorldToCell(worldPosition);
-        TileBase tile = map.GetTile(gridPosition);
-
-        if(tile = null){
-            return false;
-        }
-        bool isEmpty = dataFromTiles[tile].isEmpty;
-        return isEmpty;
+    public bool GetTileIsFull (){
+        bool isFull;
+        dataFromTiles.TryGetValue(clickedTile, out isFull);
+        return isFull;
     }
-
+    private TileBase GetClickedTile()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
+        TileBase clickedTile = tilemap.GetTile(gridPosition);
+        return clickedTile;
+    }
+    private void OccupyTile()
+    {
+        dataFromTiles[clickedTile] = true;
+    }
     
 }

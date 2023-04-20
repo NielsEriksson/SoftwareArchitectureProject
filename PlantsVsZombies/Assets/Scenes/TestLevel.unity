@@ -770,9 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa95d0512772d1448181b35b60bcc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 1951379788}
-  tileDatas:
-  - {fileID: 11400000, guid: 74868579f5997964f905cc8f9256e0f6, type: 2}
+  tilemap: {fileID: 1951379788}
 --- !u!4 &2126507676
 Transform:
   m_ObjectHideFlags: 0

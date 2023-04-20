@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Holding Card
-  - Input
+  - Hand
   layers:
   - Default
   - TransparentFX

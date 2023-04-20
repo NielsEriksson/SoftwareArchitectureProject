@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
-    private bool isDragging = false;
-    private Vector2 startPosition;
+    bool isDragging = false;
+    Vector2 startPosition;
+    PlayerCards playerCards;
+    [HideInInspector] public int handIndex;
+
+    void Start()
+    {
+        playerCards = GameObject.FindGameObjectWithTag("Hand").GetComponent<PlayerCards>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,12 +27,27 @@ public class DragDrop : MonoBehaviour
     {
         startPosition = transform.position;
         isDragging = true;
-        Debug.Log("Start Drag");
+        playerCards.selectedCard = handIndex;
+        playerCards.UpdateHand();
     }
 
     public void EndDrag()
     {
         isDragging = false;
-        Debug.Log("End Drag");
+        if (IsDestinationValid())
+        {
+            playerCards.RemoveSelectedCard();
+        }
+        else
+        {
+            playerCards.selectedCard = 0;
+            transform.position = startPosition;
+        }
+        playerCards.UpdateHand();
+    }
+
+    bool IsDestinationValid()
+    {
+        return true;
     }
 }

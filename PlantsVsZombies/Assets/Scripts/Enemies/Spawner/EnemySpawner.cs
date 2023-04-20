@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnWaveTimer;
     [SerializeField] float spawnWaveTimerReset;
     [SerializeField] float spawnEnemyDelay;
+    bool isSpawningWave;
 
 
     // Start is called before the first frame update
@@ -31,16 +32,14 @@ public class EnemySpawner : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if (currentEnemy <= enemiesInLevel.Count)
+        spawnWaveTimer -= Time.deltaTime;
+        if (spawnWaveTimer < 0 && !isSpawningWave)
         {
-            spawnWaveTimer -= Time.deltaTime;
-           
-            if (spawnWaveTimer < 0)
-            {
-               StartCoroutine(SpawnWave());
-            }
-        }
+            isSpawningWave = true;
+            StartCoroutine(SpawnWave());
+            spawnWaveTimer = spawnWaveTimerReset;
 
+        }
     }
     public void ChangeLevel()
     {
@@ -75,46 +74,39 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[3]);
                 i += currentLevel.availableEnemies[3].enemyWeigth;
-
             }
             Debug.Log("i = " + i);
         }
         if (enemiesInLevel.Count % currentLevel.waves == 0)
         {
             currentLevel.enemiesPerWave = enemiesInLevel.Count / currentLevel.waves;
-
         }
         else
         {
-            currentLevel.enemiesPerWave = enemiesInLevel.Count / currentLevel.waves + 1;
+            currentLevel.enemiesPerWave = enemiesInLevel.Count / currentLevel.waves ;
         }
-
     }
     public IEnumerator SpawnWave()
     {
-
         for (int i = 0; i < currentLevel.enemiesPerWave; i++)
         {
-            int enemySpawPoint = Random.Range(0, spawnPoints.Count);
-            enemyToSpawn = enemiesInLevel[currentEnemy];
-            yield return new WaitForSeconds(1);
-            GameObject.Instantiate(enemyToSpawn, spawnPoints[enemySpawPoint].transform.position, Quaternion.identity);
-            currentEnemy++;
-           
+            yield return new WaitForSeconds(spawnEnemyDelay);
+            if (currentEnemy < enemiesInLevel.Count)
+            {
+                int enemySpawPoint = Random.Range(0, spawnPoints.Count);
+                enemyToSpawn = enemiesInLevel[currentEnemy];
+                GameObject.Instantiate(enemyToSpawn, spawnPoints[enemySpawPoint].transform.position, Quaternion.identity);               
+                currentEnemy++;
+            }
         }
-        spawnWaveTimer = spawnWaveTimerReset;
-       
+
+        isSpawningWave = false;
+        
     }
     public void SpawnExtraEnemy()
     {
         enemyToSpawn = currentLevel.availableEnemies[0];
         int SpawnPoint = Random.Range(0, spawnPoints.Count-1); 
         GameObject.Instantiate(enemyToSpawn, spawnPoints[SpawnPoint].transform.position, Quaternion.identity);
-    }
-    private IEnumerator Wait(float seconds)
-    {
-        Debug.Log("waiting");
-        yield return new WaitForSeconds(seconds);
-        Debug.Log("wait end");
     }
 }

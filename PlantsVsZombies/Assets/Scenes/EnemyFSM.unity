@@ -341,7 +341,7 @@ MonoBehaviour:
   enemiesInLevel: []
   spawnWaveTimer: 0
   spawnWaveTimerReset: 45
-  spawnEnemyDelay: 1
+  spawnEnemyDelay: 2
 --- !u!4 &1527009906
 Transform:
   m_ObjectHideFlags: 0

@@ -86,9 +86,15 @@ public class PlayerCards : MonoBehaviour
     public void UpdateHand()
     {
         int tempCounter = 0;
-        int tempHandSize = handCards.Count;
-        if (selectedCard != 0)
-            tempHandSize--;
+        int tempHandSize = 0;
+
+        for (int i = 0; i < handCards.Count; i++)
+        {
+            if (i + 1 != selectedCard && !cardObjects[i].GetComponent<DragDrop>().isDiscarded)
+            {
+                tempHandSize++;
+            }
+        }
 
         string tempDebug = "";
 

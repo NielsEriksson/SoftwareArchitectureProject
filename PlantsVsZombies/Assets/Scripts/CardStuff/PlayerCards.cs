@@ -9,14 +9,15 @@ public class PlayerCards : MonoBehaviour
     public int handLimit;
     public Card tempCard;
     public Card tempCard2;
-    public Text deckText;
-    public Text discardText;
+    public GameObject deck;
+    public GameObject discard;
     [HideInInspector] public int selectedCard = 0;
 
     List<Card> handCards = new List<Card>();
     List<Card> deckCards = new List<Card>();
     List<Card> discardCards = new List<Card>();
     List<GameObject> cardObjects = new List<GameObject>();
+    List<GameObject> discardingCards = new List<GameObject>();
 
     float handCardDistance = 20f;
     float cardWidth;
@@ -25,43 +26,44 @@ public class PlayerCards : MonoBehaviour
     void Start()
     {
         cardWidth = baseCard.GetComponent<RectTransform>().sizeDelta.x;
-        while (handCards.Count < handLimit)
+        for (int i = 0; i < 20; i++)
         {
-            handCards.Add(tempCard);
             deckCards.Add(tempCard);
-            //handCards.Add(tempCard2);
         }
-        CreateHand();
+
+        DrawCard(handLimit);
+
+        //CreateHand();
     }
 
     // Update is called once per frame
     void Update()
     {
-        deckText.text = deckCards.Count.ToString();
-        discardText.text = discardCards.Count.ToString();
+        deck.GetComponent<Text>().text = deckCards.Count.ToString();
+        discard.GetComponent<Text>().text = discardCards.Count.ToString();
 
         if (Input.GetMouseButtonDown(1))
         {
-            DrawCard(2);
+            DrawCard(1);
         }
-    }
 
-    void CreateHand()
-    {
-        cardObjects.Clear(); 
-        Camera cam = Camera.main;
-        float halfViewport = (cam.orthographicSize * cam.aspect);
-        Debug.Log(halfViewport);
-
-        for (int i = 0; i < handCards.Count; i++)
+        for (int i = 0; i < cardObjects.Count; i++)
         {
-            CreateCard(i);
+            if (Vector2.Distance(cardObjects[i].transform.position, discard.transform.position) <= 5f)
+            {
+                RemoveCard(i);
+                i--;
+            }
         }
 
-        //foreach (Card card in handCards)
+        //for (int i = 0; i < discardingCards.Count; i++)
         //{
-        //    tempCounter++;
-        //    //Debug.Log(tempCardWidth);
+        //    if (discardingCards[i].transform.position == discard.transform.position)
+        //    {
+        //        Debug.Log("Card Discarded");
+        //        discardingCards.RemoveAt(i);
+        //        i--;
+        //    }
         //}
     }
 
@@ -69,15 +71,16 @@ public class PlayerCards : MonoBehaviour
     {
         GameObject tempObject = Instantiate(baseCard, transform);
         tempObject.GetComponent<CardDisplay>().card = handCards[aCard];
-        Vector3 tempPosition = tempObject.transform.position;
+        tempObject.transform.position = deck.transform.position;
         //tempObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 
         //    transform.rotation.z + tempHandSlot, transform.rotation.w);
-        tempObject.transform.position = GetHandPosition(aCard, handCards.Count);
         DragDrop tempDragDrop = tempObject.GetComponent<DragDrop>();
-        tempDragDrop.moveDestination = tempObject.transform.position;
         tempDragDrop.handIndex = aCard + 1;
+        tempDragDrop.scaleDestination = Vector2.one;
+        tempDragDrop.transform.localScale = Vector2.zero;
 
         cardObjects.Add(tempObject);
+        UpdateHand();
     }
 
     public void UpdateHand()
@@ -91,22 +94,26 @@ public class PlayerCards : MonoBehaviour
 
         for (int i = 0; i < cardObjects.Count; i++)
         {
-            if (i + 1 != selectedCard)
+            DragDrop tempDragDrop = cardObjects[i].GetComponent<DragDrop>();
+
+            if (i + 1 != selectedCard && !tempDragDrop.isDiscarded)
             {
                 tempDebug += (i + 1) + ", ";
-                cardObjects[i].GetComponent<DragDrop>().moveDestination = GetHandPosition(tempCounter, tempHandSize);
+                tempDragDrop.moveDestination = GetHandPosition(tempCounter, tempHandSize);
                 tempCounter++;
             }
         }
     }
 
-    public void RemoveSelectedCard()
+    public void RemoveCard(int anIndex)
     {
-        Destroy(cardObjects[selectedCard - 1]);
-        discardCards.Add(handCards[selectedCard - 1]);
-        handCards.RemoveAt(selectedCard - 1);
-        cardObjects.RemoveAt(selectedCard - 1);
-        selectedCard = 0;
+        //GameObject tempGameObject = Instantiate(cardObjects[selectedCard - 1], cardObjects[selectedCard - 1].transform);
+        //tempGameObject.GetComponent<DragDrop>().moveDestination = discard.transform.position;
+        //discardingCards.Add(tempGameObject);
+        Destroy(cardObjects[anIndex]);
+        discardCards.Add(handCards[anIndex]);
+        handCards.RemoveAt(anIndex);
+        cardObjects.RemoveAt(anIndex);
         UpdateIndex();
     }
 
@@ -130,7 +137,12 @@ public class PlayerCards : MonoBehaviour
     {
         for (int i = 0; i < anAmount; i++)
         {
-            if (handCards.Count < handLimit && deckCards.Count > 0)
+            if (deckCards.Count <= 0)
+            {
+                ShuffleDiscardIntoDeck();
+            }
+
+            if (handCards.Count < handLimit)
             {
                 int tempIndex = Random.Range(0, deckCards.Count);
                 Card tempCard = deckCards[tempIndex];

@@ -471,7 +471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -490, y: -200}
+  m_AnchoredPosition: {x: -490, y: -250}
   m_SizeDelta: {x: 120, y: 37.3976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272670224
@@ -549,8 +549,8 @@ MonoBehaviour:
   handLimit: 8
   tempCard: {fileID: 11400000, guid: 5ecc8322b7bb69f4297f48ddfc544707, type: 2}
   tempCard2: {fileID: 11400000, guid: 310e88e418e97ff449ce22fa7d494926, type: 2}
-  deckText: {fileID: 1272670224}
-  discardText: {fileID: 1520690302}
+  deck: {fileID: 1272670222}
+  discard: {fileID: 1520690300}
   selectedCard: 0
 --- !u!4 &1418519977
 Transform:
@@ -719,7 +719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 490, y: -200}
+  m_AnchoredPosition: {x: 490, y: -250}
   m_SizeDelta: {x: 120, y: 37.3976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520690302

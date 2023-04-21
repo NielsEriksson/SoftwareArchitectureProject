@@ -9,6 +9,7 @@ public abstract class Plant : MonoBehaviour
     [SerializeField] public BoxCollider2D rangeHitBox;
     [SerializeField] protected int startRange;
     [HideInInspector] public bool isInRange;
+    [SerializeField] public int health;
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,7 +18,10 @@ public abstract class Plant : MonoBehaviour
 
     private void Update()
     {
-       
+        if (Input.GetMouseButtonDown(0))
+        {
+            health--;
+        }
     }
 
     protected virtual void SetRange(int width)
@@ -32,16 +36,15 @@ public abstract class Plant : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             isInRange = true;
-            //Physics2D.BoxCast
         }
     }
-    //private void NotInRange()
-    //{
-    //    List<Collider2D> contacts = new List<Collider2D>();
-    //    rangeHitBox.OverlapCollider(ContactFilter2D.NormalAngleUpperLimit, contacts);
-    //}
-    // Update is called once per frame
     public abstract void Attack();
     public abstract void Action();
     public abstract void Idle(); //Animation etc, do nothing
+    public virtual void Die()
+    {
+        //Animation
+
+        Destroy(gameObject);
+    }
 }

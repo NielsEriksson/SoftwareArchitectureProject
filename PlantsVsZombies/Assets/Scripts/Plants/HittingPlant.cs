@@ -10,7 +10,7 @@ public class HittingPlant : Plant
     }
     public override void Action()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
     public override void Idle()
     {

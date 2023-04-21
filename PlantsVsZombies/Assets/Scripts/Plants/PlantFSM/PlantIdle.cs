@@ -18,5 +18,9 @@ public class PlantIdle : PlantBaseState
         {
             sm.ChangeState(sm.attackState);
         }
+        if(sm.plant.health <= 0)
+        {
+            sm.ChangeState(sm.dieState);
+        }
     }
 }

@@ -443,6 +443,10 @@ PrefabInstance:
       value: ShootingPlant
       objectReference: {fileID: 0}
     - target: {fileID: 6377732276819539555, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}
+      propertyPath: health
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377732276819539555, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}
       propertyPath: rangeHitBox
       value: 
       objectReference: {fileID: 2133970654}

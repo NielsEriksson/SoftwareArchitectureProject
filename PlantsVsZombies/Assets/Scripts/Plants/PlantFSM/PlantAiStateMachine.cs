@@ -9,6 +9,8 @@ public class PlantAiStateMachine : PlantBaseStateMachine
     public PlantIdle idleState;
     [HideInInspector]
     public PlantAttack attackState;
+    [HideInInspector]
+    public PlantDie dieState;
 
     public bool isInRange;
 
@@ -19,6 +21,7 @@ public class PlantAiStateMachine : PlantBaseStateMachine
     {
         idleState = new PlantIdle(this);
         attackState = new PlantAttack(this);
+        dieState = new PlantDie(this);
     }
 
     protected override PlantBaseState GetInitialState()

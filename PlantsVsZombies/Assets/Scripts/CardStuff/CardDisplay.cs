@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    HoldingCard holdingCard;
     public Card card;
     public TextMesh nameText;
     public TextMesh descriptionText;

@@ -48,8 +48,7 @@ public class PlayerCards : MonoBehaviour
 
     void CreateHand()
     {
-        cardObjects.Clear(); /*=  new GameObject[handCards.Count];*/
-        int tempCounter = 0;
+        cardObjects.Clear(); 
         Camera cam = Camera.main;
         float halfViewport = (cam.orthographicSize * cam.aspect);
         Debug.Log(halfViewport);
@@ -74,7 +73,9 @@ public class PlayerCards : MonoBehaviour
         //tempObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 
         //    transform.rotation.z + tempHandSlot, transform.rotation.w);
         tempObject.transform.position = GetHandPosition(aCard, handCards.Count);
-        tempObject.GetComponent<DragDrop>().handIndex = aCard + 1;
+        DragDrop tempDragDrop = tempObject.GetComponent<DragDrop>();
+        tempDragDrop.moveDestination = tempObject.transform.position;
+        tempDragDrop.handIndex = aCard + 1;
 
         cardObjects.Add(tempObject);
     }
@@ -93,7 +94,7 @@ public class PlayerCards : MonoBehaviour
             if (i + 1 != selectedCard)
             {
                 tempDebug += (i + 1) + ", ";
-                cardObjects[i].transform.position = GetHandPosition(tempCounter, tempHandSize);
+                cardObjects[i].GetComponent<DragDrop>().moveDestination = GetHandPosition(tempCounter, tempHandSize);
                 tempCounter++;
             }
         }

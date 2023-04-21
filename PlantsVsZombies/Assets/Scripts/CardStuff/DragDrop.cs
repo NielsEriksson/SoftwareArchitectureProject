@@ -8,6 +8,8 @@ public class DragDrop : MonoBehaviour
     Vector2 startPosition;
     PlayerCards playerCards;
     [HideInInspector] public int handIndex;
+    [HideInInspector] public Vector2 moveDestination;
+    float transitionSpeed = 10.0f;
 
     void Start()
     {
@@ -20,6 +22,11 @@ public class DragDrop : MonoBehaviour
         if (isDragging)
         {
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        }
+        else
+        {
+            transform.position = Vector2.Lerp(transform.position, moveDestination, Time.deltaTime * transitionSpeed);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, moveDestination.rotation, Time.deltaTime * transitionSpeed);
         }
     }
 
@@ -41,13 +48,13 @@ public class DragDrop : MonoBehaviour
         else
         {
             playerCards.selectedCard = 0;
-            transform.position = startPosition;
+            moveDestination = startPosition;
         }
         playerCards.UpdateHand();
     }
 
     bool IsDestinationValid()
     {
-        return true;
+        return false;
     }
 }

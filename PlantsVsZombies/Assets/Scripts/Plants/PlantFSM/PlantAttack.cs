@@ -18,6 +18,7 @@ public class PlantAttack : PlantBaseState
     }
     public override void Transition() 
     {
-        sm.ChangeState(sm.idleState);  
+        sm.ChangeState(sm.idleState);
+        Debug.Log("Transition to Idle");
     }
 }

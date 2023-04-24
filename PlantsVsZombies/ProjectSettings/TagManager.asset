@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Plant
+  - Hand
   layers:
   - Default
   - TransparentFX

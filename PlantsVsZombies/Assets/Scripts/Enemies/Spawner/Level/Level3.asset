@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7d67bdc7db6a646ada3b6f9146ade4, type: 3}
+  m_Name: Level3
+  m_EditorClassIdentifier: 
+  levelName: Level3
+  availableEnemies:
+  - {fileID: 7744831846276795897, guid: 5d7996d5b2e09f54c9aad5dbd23aa0f2, type: 3}
+  - {fileID: 3070061992003157600, guid: 2548e04a2493f5e42834839bef52397f, type: 3}
+  - {fileID: 6378675300979826436, guid: 63bd6796fb91e684492514b3cc614ea1, type: 3}
+  - {fileID: 5096978823103823486, guid: bbf3527f1a9208745bcf6bbd28662b3c, type: 3}
+  enemyMaxWieght: 80
+  waves: 10
+  enemiesPerWave: 10
+  enemy1SpawnChance: 60
+  enemy2SpawnChance: 20
+  enemy3SpawnChance: 15
+  enemy4SpawnChance: 5

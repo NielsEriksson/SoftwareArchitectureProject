@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseState 
+public class EnemyBaseState 
 {
     public string name;
-    protected BaseStateMachine stateMachine;
-    public BaseState(string name, BaseStateMachine stateMachine)
+    protected EnemyBaseStateMachine stateMachine;
+    public EnemyBaseState(string name, EnemyBaseStateMachine stateMachine)
     {
         this.name = name;
         this.stateMachine = stateMachine;

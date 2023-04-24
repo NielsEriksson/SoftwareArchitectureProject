@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy4 : Enemy
+public class Bomber : Enemy
 {
+    [SerializeField] private GameObject bomb;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -20,4 +21,12 @@ public class Enemy4 : Enemy
     {
         base.Attack();
     }
+    public override void SpecificAttack()
+    {
+        Vector2 bombPos = transform.position - new Vector3(5,0);
+        bomb.GetComponent<Bomb>().bomber = this;
+        GameObject.Instantiate(bomb, bombPos, Quaternion.identity);
+        base.SpecificAttack();
+    }
+    
 }

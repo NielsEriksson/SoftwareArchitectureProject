@@ -8,13 +8,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float speed;
     protected Vector2 direction = new Vector2(-1, 0);
     public int enemyWeigth;
-    private float attackTimer;
+    protected int health;
+    private float attackTimer;  
     [SerializeField] private float attackTimerReset;
     private bool canAttack;
+    [HideInInspector] public bool isInRange;
     // Start is called before the first frame update
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = 1;
     }
     public virtual void Update()
     {
@@ -22,6 +25,10 @@ public class Enemy : MonoBehaviour
         { 
             attackTimer -= Time.deltaTime;
             canAttack = true;
+        }
+        if (health <= 0)
+        {
+            Die();
         }
     }
 
@@ -34,9 +41,25 @@ public class Enemy : MonoBehaviour
     {
         if (canAttack)
         {
-            //plantTakeDamageMethod
+            SpecificAttack();
             canAttack = false;
             attackTimer = attackTimerReset;
         }
     }
+    public virtual void SpecificAttack() 
+    {
+        //plantTakeDamage
+    }
+   
+    public virtual void TakeDamage(int damage)
+    {
+        //DeathAnimation
+        health -= damage;
+    }
+    public virtual void Die()
+    {
+        //DeathAnimation
+        Destroy(gameObject);
+    }
 }
+

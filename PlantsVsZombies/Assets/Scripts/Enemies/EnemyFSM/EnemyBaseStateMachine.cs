@@ -24,7 +24,7 @@ public class EnemyBaseStateMachine : MonoBehaviour
             currentState.Update();
             currentState.Transition();
         }
-        GameObject.Find("CUrrentState").GetComponent<TMP_Text>().text = currentState.name;
+       
     }
    
     public void ChangeState(EnemyBaseState newState)

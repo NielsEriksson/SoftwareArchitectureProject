@@ -16,6 +16,13 @@ public class EnemyAttack : EnemyBaseState
     }
     public override void Transition() 
     {
-        BoxCollider2D coll;
+        if(sm.enemy.health <=0)
+        {
+            sm.ChangeState(sm.dieState);
+        }
+        if(!sm.enemy.isInRange)
+        {
+            sm.ChangeState(sm.moveState);
+        }
     }
 }

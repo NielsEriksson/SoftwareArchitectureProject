@@ -7,18 +7,23 @@ public class EnemyAiStateMachine : EnemyBaseStateMachine
 {
     [HideInInspector] 
     public EnemyAttack attackState;
+    public EnemyMove moveState;
+    public EnemyDie dieState;
     [HideInInspector]
     public Enemy enemy;
 
 
 
     private void Awake()
-    {        
-        attackState = new EnemyAttack(this);     
+    {
+        enemy = gameObject.GetComponent<Enemy>();
+        moveState = new EnemyMove(this);
+        attackState = new EnemyAttack(this);   
+        dieState = new EnemyDie(this);
     }
 
     protected override EnemyBaseState GetInitialState()
     {
-        return attackState;
+        return moveState;
     }
 }

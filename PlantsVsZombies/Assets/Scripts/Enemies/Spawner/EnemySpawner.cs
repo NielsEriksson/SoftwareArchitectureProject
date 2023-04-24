@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     private Level currentLevel;
     private int currentLevelNum;
     [SerializeField] private int currentEnemy;
-    [SerializeField] List<Enemy> enemiesInLevel;
+    [SerializeField] public List<Enemy> enemiesInLevel;
     private Enemy enemyToSpawn;
     [SerializeField] float spawnWaveTimer;
     [SerializeField] float spawnWaveTimerReset;
@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         currentLevel.UpdateChances();
 
         GenerateLevel();
-        Debug.Log("enemies per wave :" + currentLevel.enemiesPerWave);
+    
     }
     public void FixedUpdate()
     {
@@ -45,6 +45,7 @@ public class EnemySpawner : MonoBehaviour
     {
         currentLevelNum++;
         currentLevel= levels[currentLevelNum];
+        currentLevel.UpdateChances();
     }
     public void GenerateLevel()
     {
@@ -108,5 +109,11 @@ public class EnemySpawner : MonoBehaviour
         enemyToSpawn = currentLevel.availableEnemies[0];
         int SpawnPoint = Random.Range(0, spawnPoints.Count-1); 
         GameObject.Instantiate(enemyToSpawn, spawnPoints[SpawnPoint].transform.position, Quaternion.identity);
+    }
+    public void ResetLevel()
+    {
+        currentEnemy = 0;
+        enemiesInLevel.Clear();
+
     }
 }

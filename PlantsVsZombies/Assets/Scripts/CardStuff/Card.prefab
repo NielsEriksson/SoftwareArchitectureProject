@@ -107,6 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fba6acafffc994baab85c9fa67b053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handIndex: 0
+  moveDestination: {x: 0, y: 0}
+  scaleDestination: {x: 0.5, y: 0.5}
+  rotationDestination: {x: 0, y: 0, z: 0, w: 0}
+  isDiscarded: 0
 --- !u!114 &-4247088139196320141
 MonoBehaviour:
   m_ObjectHideFlags: 0

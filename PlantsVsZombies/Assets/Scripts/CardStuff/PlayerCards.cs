@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class PlayerCards : MonoBehaviour
     List<GameObject> cardObjects = new List<GameObject>();
     List<GameObject> discardingCards = new List<GameObject>();
 
-    float handCardDistance = 20f;
+    float handCardDistance = 10f;
     float cardWidth;
 
     // Start is called before the first frame update
@@ -72,8 +73,6 @@ public class PlayerCards : MonoBehaviour
         GameObject tempObject = Instantiate(baseCard, transform);
         tempObject.GetComponent<CardDisplay>().card = handCards[aCard];
         tempObject.transform.position = deck.transform.position;
-        //tempObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 
-        //    transform.rotation.z + tempHandSlot, transform.rotation.w);
         DragDrop tempDragDrop = tempObject.GetComponent<DragDrop>();
         tempDragDrop.handIndex = aCard + 1;
         tempDragDrop.scaleDestination = Vector2.one;
@@ -104,8 +103,21 @@ public class PlayerCards : MonoBehaviour
 
             if (i + 1 != selectedCard && !tempDragDrop.isDiscarded)
             {
+                float tempSlot = GetHandSlot(tempCounter, tempHandSize);
+                bool tempIsMinus = tempSlot < 0;
+                tempSlot = Mathf.Pow(tempSlot, 2);
+                if (tempIsMinus)
+                    tempSlot = -tempSlot;
+
                 tempDebug += (i + 1) + ", ";
                 tempDragDrop.moveDestination = GetHandPosition(tempCounter, tempHandSize);
+                tempDragDrop.rotationDestination = Quaternion.Euler(0, 0, tempSlot * -2);
+                tempDragDrop.moveDestination.y -= Mathf.Abs(tempSlot) * 4;
+                if (tempIsMinus)
+                    tempDragDrop.moveDestination.x += Mathf.Abs(tempSlot) * 1;
+                else
+                    tempDragDrop.moveDestination.x += Mathf.Abs(tempSlot) * -1;
+
                 tempCounter++;
             }
         }
@@ -131,10 +143,15 @@ public class PlayerCards : MonoBehaviour
         }
     }
 
+    float GetHandSlot(int aSlot, int aSlotAmount)
+    {
+        return ((float)(aSlotAmount - 1) / 2) - aSlot;
+    }
+
     Vector3 GetHandPosition(int aSlot, int aSlotAmount)
     {
         Vector3 tempTransform;
-        float tempHandSlot = ((float)(aSlotAmount - 1) / 2) - aSlot;
+        float tempHandSlot = GetHandSlot(aSlot, aSlotAmount);
         tempTransform = transform.position + new Vector3((tempHandSlot * (cardWidth + handCardDistance)), 0, 0);
         return tempTransform;
     }

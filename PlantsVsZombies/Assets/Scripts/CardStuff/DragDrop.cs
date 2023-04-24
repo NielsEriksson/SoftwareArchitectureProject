@@ -10,6 +10,7 @@ public class DragDrop : MonoBehaviour
     [HideInInspector] public int handIndex;
     [HideInInspector] public Vector2 moveDestination;
     [HideInInspector] public Vector2 scaleDestination = startScale;
+    [HideInInspector] public Quaternion rotationDestination;
     [HideInInspector] public bool isDiscarded = false;
 
     static Vector2 startScale = new Vector2 (0.5f, 0.5f);
@@ -34,11 +35,13 @@ public class DragDrop : MonoBehaviour
         }
 
         transform.localScale = Vector2.Lerp(transform.localScale, scaleDestination, Time.deltaTime * transitionSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotationDestination, Time.deltaTime * transitionSpeed);
     }
 
     public void StartDrag()
     {
         startPosition = transform.position;
+        rotationDestination = Quaternion.Euler(0, 0, 0);
         isDragging = true;
         playerCards.selectedCard = handIndex;
         playerCards.UpdateHand();
@@ -47,6 +50,7 @@ public class DragDrop : MonoBehaviour
     public void EndDrag()
     {
         isDragging = false;
+        playerCards.selectedCard = 0;
         if (IsDestinationValid())
         {
             moveDestination = playerCards.discard.transform.position;
@@ -58,7 +62,6 @@ public class DragDrop : MonoBehaviour
             moveDestination = startPosition;
             playerCards.UpdateHand();
         }
-        playerCards.selectedCard = 0;
     }
 
     bool IsDestinationValid()

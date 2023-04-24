@@ -6,47 +6,73 @@ using UnityEngine.Tilemaps;
 public class MapManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
-    private Dictionary <TileBase, bool> dataFromTiles;
-    private TileBase clickedTile;
+    private Dictionary <Vector2, bool> dataFromTiles;
+    private List<Vector3> tileCoords;
+    [SerializeField]GameObject prefab;
+    private void Start()
+    {
+        tileCoords = new List<Vector3>();
+        dataFromTiles = new Dictionary<Vector2, bool>();
 
-    void Awake(){
-        dataFromTiles = new Dictionary<TileBase, bool>();   //init dic
-        BoundsInt bounds = tilemap.cellBounds;              //get bounds
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);//save array of tiles
-        foreach (TileBase tile in allTiles)
+        for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++) //get tiles coords in worldspace
         {
-            if (tile == null) return;
-            dataFromTiles.Add(tile, false);                 //save info in dic with all bools being false0
+            for (int p = tilemap.cellBounds.yMin; p < tilemap.cellBounds.yMax; p++)
+            {
+                Vector3Int localPlace = (new Vector3Int(n, p, (int)tilemap.transform.position.y));
+                Vector3 place = tilemap.CellToWorld(localPlace);
+                if (tilemap.HasTile(localPlace))
+                {
+                    tileCoords.Add(place);
+                }
+            }
+        }
+        foreach (Vector3 v in tileCoords) //save all tiles and add a bool to them
+        {
+            dataFromTiles.Add(new Vector2(v.x,v.y), false);
         }
     }
     private void Update()
     {
-        clickedTile = GetClickedTile();
         if(Input.GetMouseButtonDown(0)){
             if (!GetTileIsFull())
             {
-                print(clickedTile + " is not occupied yet");
+                //print(GetClickedTile() + " is not occupied yet");
                 OccupyTile();
+                SpawnPrefab(prefab); //to do; change the prefab to a plant
             }
-            else print("is occupied");
+            else
+            {
+                //print("is occupied");
+                UnOccupyTile();
+            }
         }
     }
 
-    public bool GetTileIsFull (){
-        bool isFull;
-        dataFromTiles.TryGetValue(clickedTile, out isFull);
-        return isFull;
-    }
-    private TileBase GetClickedTile()
+    public bool GetTileIsFull()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
-        TileBase clickedTile = tilemap.GetTile(gridPosition);
-        return clickedTile;
+        bool isFull;
+        dataFromTiles.TryGetValue(GetTileWorldCoord(), out isFull);
+        return isFull;
     }
     private void OccupyTile()
     {
-        dataFromTiles[clickedTile] = true;
+        dataFromTiles[GetTileWorldCoord()] = true;
     }
-    
+    public void UnOccupyTile()
+    {
+        dataFromTiles[GetTileWorldCoord()] = false;
+        //to do : delete plant that is on the tile
+    }
+    private Vector2 GetTileWorldCoord()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
+        Vector2 pos = new Vector2((gridPosition.x+0.5f)*2, (gridPosition.y+0.5f)*2);
+        return pos;
+    }
+    public void SpawnPrefab(GameObject prefab)
+    {
+        Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);
+    }
+
 }

@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class HittingPlant : Plant
 {
+    [SerializeField] GameObject pushBackArea;
     public override void Attack()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
+        Instantiate(pushBackArea, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+    }
+    public override void StopAttack()
+    {
+        
     }
     public override void Action()
     {

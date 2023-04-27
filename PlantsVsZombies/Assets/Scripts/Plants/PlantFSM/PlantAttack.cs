@@ -10,15 +10,21 @@ public class PlantAttack : PlantBaseState
     public float shotDelay;
     public PlantAttack(PlantAiStateMachine stateMachine) : base("Attack", stateMachine) { sm = (PlantAiStateMachine)stateMachine; }
     public override void Enter() {
-        
+        Debug.Log("Entered Attack State");
+        sm.plant.Attack();
     }
     public override void Update() 
     {
-        sm.plant.Attack();
     }
     public override void Transition() 
     {
-        sm.ChangeState(sm.idleState);
-        Debug.Log("Transition to Idle");
+        if (!sm.plant.isInRange)
+        {
+            sm.ChangeState(sm.idleState);
+        }
+    }
+    public override void Exit()
+    {
+        sm.plant.StopAttack();
     }
 }

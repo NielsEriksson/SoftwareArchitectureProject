@@ -1,12 +1,18 @@
+using Newtonsoft.Json.Converters;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragDrop : MonoBehaviour
 {
     bool isDragging = false;
     Vector2 startPosition;
+    Quaternion previousRotation;
     PlayerCards playerCards;
+    Transform heldCardCanvas;
     [HideInInspector] public int handIndex;
     [HideInInspector] public Vector2 moveDestination;
     [HideInInspector] public Vector2 scaleDestination = startScale;
@@ -14,11 +20,13 @@ public class DragDrop : MonoBehaviour
     [HideInInspector] public bool isDiscarded = false;
 
     static Vector2 startScale = new Vector2 (0.5f, 0.5f);
+    static Vector2 hoverScale = new Vector2 (2f, 2f);
     float transitionSpeed = 10.0f;
 
     void Start()
     {
         playerCards = GameObject.FindGameObjectWithTag("Hand").GetComponent<PlayerCards>();
+        heldCardCanvas = playerCards.GetComponentInChildren<Canvas>().transform;
     }
 
     // Update is called once per frame
@@ -40,6 +48,10 @@ public class DragDrop : MonoBehaviour
 
     public void StartDrag()
     {
+        // Move card to held canvas
+        transform.parent = heldCardCanvas;
+
+        scaleDestination = new Vector2(1f, 1f);
         startPosition = transform.position;
         rotationDestination = Quaternion.Euler(0, 0, 0);
         isDragging = true;
@@ -49,6 +61,9 @@ public class DragDrop : MonoBehaviour
 
     public void EndDrag()
     {
+        // Move card back to hand
+        transform.parent = playerCards.transform;
+
         isDragging = false;
         playerCards.selectedCard = 0;
         if (IsDestinationValid())
@@ -66,6 +81,32 @@ public class DragDrop : MonoBehaviour
 
     bool IsDestinationValid()
     {
-        return true;
+        return false;
+    }
+
+    public void StartHover()
+    {
+        if (!isDragging)
+        {
+            transform.parent = heldCardCanvas;
+            scaleDestination = hoverScale;
+            rotationDestination = Quaternion.Euler(0, 0, 0);
+            previousRotation = transform.rotation;
+
+            Vector2 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+            Vector2 maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+            moveDestination.y = Mathf.Clamp(transform.position.y, minScreenBounds.y + 115, maxScreenBounds.y);
+        }
+    }
+
+    public void EndHover()
+    {
+        if (!isDragging)
+        {
+            transform.parent = playerCards.transform;
+            //rotationDestination = previousRotation;
+            scaleDestination = new Vector2(1f, 1f);
+            playerCards.UpdateHand();
+        }
     }
 }

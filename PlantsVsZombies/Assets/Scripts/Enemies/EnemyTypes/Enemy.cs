@@ -21,9 +21,7 @@ public class Enemy : MonoBehaviour
     {
         attackTimer = attackTimerReset;
         lvlClearer = FindObjectOfType<LevelClearedCheck>();
-        rb = GetComponent<Rigidbody2D>();
-        health = 1;
-     
+        rb = GetComponent<Rigidbody2D>();   
     }
     public virtual void Update()
     {
@@ -31,8 +29,7 @@ public class Enemy : MonoBehaviour
         { 
             attackTimer -= Time.deltaTime;
             canAttack = true;
-        }
-  
+        }  
     }
 
     // Update is called once per frame
@@ -51,12 +48,11 @@ public class Enemy : MonoBehaviour
     }
     public virtual void SpecificAttack() 
     {
-        //plantTakeDamage
+        
     }
    
     public virtual void TakeDamage(int damage)
-    {
-        //DeathAnimation
+    {       
         health -= damage;
     }
     public virtual void Die()

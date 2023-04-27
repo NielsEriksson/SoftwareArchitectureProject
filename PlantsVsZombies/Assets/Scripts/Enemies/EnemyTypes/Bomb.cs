@@ -30,7 +30,7 @@ public class Bomb : MonoBehaviour
         //ExplosionAnimation
         foreach (var collider in bombColliders)
         {
-            //collider.GetComponent<Plant>.TakeDamage(int damageAmount)
+            collider.GetComponent<Plant>().TakeDamage(bomber.damage);
         }
         bomber.Die();
     }

@@ -7,7 +7,7 @@ public class Smasher : Enemy
     // Start is called before the first frame update
     public override void Start()
     {
-        enemyWeigth = 1;
+       
         base.Start();
     }
 

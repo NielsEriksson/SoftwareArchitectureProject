@@ -425,6 +425,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Plant
       objectReference: {fileID: 0}
+    - target: {fileID: 3242213656316235868, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242213656316235868, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242213656316235868, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
+      propertyPath: m_Color.r
+      value: 0.64705884
+      objectReference: {fileID: 0}
     - target: {fileID: 3242213656316235869, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: pushBackArea
       value: 

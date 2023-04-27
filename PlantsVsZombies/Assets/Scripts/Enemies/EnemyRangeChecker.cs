@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class EnemyRangeChecker : MonoBehaviour
 {
+    public bool hasTarget=false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Plant")
         {
+            if (!hasTarget)
+            {
+                gameObject.GetComponentInParent<Enemy>().target = collision.gameObject.GetComponent<Plant>();
+                hasTarget= true;
+            }
             gameObject.GetComponentInParent<Enemy>().isInRange = true;
         }
     }
@@ -15,7 +21,12 @@ public class EnemyRangeChecker : MonoBehaviour
     {
         if (collision.tag == "Plant")
         {
-            gameObject.GetComponentInParent<Enemy>().isInRange = false;
+           if (gameObject.GetComponentInParent<Enemy>().target == collision.gameObject.GetComponent<Plant>())
+            {
+                hasTarget = false;
+                gameObject.GetComponentInParent<Enemy>().target = null;
+            }
+           gameObject.GetComponentInParent<Enemy>().isInRange = false;
         }
     }
 }

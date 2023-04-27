@@ -1,10 +1,11 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<Level> levels;
     private Level currentLevel;
@@ -17,18 +18,23 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnEnemyDelay;
     bool isSpawningWave;
 
-
     // Start is called before the first frame update
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
         enemiesInLevel = new List<Enemy>();
         currentEnemy = 0;
         currentLevelNum = 0;        
         currentLevel = levels[currentLevelNum];
         currentLevel.UpdateChances();
-
-        GenerateLevel();
-    
+        GenerateLevel();    
     }
     public void FixedUpdate()
     {
@@ -38,7 +44,6 @@ public class EnemySpawner : MonoBehaviour
             isSpawningWave = true;
             StartCoroutine(SpawnWave());
             spawnWaveTimer = spawnWaveTimerReset;
-
         }
     }
     public void ChangeLevel()
@@ -63,13 +68,11 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[1]);
                 i += currentLevel.availableEnemies[1].enemyWeigth;
-
             }
             else if (enemySpawnChance <= currentLevel.enemy3SpawnChance && currentLevel.enemy3SpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[2]);
                 i += currentLevel.availableEnemies[2].enemyWeigth;
-
             }
             else if (enemySpawnChance <= currentLevel.enemy4SpawnChance && currentLevel.enemy4SpawnChance > 0)
             {
@@ -100,9 +103,7 @@ public class EnemySpawner : MonoBehaviour
                 currentEnemy++;
             }
         }
-
-        isSpawningWave = false;
-        
+        isSpawningWave = false;        
     }
     public void SpawnExtraEnemy()
     {
@@ -114,6 +115,5 @@ public class EnemySpawner : MonoBehaviour
     {
         currentEnemy = 0;
         enemiesInLevel.Clear();
-
     }
 }

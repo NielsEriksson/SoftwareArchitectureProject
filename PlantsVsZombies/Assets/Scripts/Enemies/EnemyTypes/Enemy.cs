@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Plant target;
     protected Rigidbody2D rb;
+    public int damage;
     [SerializeField] protected float speed;
     protected Vector2 direction = new Vector2(-1, 0);
     public int enemyWeigth;
@@ -17,7 +19,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-       
+        attackTimer = attackTimerReset;
         lvlClearer = FindObjectOfType<LevelClearedCheck>();
         rb = GetComponent<Rigidbody2D>();
         health = 1;
@@ -63,5 +65,6 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
     }
+  
 }
 

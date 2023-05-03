@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Plant target;
-    protected Rigidbody2D rb;
+    [HideInInspector] public Plant target;
+    [HideInInspector] public Rigidbody2D rb;
     public int damage;
     [SerializeField] protected float speed;
     protected Vector2 direction = new Vector2(-1, 0);
@@ -27,9 +27,16 @@ public class Enemy : MonoBehaviour
     {
         if (attackTimer>= 0) 
         { 
-            attackTimer -= Time.deltaTime;
-            canAttack = true;
+            attackTimer -= Time.deltaTime;            
         }  
+        if (attackTimer < 0)
+        {
+            canAttack = true;
+        }
+        if(health<= 0)
+        {
+            Die();
+        }
     }
 
     // Update is called once per frame

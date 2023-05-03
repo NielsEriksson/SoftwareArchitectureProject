@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemiesInLevel.Count > 0) { enemiesInLevel.Clear(); }
 
-        for (int i = 0; i <= currentLevel.enemyMaxWieght;i++)
+        for (int i = 0; i <= currentLevel.enemyMaxWieght;)
         {
             int enemySpawnChance = Random.Range(0, 100);
             if (enemySpawnChance <= currentLevel.enemy1SpawnChance && currentLevel.enemy1SpawnChance > 0)
@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
                 enemiesInLevel.Add(currentLevel.availableEnemies[3]);
                 i += currentLevel.availableEnemies[3].enemyWeigth;
             }
-            Debug.Log("i = " + i);
+            Debug.Log("i = " +currentLevel.availableEnemies[0].enemyWeigth);
         }
         if (enemiesInLevel.Count % currentLevel.waves == 0)
         {

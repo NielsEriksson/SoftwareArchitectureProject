@@ -174,11 +174,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  rb: {fileID: 0}
   damage: 1
   speed: 1
-  enemyWeigth: 0
+  enemyWeigth: 1
   health: 4
-  attackTimerReset: 2
+  attackTimerReset: 100
   isInRange: 0
   lvlClearer: {fileID: 0}
 --- !u!50 &7744831846276795902

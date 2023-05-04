@@ -55,29 +55,34 @@ public class EnemySpawner : MonoBehaviour
     public void GenerateLevel()
     {
         if (enemiesInLevel.Count > 0) { enemiesInLevel.Clear(); }
-
+        //Can be made better to automatically add new enemy types without manually adding anything here
         for (int i = 0; i <= currentLevel.enemyMaxWieght;)
         {
             int enemySpawnChance = Random.Range(0, 100);
-            if (enemySpawnChance <= currentLevel.enemy1SpawnChance && currentLevel.enemy1SpawnChance > 0)
+            if (enemySpawnChance <= currentLevel.SmasherSpawnChance && currentLevel.SmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[0]);
                 i += currentLevel.availableEnemies[0].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.enemy2SpawnChance && currentLevel.enemy2SpawnChance > 0)
+            else if (enemySpawnChance <= currentLevel.ShieldedSmasherSpawnChance && currentLevel.ShieldedSmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[1]);
                 i += currentLevel.availableEnemies[1].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.enemy3SpawnChance && currentLevel.enemy3SpawnChance > 0)
+            else if (enemySpawnChance <= currentLevel.ArcherSpawnChance && currentLevel.ArcherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[2]);
                 i += currentLevel.availableEnemies[2].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.enemy4SpawnChance && currentLevel.enemy4SpawnChance > 0)
+            else if (enemySpawnChance <= currentLevel.CamouflageSpawnChance && currentLevel.CamouflageSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[3]);
                 i += currentLevel.availableEnemies[3].enemyWeigth;
+            }
+            else if (enemySpawnChance <= currentLevel.BomberSpawnChance && currentLevel.BomberSpawnChance > 0)
+            {
+                enemiesInLevel.Add(currentLevel.availableEnemies[4]);
+                i += currentLevel.availableEnemies[4].enemyWeigth;
             }
             Debug.Log("i = " +currentLevel.availableEnemies[0].enemyWeigth);
         }

@@ -10,21 +10,25 @@ public class Level : ScriptableObject
     public int enemyMaxWieght;
     public int waves;
     public int enemiesPerWave;
-    public int enemy1SpawnChance, enemy2SpawnChance, enemy3SpawnChance, enemy4SpawnChance;
+    public int SmasherSpawnChance, ShieldedSmasherSpawnChance, ArcherSpawnChance, CamouflageSpawnChance, BomberSpawnChance;
 
     public void UpdateChances()
     {
-        if(enemy2SpawnChance > 0) 
+        if(ShieldedSmasherSpawnChance > 0) 
         {
-            enemy2SpawnChance += enemy1SpawnChance;
+            ShieldedSmasherSpawnChance += SmasherSpawnChance;
         }
-        if(enemy3SpawnChance > 0)
+        if(ArcherSpawnChance > 0)
         {
-            enemy3SpawnChance += enemy2SpawnChance;
+            ArcherSpawnChance += ShieldedSmasherSpawnChance;
         }
-        if(enemy4SpawnChance > 0)
+        if(CamouflageSpawnChance > 0)
         {
-            enemy4SpawnChance += enemy3SpawnChance;
+            CamouflageSpawnChance += ArcherSpawnChance;
+        }
+        if (BomberSpawnChance > 0)
+        {
+            BomberSpawnChance += CamouflageSpawnChance;
         }
     }
 }

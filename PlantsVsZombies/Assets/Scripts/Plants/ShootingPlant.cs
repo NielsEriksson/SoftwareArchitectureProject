@@ -9,8 +9,9 @@ public class ShootingPlant : Plant
     [SerializeField] private float shootingSpeed;
     private WaitForSeconds shootingDelay;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         shootingDelay = new WaitForSeconds(shootingSpeed);
     }
     public override void Attack()

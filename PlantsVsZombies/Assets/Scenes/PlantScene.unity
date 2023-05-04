@@ -123,94 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &728270325 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3242213656316235810, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-  m_PrefabInstance: {fileID: 3242213656307319197}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &728270331
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728270325}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!1 &734930191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6789070137586656709, guid: 4918093876d523e4faf743f388f67287, type: 3}
-  m_PrefabInstance: {fileID: 7811030106336014777}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &877719418 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3641899352046476782, guid: 64618673957a77640841bd6fed1fefdb, type: 3}
-  m_PrefabInstance: {fileID: 3428602008242293877}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &877719419
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877719418}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &877719420
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877719418}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1315737157
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,37 +325,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1020302744, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3242213656316235810, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: m_Name
       value: 'HittingPlant '
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242213656316235810, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: m_TagString
-      value: Plant
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242213656316235868, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: m_Color.b
-      value: 0.8392157
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242213656316235868, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242213656316235868, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: m_Color.r
-      value: 0.64705884
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242213656316235869, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: pushBackArea
-      value: 
-      objectReference: {fileID: 480393770066067595, guid: 738c415918693bd41b4c1c5badb31208, type: 3}
-    - target: {fileID: 3242213656316235869, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: containsElements.Array.size
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3242213656316235871, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: m_RootOrder
@@ -498,10 +382,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2204621723749222130, guid: 64618673957a77640841bd6fed1fefdb, type: 3}
-      propertyPath: rangeHitBox
-      value: 
-      objectReference: {fileID: 877719420}
     - target: {fileID: 3641899352046476782, guid: 64618673957a77640841bd6fed1fefdb, type: 3}
       propertyPath: m_Name
       value: Lily Pad
@@ -660,60 +540,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3826359532087050108, guid: 4918093876d523e4faf743f388f67287, type: 3}
-      propertyPath: rangeHitBox
-      value: 
-      objectReference: {fileID: 7811030106336014780}
     - target: {fileID: 6789070137586656709, guid: 4918093876d523e4faf743f388f67287, type: 3}
       propertyPath: m_Name
       value: Sunflower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4918093876d523e4faf743f388f67287, type: 3}
---- !u!50 &7811030106336014779
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734930191}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &7811030106336014780
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734930191}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0

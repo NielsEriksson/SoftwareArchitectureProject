@@ -27,10 +27,7 @@ public abstract class Plant : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            health--;
-        }
+        
     }
 
     protected virtual void SetRange(int width)

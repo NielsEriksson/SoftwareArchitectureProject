@@ -38,8 +38,8 @@ public class MapManager : MonoBehaviour
             if (!GetTileIsFull() && !shovel)
             {
                 //print(GetClickedTile() + " is not occupied yet");
-                OccupyTile();
-                
+                //OccupyTile(prefab);
+
             }
             else if (GetTileIsFull() && shovel)
             {
@@ -56,9 +56,9 @@ public class MapManager : MonoBehaviour
         if(isFull == null) { return false; }
         return true;
     }
-    private void OccupyTile()
+    public void OccupyTile(Plant aPrefab)
     {
-        dataFromTiles[GetTileWorldCoord()] = SpawnPrefab(prefab);
+        dataFromTiles[GetTileWorldCoord()] = SpawnPrefab(aPrefab);
     }
     public void UnOccupyTile()
     {

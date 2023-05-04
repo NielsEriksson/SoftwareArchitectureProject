@@ -6,13 +6,14 @@ using UnityEngine.Tilemaps;
 public class MapManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
-    private Dictionary <Vector2, bool> dataFromTiles;
+    private Dictionary <Vector2, Plant> dataFromTiles;
     private List<Vector3> tileCoords;
-    [SerializeField]GameObject prefab;
+    [SerializeField]Plant prefab;
+    bool shovel;
     private void Start()
     {
         tileCoords = new List<Vector3>();
-        dataFromTiles = new Dictionary<Vector2, bool>();
+        dataFromTiles = new Dictionary<Vector2, Plant>();
 
         for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++) //get tiles coords in worldspace
         {
@@ -28,19 +29,19 @@ public class MapManager : MonoBehaviour
         }
         foreach (Vector3 v in tileCoords) //save all tiles and add a bool to them
         {
-            dataFromTiles.Add(new Vector2(v.x,v.y), false);
+            dataFromTiles.Add(new Vector2(v.x,v.y), null);
         }
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            if (!GetTileIsFull())
+        if(Input.GetMouseButtonDown(1)){
+            if (!GetTileIsFull() && !shovel)
             {
                 //print(GetClickedTile() + " is not occupied yet");
                 OccupyTile();
-                SpawnPrefab(prefab); //to do; change the prefab to a plant
+                
             }
-            else
+            else if (GetTileIsFull() && shovel)
             {
                 //print("is occupied");
                 UnOccupyTile();
@@ -50,17 +51,24 @@ public class MapManager : MonoBehaviour
 
     public bool GetTileIsFull()
     {
-        bool isFull;
+        Plant isFull;
         dataFromTiles.TryGetValue(GetTileWorldCoord(), out isFull);
-        return isFull;
+        if(isFull == null) { return false; }
+        return true;
     }
     private void OccupyTile()
     {
-        dataFromTiles[GetTileWorldCoord()] = true;
+        dataFromTiles[GetTileWorldCoord()] = SpawnPrefab(prefab);
     }
     public void UnOccupyTile()
     {
-        dataFromTiles[GetTileWorldCoord()] = false;
+        Debug.Log("shoveling");
+        Plant plant = dataFromTiles[GetTileWorldCoord()];
+        dataFromTiles[GetTileWorldCoord()] = null;
+        plant.Die();
+        
+        
+        
         //to do : delete plant that is on the tile
     }
     private Vector2 GetTileWorldCoord()
@@ -70,9 +78,16 @@ public class MapManager : MonoBehaviour
         Vector2 pos = new Vector2((gridPosition.x+0.5f)*2, (gridPosition.y+0.5f)*2);
         return pos;
     }
-    public void SpawnPrefab(GameObject prefab)
+    public Plant SpawnPrefab(Plant prefab)
     {
-        Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);
+        Plant planty = Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);
+        return planty;
+    }
+
+    public void ToggleShovel()
+    {
+        if (shovel) shovel = false;
+        else shovel = true;
     }
 
 }

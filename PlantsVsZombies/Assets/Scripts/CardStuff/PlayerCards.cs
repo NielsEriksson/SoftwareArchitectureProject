@@ -175,7 +175,7 @@ public class PlayerCards : MonoBehaviour
                 handCards.Add(tempCard);
                 CreateCard(handCards.Count - 1);
                 UpdateHand();
-                Debug.Log("draw card");
+                //Debug.Log("draw card");
             }
         }
     }

@@ -15,18 +15,19 @@ public abstract class Plant : MonoBehaviour
 
     [HideInInspector] public enum Element { Light, Water, Poison };
 
+    public void Awake()
+    {
+        SetRange(startRange);
+    }
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        SetRange(startRange);
+      
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            health--;
-        }
+        
     }
 
     protected virtual void SetRange(int width)
@@ -50,7 +51,8 @@ public abstract class Plant : MonoBehaviour
             isInRange = false;
         }
     }
-    public abstract void Attack();
+    public abstract void Attack(); 
+    public virtual void StopAttack() { }
     public virtual void TakeDamage(int damage)
     {
         health -= damage;

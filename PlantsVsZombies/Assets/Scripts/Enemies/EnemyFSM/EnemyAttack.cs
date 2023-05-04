@@ -8,7 +8,7 @@ public class EnemyAttack : EnemyBaseState
  
     public EnemyAttack(EnemyAiStateMachine stateMachine) : base("Shoot", stateMachine) { sm = (EnemyAiStateMachine)stateMachine; }
     public override void Enter() {
-
+        sm.enemy.rb.velocity = Vector2.zero;
     }
     public override void Update() 
     {

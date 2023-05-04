@@ -1,10 +1,11 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<Level> levels;
     private Level currentLevel;
@@ -17,18 +18,23 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnEnemyDelay;
     bool isSpawningWave;
 
-
     // Start is called before the first frame update
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
         enemiesInLevel = new List<Enemy>();
         currentEnemy = 0;
         currentLevelNum = 0;        
         currentLevel = levels[currentLevelNum];
         currentLevel.UpdateChances();
-
-        GenerateLevel();
-    
+        GenerateLevel();    
     }
     public void FixedUpdate()
     {
@@ -38,7 +44,6 @@ public class EnemySpawner : MonoBehaviour
             isSpawningWave = true;
             StartCoroutine(SpawnWave());
             spawnWaveTimer = spawnWaveTimerReset;
-
         }
     }
     public void ChangeLevel()
@@ -50,33 +55,36 @@ public class EnemySpawner : MonoBehaviour
     public void GenerateLevel()
     {
         if (enemiesInLevel.Count > 0) { enemiesInLevel.Clear(); }
-
-        for (int i = 0; i <= currentLevel.enemyMaxWieght;i++)
+        //Can be made better to automatically add new enemy types without manually adding anything here
+        for (int i = 0; i <= currentLevel.enemyMaxWieght;)
         {
             int enemySpawnChance = Random.Range(0, 100);
-            if (enemySpawnChance <= currentLevel.enemy1SpawnChance && currentLevel.enemy1SpawnChance > 0)
+            if (enemySpawnChance <= currentLevel.SmasherSpawnChance && currentLevel.SmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[0]);
                 i += currentLevel.availableEnemies[0].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.enemy2SpawnChance && currentLevel.enemy2SpawnChance > 0)
+            else if (enemySpawnChance <= currentLevel.ShieldedSmasherSpawnChance && currentLevel.ShieldedSmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[1]);
                 i += currentLevel.availableEnemies[1].enemyWeigth;
-
             }
-            else if (enemySpawnChance <= currentLevel.enemy3SpawnChance && currentLevel.enemy3SpawnChance > 0)
+            else if (enemySpawnChance <= currentLevel.ArcherSpawnChance && currentLevel.ArcherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[2]);
                 i += currentLevel.availableEnemies[2].enemyWeigth;
-
             }
-            else if (enemySpawnChance <= currentLevel.enemy4SpawnChance && currentLevel.enemy4SpawnChance > 0)
+            else if (enemySpawnChance <= currentLevel.CamouflageSpawnChance && currentLevel.CamouflageSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[3]);
                 i += currentLevel.availableEnemies[3].enemyWeigth;
             }
-            Debug.Log("i = " + i);
+            else if (enemySpawnChance <= currentLevel.BomberSpawnChance && currentLevel.BomberSpawnChance > 0)
+            {
+                enemiesInLevel.Add(currentLevel.availableEnemies[4]);
+                i += currentLevel.availableEnemies[4].enemyWeigth;
+            }
+            Debug.Log("i = " +currentLevel.availableEnemies[0].enemyWeigth);
         }
         if (enemiesInLevel.Count % currentLevel.waves == 0)
         {
@@ -100,9 +108,7 @@ public class EnemySpawner : MonoBehaviour
                 currentEnemy++;
             }
         }
-
-        isSpawningWave = false;
-        
+        isSpawningWave = false;        
     }
     public void SpawnExtraEnemy()
     {
@@ -114,6 +120,5 @@ public class EnemySpawner : MonoBehaviour
     {
         currentEnemy = 0;
         enemiesInLevel.Clear();
-
     }
 }

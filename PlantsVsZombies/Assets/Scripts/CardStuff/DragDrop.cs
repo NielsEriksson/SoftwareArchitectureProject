@@ -95,7 +95,8 @@ public class DragDrop : MonoBehaviour
 
             Vector2 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
             Vector2 maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-            moveDestination.y = Mathf.Clamp(transform.position.y, minScreenBounds.y + 115, maxScreenBounds.y);
+            //moveDestination.y = Mathf.Clamp(transform.position.y, minScreenBounds.y + 115, maxScreenBounds.y);
+            Debug.Log(Screen.width);
         }
     }
 

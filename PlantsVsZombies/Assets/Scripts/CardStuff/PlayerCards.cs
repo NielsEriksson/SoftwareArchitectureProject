@@ -97,6 +97,8 @@ public class PlayerCards : MonoBehaviour
 
         string tempDebug = "";
 
+        handCardDistance = (Screen.width / 3 * 2) / handLimit;
+
         for (int i = 0; i < cardObjects.Count; i++)
         {
             DragDrop tempDragDrop = cardObjects[i].GetComponent<DragDrop>();
@@ -112,7 +114,7 @@ public class PlayerCards : MonoBehaviour
                 tempDebug += (i + 1) + ", ";
                 tempDragDrop.moveDestination = GetHandPosition(tempCounter, tempHandSize);
                 tempDragDrop.rotationDestination = Quaternion.Euler(0, 0, tempSlot * -2);
-                tempDragDrop.moveDestination.y -= Mathf.Abs(tempSlot) * 4;
+                tempDragDrop.moveDestination.y -= Mathf.Abs(tempSlot) * (handCardDistance / 20);
                 if (tempIsMinus)
                     tempDragDrop.moveDestination.x += Mathf.Abs(tempSlot) * 1;
                 else
@@ -152,7 +154,7 @@ public class PlayerCards : MonoBehaviour
     {
         Vector3 tempTransform;
         float tempHandSlot = GetHandSlot(aSlot, aSlotAmount);
-        tempTransform = transform.position + new Vector3((tempHandSlot * (cardWidth + handCardDistance)), 0, 0);
+        tempTransform = transform.position + new Vector3((tempHandSlot * (/*cardWidth +*/ handCardDistance)), 0, 0);
         return tempTransform;
     }
 

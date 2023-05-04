@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour
     private Dictionary <Vector2, Plant> dataFromTiles;
     private List<Vector3> tileCoords;
     [SerializeField]Plant prefab;
+    bool shovel;
     private void Start()
     {
         tileCoords = new List<Vector3>();
@@ -33,14 +34,14 @@ public class MapManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            if (!GetTileIsFull())
+        if(Input.GetMouseButtonDown(1)){
+            if (!GetTileIsFull() && !shovel)
             {
                 //print(GetClickedTile() + " is not occupied yet");
                 OccupyTile();
-                SpawnPrefab(prefab); //to do; change the prefab to a plant
+                
             }
-            else
+            else if (GetTileIsFull() && shovel)
             {
                 //print("is occupied");
                 UnOccupyTile();
@@ -57,11 +58,17 @@ public class MapManager : MonoBehaviour
     }
     private void OccupyTile()
     {
-        dataFromTiles[GetTileWorldCoord()] = prefab;
+        dataFromTiles[GetTileWorldCoord()] = SpawnPrefab(prefab);
     }
     public void UnOccupyTile()
     {
+        Debug.Log("shoveling");
+        Plant plant = dataFromTiles[GetTileWorldCoord()];
         dataFromTiles[GetTileWorldCoord()] = null;
+        plant.Die();
+        
+        
+        
         //to do : delete plant that is on the tile
     }
     private Vector2 GetTileWorldCoord()
@@ -71,9 +78,16 @@ public class MapManager : MonoBehaviour
         Vector2 pos = new Vector2((gridPosition.x+0.5f)*2, (gridPosition.y+0.5f)*2);
         return pos;
     }
-    public void SpawnPrefab(Plant prefab)
+    public Plant SpawnPrefab(Plant prefab)
     {
-        Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);
+        Plant planty = Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);
+        return planty;
+    }
+
+    public void ToggleShovel()
+    {
+        if (shovel) shovel = false;
+        else shovel = true;
     }
 
 }

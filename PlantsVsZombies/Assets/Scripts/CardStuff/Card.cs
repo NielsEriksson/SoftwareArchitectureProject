@@ -7,6 +7,7 @@ public class Card : ScriptableObject
 {
     public string cardName;
     public string cardDescription;
+    public Plant plantPrefab;
 
     // Start is called before the first frame update
     void Start()

@@ -12,6 +12,7 @@ public class DragDrop : MonoBehaviour
     Vector2 startPosition;
     Quaternion previousRotation;
     PlayerCards playerCards;
+    MapManager mapManager;
     Transform heldCardCanvas;
     [HideInInspector] public int handIndex;
     [HideInInspector] public Vector2 moveDestination;
@@ -27,6 +28,7 @@ public class DragDrop : MonoBehaviour
     {
         playerCards = GameObject.FindGameObjectWithTag("Hand").GetComponent<PlayerCards>();
         heldCardCanvas = playerCards.GetComponentInChildren<Canvas>().transform;
+        mapManager = FindObjectOfType<MapManager>();
     }
 
     // Update is called once per frame
@@ -81,7 +83,15 @@ public class DragDrop : MonoBehaviour
 
     bool IsDestinationValid()
     {
-        return false;
+        bool isTrue = mapManager.GetTileIsFull();
+
+        if (isTrue)
+        {
+            mapManager.OccupyTile(GetComponentInChildren<Card>().plantPrefab);
+            //Plant
+        }
+
+        return isTrue;
     }
 
     public void StartHover()

@@ -37,8 +37,13 @@ public class MapManager : MonoBehaviour
             if (!GetTileIsFull())
             {
                 //print(GetClickedTile() + " is not occupied yet");
+<<<<<<< Updated upstream
                 OccupyTile();
                 SpawnPrefab(prefab); //to do; change the prefab to a plant
+=======
+                //OccupyTile();
+                
+>>>>>>> Stashed changes
             }
             else
             {
@@ -54,9 +59,13 @@ public class MapManager : MonoBehaviour
         dataFromTiles.TryGetValue(GetTileWorldCoord(), out isFull);
         return isFull;
     }
-    private void OccupyTile()
+    private void OccupyTile(Plant aPrefab)
     {
+<<<<<<< Updated upstream
         dataFromTiles[GetTileWorldCoord()] = true;
+=======
+        dataFromTiles[GetTileWorldCoord()] = SpawnPrefab(aPrefab);
+>>>>>>> Stashed changes
     }
     public void UnOccupyTile()
     {

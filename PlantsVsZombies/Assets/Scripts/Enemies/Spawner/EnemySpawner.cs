@@ -84,7 +84,7 @@ public class EnemySpawner : MonoBehaviour
                 enemiesInLevel.Add(currentLevel.availableEnemies[4]);
                 i += currentLevel.availableEnemies[4].enemyWeigth;
             }
-            Debug.Log("i = " +currentLevel.availableEnemies[0].enemyWeigth);
+            //Debug.Log("i = " +currentLevel.availableEnemies[0].enemyWeigth);
         }
         if (enemiesInLevel.Count % currentLevel.waves == 0)
         {

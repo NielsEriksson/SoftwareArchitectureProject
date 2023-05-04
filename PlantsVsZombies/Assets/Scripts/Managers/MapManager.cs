@@ -75,9 +75,10 @@ public class MapManager : MonoBehaviour
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
-        Vector2 pos = new Vector2((gridPosition.x+0.5f)*2, (gridPosition.y+0.5f)*2);
+        Vector2 pos = new Vector2((gridPosition.x+0.5f)*1.75f, (gridPosition.y+0.5f)*1.75f);
         return pos;
     }
+
     public Plant SpawnPrefab(Plant prefab)
     {
         Plant planty = Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);

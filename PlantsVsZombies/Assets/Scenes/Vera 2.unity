@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 191730820}
   - component: {fileID: 191730819}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Card Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1914,8 +1914,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCard: {fileID: 3059817369437239460, guid: 1b437ecca00790547aaea85df7b6ba4c, type: 3}
   handLimit: 8
-  tempCard: {fileID: 11400000, guid: 5ecc8322b7bb69f4297f48ddfc544707, type: 2}
-  tempCard2: {fileID: 11400000, guid: 310e88e418e97ff449ce22fa7d494926, type: 2}
+  tempCards:
+  - {fileID: 11400000, guid: 5ecc8322b7bb69f4297f48ddfc544707, type: 2}
+  - {fileID: 11400000, guid: 310e88e418e97ff449ce22fa7d494926, type: 2}
   deck: {fileID: 973894077}
   discard: {fileID: 624756976}
   selectedCard: 0

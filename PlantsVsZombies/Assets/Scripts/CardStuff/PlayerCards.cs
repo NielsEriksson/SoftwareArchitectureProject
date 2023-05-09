@@ -8,8 +8,7 @@ public class PlayerCards : MonoBehaviour
 {
     public GameObject baseCard;
     public int handLimit;
-    public Card tempCard;
-    public Card tempCard2;
+    public Card[] tempCards;
     public GameObject deck;
     public GameObject discard;
     [HideInInspector] public int selectedCard = 0;
@@ -29,7 +28,7 @@ public class PlayerCards : MonoBehaviour
         cardWidth = baseCard.GetComponent<RectTransform>().sizeDelta.x;
         for (int i = 0; i < 20; i++)
         {
-            deckCards.Add(tempCard);
+            deckCards.Add(tempCards[Random.Range(0, tempCards.Length)]);
         }
 
         DrawCard(handLimit);

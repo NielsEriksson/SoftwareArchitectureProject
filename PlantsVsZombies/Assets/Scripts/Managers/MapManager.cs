@@ -10,6 +10,7 @@ public class MapManager : MonoBehaviour
     private List<Vector3> tileCoords;
     [SerializeField] private Plant prefab;
     private bool shovel;
+    [SerializeField] GameObject shovelImage;
     private void Start()
     {
         tileCoords = new List<Vector3>();
@@ -62,7 +63,7 @@ public class MapManager : MonoBehaviour
     }
     private void OccupyTile()
     {
-        print(GetTilePosInDic());
+        //print(GetTilePosInDic());
         if (dataFromTiles.ContainsKey(GetTilePosInDic())){
             //print("hi");
             dataFromTiles[GetTilePosInDic()] = SpawnPrefab(prefab);
@@ -98,8 +99,16 @@ public class MapManager : MonoBehaviour
 
     public void ToggleShovel()
     {
-        if (shovel) shovel = false;
-        else shovel = true;
+        if (shovel)
+        {
+            shovel = false;
+            shovelImage.SetActive(false);
+        }
+        else
+        {
+            print("shovel true");
+            shovel = true;
+            shovelImage.SetActive(true);
+        }
     }
-
 }

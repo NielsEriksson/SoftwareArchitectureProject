@@ -8,19 +8,29 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner Instance;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<Level> levels;
-    private Level currentLevel;
+    public Level[] levelsInstances;
+    public Level currentLevel;
     private int currentLevelNum;
     [SerializeField] private int currentEnemy;
     [SerializeField] public List<Enemy> enemiesInLevel;
     private Enemy enemyToSpawn;
-    [SerializeField] float spawnWaveTimer;
-    [SerializeField] float spawnWaveTimerReset;
+    float spawnWaveTimer;
+    [SerializeField] public float timeBetweenWaves;
     [SerializeField] float spawnEnemyDelay;
+    WaveUI waveUI;
     bool isSpawningWave;
+    bool levelRunning = true;
 
     // Start is called before the first frame update
     void Awake()
     {
+        levelsInstances = new Level[levels.Count];
+        Debug.Log(Resources.Load<Level>("Level1"));
+       
+        for (int i =0; i < levels.Count ; i++)
+        {            
+            levelsInstances[i] = Resources.Load<Level>(levels[i].name);
+        }
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -31,19 +41,23 @@ public class EnemySpawner : MonoBehaviour
         }
         enemiesInLevel = new List<Enemy>();
         currentEnemy = 0;
-        currentLevelNum = 0;        
-        currentLevel = levels[currentLevelNum];
+        currentLevel = levelsInstances[currentLevelNum];
         currentLevel.UpdateChances();
-        GenerateLevel();    
+        GenerateLevel();   
+        waveUI = FindObjectOfType<WaveUI>();
+
     }
     public void FixedUpdate()
     {
-        spawnWaveTimer -= Time.deltaTime;
-        if (spawnWaveTimer < 0 && !isSpawningWave)
+        if (levelRunning)
         {
-            isSpawningWave = true;
-            StartCoroutine(SpawnWave());
-            spawnWaveTimer = spawnWaveTimerReset;
+            spawnWaveTimer -= Time.deltaTime;
+            if (spawnWaveTimer < 0 && !isSpawningWave)
+            {
+                isSpawningWave = true;
+                StartCoroutine(SpawnWave());
+                spawnWaveTimer = timeBetweenWaves;
+            }
         }
     }
     public void ChangeLevel()
@@ -51,6 +65,10 @@ public class EnemySpawner : MonoBehaviour
         currentLevelNum++;
         currentLevel= levels[currentLevelNum];
         currentLevel.UpdateChances();
+        ResetLevel();
+        GenerateLevel();
+        waveUI.ResetUI();   
+
     }
     public void GenerateLevel()
     {
@@ -120,5 +138,6 @@ public class EnemySpawner : MonoBehaviour
     {
         currentEnemy = 0;
         enemiesInLevel.Clear();
+        spawnWaveTimer=0;
     }
 }

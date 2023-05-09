@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HittingPlant : Plant
+public class VineSpreaderPlant : Plant
 {
-    [SerializeField] GameObject pushBackArea;
+    [SerializeField] GameObject vine;
     public override void Attack()
     {
-        Instantiate(pushBackArea, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+        Instantiate(vine, transform.position + new Vector3(1, 0, 0), vine.transform.rotation);
     }
     public override void StopAttack()
     {
-        
+
     }
     public override void Action()
     {

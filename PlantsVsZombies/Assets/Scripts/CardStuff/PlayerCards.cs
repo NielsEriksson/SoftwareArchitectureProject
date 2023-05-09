@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class PlayerCards : MonoBehaviour
 {
     public GameObject baseCard;
     public int handLimit;
-    public Card[] tempCards;
+    Card[] tempCards;
     public GameObject deck;
     public GameObject discard;
     [HideInInspector] public int selectedCard = 0;
@@ -25,6 +26,16 @@ public class PlayerCards : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //tempCards = (Card[])Resources.FindObjectsOfTypeAll(typeof(Card));
+        //tempCards = (Card[])FindObjectsOfType(typeof(Card));
+        tempCards = Resources.LoadAll<Card>("Cards");
+        //tempCards = new Card[temp.Length];
+        //for (int i = 0; i < temp.Length; i++)
+        //{
+        //    tempCards[i] = temp[i];
+        //}
+        Debug.Log(tempCards.Length);
+
         cardWidth = baseCard.GetComponent<RectTransform>().sizeDelta.x;
         for (int i = 0; i < 20; i++)
         {

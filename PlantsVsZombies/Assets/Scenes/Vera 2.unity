@@ -1480,10 +1480,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6283bf47b34acf44c940e5a9ec197198, type: 2}
   - {fileID: 11400000, guid: 631074d2ff0c8d2468aa7be689f86928, type: 2}
   - {fileID: 11400000, guid: 42ed73d8d890ec3429838d2496459f2e, type: 2}
+  levelsInstances: []
+  currentLevel: {fileID: 0}
   currentEnemy: 0
   enemiesInLevel: []
-  spawnWaveTimer: 0
-  spawnWaveTimerReset: 45
+  timeBetweenWaves: 0
   spawnEnemyDelay: 1.5
 --- !u!4 &1172345758
 Transform:
@@ -1914,9 +1915,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCard: {fileID: 3059817369437239460, guid: 1b437ecca00790547aaea85df7b6ba4c, type: 3}
   handLimit: 8
-  tempCards:
-  - {fileID: 11400000, guid: 5ecc8322b7bb69f4297f48ddfc544707, type: 2}
-  - {fileID: 11400000, guid: 310e88e418e97ff449ce22fa7d494926, type: 2}
   deck: {fileID: 973894077}
   discard: {fileID: 624756976}
   selectedCard: 0

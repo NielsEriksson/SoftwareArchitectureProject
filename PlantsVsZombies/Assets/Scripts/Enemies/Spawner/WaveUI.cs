@@ -13,7 +13,8 @@ public class WaveUI : MonoBehaviour
     [SerializeField] HorizontalLayoutGroup wavesGroup;
 
     int initialSpacing = 26; //spacing for 10 waves
-    int wavesCount = 10;
+    float spacingMultiplier = 1.346f;
+    int maxWaves = 10;
     float time;
     private void Start()
     {
@@ -30,7 +31,7 @@ public class WaveUI : MonoBehaviour
         {
             waveIndicators[i].gameObject.SetActive(true);
         }
-        wavesGroup.spacing = initialSpacing *(wavesCount/spawner.currentLevel.waves);
+        wavesGroup.spacing = initialSpacing *(Mathf.Pow(spacingMultiplier, maxWaves -spawner.currentLevel.waves))-0.5f;
 
     }
     // Update is called once per frame

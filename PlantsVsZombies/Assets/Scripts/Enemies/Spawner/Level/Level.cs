@@ -8,6 +8,7 @@ public class Level : ScriptableObject
     public string levelName;
     public List<Enemy> availableEnemies;
     public int enemyMaxWieght;
+    [Header("Min 5 waves or UI is messed up")]
     public int waves;
     public int enemiesPerWave;
     public int SmasherSpawnChance, ShieldedSmasherSpawnChance, ArcherSpawnChance, CamouflageSpawnChance, BomberSpawnChance;

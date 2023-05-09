@@ -8,8 +8,8 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     private Dictionary <Vector2, Plant> dataFromTiles;
     private List<Vector3> tileCoords;
-    [SerializeField]Plant prefab;
-    bool shovel;
+    [SerializeField] private Plant prefab;
+    private bool shovel;
     private void Start()
     {
         tileCoords = new List<Vector3>();
@@ -31,6 +31,10 @@ public class MapManager : MonoBehaviour
         {
             dataFromTiles.Add(new Vector2(v.x,v.y), null);
         }
+/*        foreach (var v in dataFromTiles)
+        {
+            Debug.Log(v);
+        }*/
     }
     private void Update()
     {
@@ -52,30 +56,37 @@ public class MapManager : MonoBehaviour
     public bool GetTileIsFull()
     {
         Plant isFull;
-        dataFromTiles.TryGetValue(GetTileWorldCoord(), out isFull);
+        dataFromTiles.TryGetValue(GetTilePosInDic(), out isFull);
         if(isFull == null) { return false; }
         return true;
     }
     private void OccupyTile()
     {
-        dataFromTiles[GetTileWorldCoord()] = SpawnPrefab(prefab);
+        print(GetTilePosInDic());
+        if (dataFromTiles.ContainsKey(GetTilePosInDic())){
+            //print("hi");
+            dataFromTiles[GetTilePosInDic()] = SpawnPrefab(prefab);
+        }
     }
     public void UnOccupyTile()
     {
-        Debug.Log("shoveling");
-        Plant plant = dataFromTiles[GetTileWorldCoord()];
-        dataFromTiles[GetTileWorldCoord()] = null;
+        //Debug.Log("shoveling");
+        Plant plant = dataFromTiles[GetTilePosInDic()];
+        dataFromTiles[GetTilePosInDic()] = null;
         plant.Die();
-        
-        
-        
-        //to do : delete plant that is on the tile
     }
     private Vector2 GetTileWorldCoord()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
         Vector2 pos = new Vector2((gridPosition.x+0.5f)*1.75f, (gridPosition.y+0.5f)*1.75f);
+        return pos;
+    }
+    private Vector2 GetTilePosInDic()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
+        Vector2 pos = new Vector2(gridPosition.x * 1.75f, gridPosition.y * 1.75f);
         return pos;
     }
 

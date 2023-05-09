@@ -10,7 +10,7 @@ public class PlantAttack : PlantBaseState
     public float shotDelay;
     public PlantAttack(PlantAiStateMachine stateMachine) : base("Attack", stateMachine) { sm = (PlantAiStateMachine)stateMachine; }
     public override void Enter() {
-        Debug.Log("Entered Attack State");
+        //Debug.Log("Entered Attack State");
         sm.plant.Attack();
     }
     public override void Update() 

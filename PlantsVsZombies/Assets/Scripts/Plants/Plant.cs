@@ -21,8 +21,7 @@ public abstract class Plant : MonoBehaviour
     }
     public virtual void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-      
+        rb = GetComponent<Rigidbody2D>();      
     }
 
     private void Update()
@@ -38,7 +37,6 @@ public abstract class Plant : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("COLLIDING!!!!");
         if (other.gameObject.tag == "Enemy")
         {
             isInRange = true;

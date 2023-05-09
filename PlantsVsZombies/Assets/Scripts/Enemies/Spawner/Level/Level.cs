@@ -14,21 +14,11 @@ public class Level : ScriptableObject
 
     public void UpdateChances()
     {
-        if(ShieldedSmasherSpawnChance > 0) 
-        {
-            ShieldedSmasherSpawnChance += SmasherSpawnChance;
-        }
-        if(ArcherSpawnChance > 0)
-        {
-            ArcherSpawnChance += ShieldedSmasherSpawnChance;
-        }
-        if(CamouflageSpawnChance > 0)
-        {
-            CamouflageSpawnChance += ArcherSpawnChance;
-        }
-        if (BomberSpawnChance > 0)
-        {
-            BomberSpawnChance += CamouflageSpawnChance;
-        }
+        int enemy1SpawnChance = SmasherSpawnChance;
+        int enemy2SpawnChance = ShieldedSmasherSpawnChance + enemy1SpawnChance;
+        int enemy3SpawnChance = ArcherSpawnChance + enemy2SpawnChance;
+        int enemy4SpawnChance = CamouflageSpawnChance + enemy3SpawnChance;
+        int enemy5SpawnChance = BomberSpawnChance + enemy4SpawnChance;
+
     }
 }

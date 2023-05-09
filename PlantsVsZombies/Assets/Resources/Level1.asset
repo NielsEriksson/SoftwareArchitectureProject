@@ -20,7 +20,7 @@ MonoBehaviour:
   waves: 10
   enemiesPerWave: 3
   SmasherSpawnChance: 70
-  ShieldedSmasherSpawnChance: 100
+  ShieldedSmasherSpawnChance: 30
   ArcherSpawnChance: 0
   CamouflageSpawnChance: 0
   BomberSpawnChance: 0

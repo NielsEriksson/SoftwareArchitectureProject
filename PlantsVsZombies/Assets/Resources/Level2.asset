@@ -20,8 +20,8 @@ MonoBehaviour:
   enemyMaxWieght: 65
   waves: 10
   enemiesPerWave: 4
-  SmasherSpawnChance: 50
-  ShieldedSmasherSpawnChance: 35
-  ArcherSpawnChance: 15
+  SmasherSpawnChance: 45
+  ShieldedSmasherSpawnChance: 40
+  ArcherSpawnChance: 20
   CamouflageSpawnChance: 0
   BomberSpawnChance: 0

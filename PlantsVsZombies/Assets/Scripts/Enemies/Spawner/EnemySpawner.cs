@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     WaveUI waveUI;
     bool isSpawningWave;
     bool levelRunning = true;
+ 
 
     // Start is called before the first frame update
     void Awake()
@@ -74,30 +75,37 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemiesInLevel.Count > 0) { enemiesInLevel.Clear(); }
         //Can be made better to automatically add new enemy types without manually adding anything here
+        int enemy1SpawnChance = currentLevel.SmasherSpawnChance;
+        int enemy2SpawnChance = currentLevel.ShieldedSmasherSpawnChance + enemy1SpawnChance;
+        int enemy3SpawnChance = currentLevel.ArcherSpawnChance + enemy2SpawnChance;
+        int enemy4SpawnChance = currentLevel.CamouflageSpawnChance + enemy3SpawnChance;
+        int enemy5SpawnChance = currentLevel.BomberSpawnChance + enemy4SpawnChance;
         for (int i = 0; i <= currentLevel.enemyMaxWieght;)
         {
             int enemySpawnChance = Random.Range(0, 100);
-            if (enemySpawnChance <= currentLevel.SmasherSpawnChance && currentLevel.SmasherSpawnChance > 0)
+           
+            if (enemySpawnChance <= enemy1SpawnChance && currentLevel.SmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[0]);
                 i += currentLevel.availableEnemies[0].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.ShieldedSmasherSpawnChance && currentLevel.ShieldedSmasherSpawnChance > 0)
+           
+            else if (enemySpawnChance <= enemy2SpawnChance && currentLevel.ShieldedSmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[1]);
                 i += currentLevel.availableEnemies[1].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.ArcherSpawnChance && currentLevel.ArcherSpawnChance > 0)
+            else if (enemySpawnChance <= enemy3SpawnChance && currentLevel.ArcherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[2]);
                 i += currentLevel.availableEnemies[2].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.CamouflageSpawnChance && currentLevel.CamouflageSpawnChance > 0)
+            else if (enemySpawnChance <= enemy4SpawnChance && currentLevel.CamouflageSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[3]);
                 i += currentLevel.availableEnemies[3].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.BomberSpawnChance && currentLevel.BomberSpawnChance > 0)
+            else if (enemySpawnChance <= enemy5SpawnChance && currentLevel.BomberSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[4]);
                 i += currentLevel.availableEnemies[4].enemyWeigth;

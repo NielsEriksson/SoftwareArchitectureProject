@@ -10,7 +10,8 @@ public class MapManager : MonoBehaviour
     private List<Vector3> tileCoords;
     [SerializeField] private Plant prefab;
     private bool shovel;
-    [SerializeField] GameObject shovelImage;
+    [SerializeField] GameObject shovelButtonImage;
+    [SerializeField] Texture2D shovelMouseTexture;
     private void Start()
     {
         tileCoords = new List<Vector3>();
@@ -102,13 +103,16 @@ public class MapManager : MonoBehaviour
         if (shovel)
         {
             shovel = false;
-            shovelImage.SetActive(false);
+            shovelButtonImage.SetActive(true);
+
+            Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         }
         else
         {
             print("shovel true");
             shovel = true;
-            shovelImage.SetActive(true);
+            shovelButtonImage.SetActive(false);
+            Cursor.SetCursor(shovelMouseTexture, Vector2.zero, CursorMode.Auto);
         }
     }
 }

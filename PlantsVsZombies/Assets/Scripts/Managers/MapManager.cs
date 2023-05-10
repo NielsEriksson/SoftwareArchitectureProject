@@ -5,11 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
     private Dictionary <Vector2, Plant> dataFromTiles;
     private List<Vector3> tileCoords;
-    [SerializeField] private Plant prefab;
     private bool shovel;
+    [SerializeField] private float gridScale;
+    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Plant prefab;
     [SerializeField] GameObject shovelButtonImage;
     [SerializeField] Texture2D shovelMouseTexture;
     private void Start()
@@ -29,27 +30,20 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-        foreach (Vector3 v in tileCoords) //save all tiles and add a bool to them
+        foreach (Vector3 v in tileCoords) //save all tiles and add a flower to them
         {
             dataFromTiles.Add(new Vector2(v.x,v.y), null);
         }
-/*        foreach (var v in dataFromTiles)
-        {
-            Debug.Log(v);
-        }*/
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(1)){
+        if(Input.GetMouseButtonDown(0)){
             if (!GetTileIsFull() && !shovel)
             {
-                //print(GetClickedTile() + " is not occupied yet");
                 OccupyTile();
-                
             }
             else if (GetTileIsFull() && shovel)
             {
-                //print("is occupied");
                 UnOccupyTile();
             }
         }
@@ -64,20 +58,17 @@ public class MapManager : MonoBehaviour
     }
     private void OccupyTile()
     {
-        //print(GetTilePosInDic());
-        if (dataFromTiles.ContainsKey(GetTilePosInDic())){
-            //print("hi");
-            dataFromTiles[GetTilePosInDic()] = SpawnPrefab(prefab);
+        if (dataFromTiles.ContainsKey(GetTilePosInDic())){ //check if this tile is in dic
+            dataFromTiles[GetTilePosInDic()] = SpawnPrefab(prefab); 
         }
     }
     public void UnOccupyTile()
     {
-        //Debug.Log("shoveling");
         Plant plant = dataFromTiles[GetTilePosInDic()];
         dataFromTiles[GetTilePosInDic()] = null;
         plant.Die();
     }
-    private Vector2 GetTileWorldCoord()
+    private Vector2 GetTilePosWithOffset()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
@@ -94,7 +85,7 @@ public class MapManager : MonoBehaviour
 
     public Plant SpawnPrefab(Plant prefab)
     {
-        Plant planty = Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);
+        Plant planty = Instantiate(prefab, GetTilePosWithOffset(), Quaternion.identity);
         return planty;
     }
 
@@ -104,12 +95,10 @@ public class MapManager : MonoBehaviour
         {
             shovel = false;
             shovelButtonImage.SetActive(true);
-
             Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
         }
         else
         {
-            print("shovel true");
             shovel = true;
             shovelButtonImage.SetActive(false);
             Cursor.SetCursor(shovelMouseTexture, Vector2.zero, CursorMode.Auto);

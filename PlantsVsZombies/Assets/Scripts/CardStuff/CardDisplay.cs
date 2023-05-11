@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    public Card card;
+    [HideInInspector] public Card card;
     public TMP_Text nameText;
     public Image art;
     public TMP_Text descriptionText;
@@ -22,9 +22,10 @@ public class CardDisplay : MonoBehaviour
         if (card != null)
         {
             nameText.text = card.cardName;
+
             descriptionText.text = card.cardDescription;
-            //extraDescriptionText.text = card.extraDescription;
-            //conditions = card.conditions;
+            conditions = card.conditions;
+            extraDescriptionText.text = card.extraDescription;
 
             //public string cardName;
             //public Image cardImage;

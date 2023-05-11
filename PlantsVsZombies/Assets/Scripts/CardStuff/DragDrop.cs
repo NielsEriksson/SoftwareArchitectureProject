@@ -88,14 +88,7 @@ public class DragDrop : MonoBehaviour
         bool isValid = !mapManager.GetTileIsFull();
         //Debug.Log(isValid);
 
-        if (isValid)
-        {
-            //Debug.Log("Plant");
-            mapManager.OccupyTile(GetComponent<CardDisplay>().card.plantPrefab);
-            //Plant
-        }
-
-        return isValid;
+        return mapManager.OccupyTile(GetComponent<CardDisplay>().card.plantPrefab); ;
     }
 
     public void StartHover()

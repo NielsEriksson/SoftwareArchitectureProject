@@ -38,11 +38,12 @@ public class MapManager : MonoBehaviour
     private void Update()
     {
         if(Input.GetMouseButtonDown(0)){
-            if (!GetTileIsFull() && !shovel)
-            {
-                OccupyTile();
-            }
-            else if (GetTileIsFull() && shovel)
+            //if (!GetTileIsFull() && !shovel)
+            //{
+            //    OccupyTile();
+            //}
+            //else
+            if (GetTileIsFull() && shovel)
             {
                 UnOccupyTile();
             }
@@ -56,11 +57,13 @@ public class MapManager : MonoBehaviour
         if(isFull == null) { return false; }
         return true;
     }
-    private void OccupyTile()
+    public bool OccupyTile(Plant plant)
     {
         if (dataFromTiles.ContainsKey(GetTilePosInDic())){ //check if this tile is in dic
-            dataFromTiles[GetTilePosInDic()] = SpawnPrefab(prefab); 
+            dataFromTiles[GetTilePosInDic()] = SpawnPrefab(plant); 
+            return true;
         }
+        return false;
     }
     public void UnOccupyTile()
     {

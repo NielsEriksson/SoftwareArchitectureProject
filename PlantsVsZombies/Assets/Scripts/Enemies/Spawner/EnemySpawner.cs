@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnEnemyDelay;
     WaveUI waveUI;
     bool isSpawningWave;
-    bool levelRunning = true;
+    public bool levelRunning = true;
  
 
     // Start is called before the first frame update
@@ -68,7 +68,8 @@ public class EnemySpawner : MonoBehaviour
         currentLevel.UpdateChances();
         ResetLevel();
         GenerateLevel();
-        waveUI.ResetUI();   
+        waveUI.ResetUI();
+        levelRunning = true;
 
     }
     public void GenerateLevel()

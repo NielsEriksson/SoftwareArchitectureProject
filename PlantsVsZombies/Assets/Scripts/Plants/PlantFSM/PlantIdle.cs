@@ -13,7 +13,7 @@ public class PlantIdle : PlantBaseState
     }
     public override void Transition()
     {
-        Debug.Log("PlantIdle Transition");
+        //Debug.Log("PlantIdle Transition");
         if (sm.plant.isInRange)
         {
             sm.ChangeState(sm.attackState);

@@ -26,6 +26,7 @@ public class LevelClearedCheck : MonoBehaviour
     }
     public void LevelCleared()
     {
+        spawner.levelRunning= false;
         //Do something
         spawner.ResetLevel();
         enemiesKilled = 0;

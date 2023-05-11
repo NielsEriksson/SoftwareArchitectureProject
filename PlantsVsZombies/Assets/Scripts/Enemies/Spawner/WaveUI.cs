@@ -39,7 +39,7 @@ public class WaveUI : MonoBehaviour
     {
         time += Time.deltaTime;
         waveTimer.value = time;
-        Debug.Log(waveTimer.value);
+      
     }
     public void ResetUI()
     {

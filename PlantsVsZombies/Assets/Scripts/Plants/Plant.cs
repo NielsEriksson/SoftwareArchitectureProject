@@ -35,20 +35,7 @@ public abstract class Plant : MonoBehaviour
         rangeHitBox.offset = new Vector2(width / 2, rangeHitBox.offset.y);
     }
 
-    public void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            isInRange = true;
-        }
-    }
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            isInRange = false;
-        }
-    }
+ 
     public abstract void Attack(); 
     public virtual void StopAttack() { }
     public virtual void TakeDamage(int damage)

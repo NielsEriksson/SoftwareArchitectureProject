@@ -5,11 +5,14 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
     private Dictionary <Vector2, Plant> dataFromTiles;
     private List<Vector3> tileCoords;
-    [SerializeField]Plant prefab;
-    bool shovel;
+    private bool shovel;
+    [SerializeField] private float gridScale;
+    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Plant prefab;
+    [SerializeField] GameObject shovelButtonImage;
+    [SerializeField] Texture2D shovelMouseTexture;
     private void Start()
     {
         tileCoords = new List<Vector3>();
@@ -27,23 +30,21 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-        foreach (Vector3 v in tileCoords) //save all tiles and add a bool to them
+        foreach (Vector3 v in tileCoords) //save all tiles and add a flower to them
         {
             dataFromTiles.Add(new Vector2(v.x,v.y), null);
         }
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(1)){
-            if (!GetTileIsFull() && !shovel)
+        if(Input.GetMouseButtonDown(0)){
+            //if (!GetTileIsFull() && !shovel)
+            //{
+            //    OccupyTile();
+            //}
+            //else
+            if (GetTileIsFull() && shovel)
             {
-                //print(GetClickedTile() + " is not occupied yet");
-                OccupyTile();
-                
-            }
-            else if (GetTileIsFull() && shovel)
-            {
-                //print("is occupied");
                 UnOccupyTile();
             }
         }
@@ -52,43 +53,59 @@ public class MapManager : MonoBehaviour
     public bool GetTileIsFull()
     {
         Plant isFull;
-        dataFromTiles.TryGetValue(GetTileWorldCoord(), out isFull);
+        dataFromTiles.TryGetValue(GetTilePosInDic(), out isFull);
         if(isFull == null) { return false; }
         return true;
     }
-    private void OccupyTile()
+    public bool OccupyTile(Plant plant)
     {
-        dataFromTiles[GetTileWorldCoord()] = SpawnPrefab(prefab);
+        if (dataFromTiles.ContainsKey(GetTilePosInDic())){ //check if this tile is in dic
+            dataFromTiles[GetTilePosInDic()] = SpawnPrefab(plant); 
+            return true;
+        }
+        return false;
     }
     public void UnOccupyTile()
     {
-        Debug.Log("shoveling");
-        Plant plant = dataFromTiles[GetTileWorldCoord()];
-        dataFromTiles[GetTileWorldCoord()] = null;
+        Plant plant = dataFromTiles[GetTilePosInDic()];
+        dataFromTiles[GetTilePosInDic()] = null;
         plant.Die();
-        
-        
-        
-        //to do : delete plant that is on the tile
     }
-    private Vector2 GetTileWorldCoord()
+    private Vector2 GetTilePosWithOffset()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
         Vector2 pos = new Vector2((gridPosition.x+0.5f)*1.75f, (gridPosition.y+0.5f)*1.75f);
         return pos;
     }
+    private Vector2 GetTilePosInDic()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int gridPosition = tilemap.WorldToCell(mousePosition);
+        Vector2 pos = new Vector2(gridPosition.x * 1.75f, gridPosition.y * 1.75f);
+        return pos;
+    }
 
     public Plant SpawnPrefab(Plant prefab)
     {
-        Plant planty = Instantiate(prefab, GetTileWorldCoord(), Quaternion.identity);
+        Plant planty = Instantiate(prefab, GetTilePosWithOffset(), Quaternion.identity);
         return planty;
     }
 
     public void ToggleShovel()
     {
-        if (shovel) shovel = false;
-        else shovel = true;
+        if (shovel)
+        {
+            shovel = false;
+            shovelButtonImage.SetActive(true);
+            Cursor.SetCursor(default, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            shovel = true;
+            shovelButtonImage.SetActive(false);
+            Cursor.SetCursor(shovelMouseTexture, Vector2.zero, CursorMode.Auto);
+            int i = 0;
+        }
     }
-
 }

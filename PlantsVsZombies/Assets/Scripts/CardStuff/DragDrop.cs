@@ -5,10 +5,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class DragDrop : MonoBehaviour
 {
     bool isDragging = false;
+    bool isHovering = false;
     Vector2 startPosition;
     Quaternion previousRotation;
     PlayerCards playerCards;
@@ -84,11 +86,11 @@ public class DragDrop : MonoBehaviour
     bool IsDestinationValid()
     {
         bool isValid = !mapManager.GetTileIsFull();
-        Debug.Log(isValid);
+        //Debug.Log(isValid);
 
         if (isValid)
         {
-            Debug.Log("Plant");
+            //Debug.Log("Plant");
             mapManager.OccupyTile(GetComponent<CardDisplay>().card.plantPrefab);
             //Plant
         }
@@ -100,6 +102,7 @@ public class DragDrop : MonoBehaviour
     {
         if (!isDragging)
         {
+            isHovering = true;
             transform.parent = heldCardCanvas;
             scaleDestination = hoverScale;
             rotationDestination = Quaternion.Euler(0, 0, 0);
@@ -107,7 +110,29 @@ public class DragDrop : MonoBehaviour
 
             Vector2 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
             Vector2 maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-            //moveDestination.y = Mathf.Clamp(transform.position.y, minScreenBounds.y + 115, maxScreenBounds.y);
+            Vector2 cardSize = GetComponent<RectTransform>().sizeDelta;
+
+            //moveDestination.y = cardSize.y;
+
+            if (transform.position.y - (cardSize.y / 2) <-35)
+            {
+                Debug.Log(Screen.height / 2);
+            }
+            else
+            {
+            }
+
+            //moveDestination.y;
+            //float temp = Mathf.Clamp(transform.position.y, minScreenBounds.y, maxScreenBounds.y);
+            //Debug.Log("pos: " + transform.position.y + " height: " + (cardSize.y / 2) + " screen: " + Screen.height);
+            //Vector2 pos = moveDestination;
+            //var refRes = (canv.transform as RectTransform).sizeDelta;
+
+            //if (pos.y > refRes.y - rectBody.sizeDelta.y) pos.y = refRes.y - rectBody.sizeDelta.y;//up
+
+            //Debug.Log(moveDestination.y);
+            //moveDestination.y = Mathf.Clamp(moveDestination.y, 0 + cardSize.y / 2, Screen.height - cardSize.y / 2);
+            //Debug.Log(moveDestination.y);
         }
     }
 
@@ -115,6 +140,7 @@ public class DragDrop : MonoBehaviour
     {
         if (!isDragging)
         {
+            isHovering = false;
             transform.parent = playerCards.transform;
             //rotationDestination = previousRotation;
             scaleDestination = new Vector2(1f, 1f);

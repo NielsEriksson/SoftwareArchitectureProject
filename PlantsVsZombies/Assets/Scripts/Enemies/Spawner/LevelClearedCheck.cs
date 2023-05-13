@@ -51,6 +51,8 @@ public class LevelClearedCheck : MonoBehaviour
     public void LoadInterLevelUI()
     {
         InterLevelUI.SetActive(true);
+        InterLevelUI.GetComponent<InterLevelUi>().cardSelected = false;
+        InterLevelUI.GetComponent<InterLevelUi>().nextLvlButton.enabled = false;
         Time.timeScale = 0f;
     }
 }

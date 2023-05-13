@@ -69,6 +69,7 @@ public class EnemySpawner : MonoBehaviour
         ResetLevel();
         GenerateLevel();
         waveUI.ResetUI();
+        Time.timeScale = 0f;
         levelRunning = true;
 
     }

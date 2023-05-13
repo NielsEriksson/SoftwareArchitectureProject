@@ -108,4 +108,15 @@ public class MapManager : MonoBehaviour
             int i = 0;
         }
     }
+    public void ClearGrid()
+    {
+        for(int i = 0; i <tileCoords.Count; i++) 
+        {
+            if (dataFromTiles[tileCoords[i]]!= null)
+            {
+                dataFromTiles[tileCoords[i]].Die();
+                dataFromTiles[tileCoords[i]] = null;
+            }
+        }
+    }
 }

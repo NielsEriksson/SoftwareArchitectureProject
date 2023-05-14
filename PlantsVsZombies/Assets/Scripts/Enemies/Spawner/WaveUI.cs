@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class WaveUI : MonoBehaviour
 {
     [SerializeField]Slider waveTimer;
-    EnemySpawner spawner;
+  
     [SerializeField] GameObject[] avEnemyImages;
     [SerializeField] GameObject[] waveIndicators;
     [SerializeField] HorizontalLayoutGroup wavesGroup;
@@ -18,20 +18,20 @@ public class WaveUI : MonoBehaviour
     float time;
     private void Start()
     {
-        spawner = FindObjectOfType<EnemySpawner>().GetComponent<EnemySpawner>();
-        waveTimer.maxValue = spawner.timeBetweenWaves * spawner.currentLevel.waves;
-        for (int i = 0; i <spawner.currentLevel.availableEnemies.Count; i++)
+        
+        waveTimer.maxValue = EnemySpawner.Instance.timeBetweenWaves * EnemySpawner.Instance.currentLevel.waves;
+        for (int i = 0; i < EnemySpawner.Instance.currentLevel.availableEnemies.Count; i++)
         {
-            avEnemyImages[i].GetComponent<Image>().color = spawner.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().color ;
-            avEnemyImages[i].GetComponent<Image>().sprite = spawner.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().sprite;
+            avEnemyImages[i].GetComponent<Image>().color = EnemySpawner.Instance.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().color ;
+            avEnemyImages[i].GetComponent<Image>().sprite = EnemySpawner.Instance.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().sprite;
             avEnemyImages[i].SetActive(true);
 
         }
-        for (int i = 0; i < spawner.currentLevel.waves; i++)
+        for (int i = 0; i < EnemySpawner.Instance.currentLevel.waves; i++)
         {
             waveIndicators[i].gameObject.SetActive(true);
         }
-        wavesGroup.spacing = initialSpacing *(Mathf.Pow(spacingMultiplier, maxWaves -spawner.currentLevel.waves))-0.5f;
+        wavesGroup.spacing = initialSpacing *(Mathf.Pow(spacingMultiplier, maxWaves - EnemySpawner.Instance.currentLevel.waves))-0.5f;
 
     }
     // Update is called once per frame
@@ -45,16 +45,16 @@ public class WaveUI : MonoBehaviour
     {
         time = 0;
         waveTimer.value = 0;
-        waveTimer.maxValue = spawner.timeBetweenWaves * spawner.currentLevel.waves;
+        waveTimer.maxValue = EnemySpawner.Instance.timeBetweenWaves * EnemySpawner.Instance.currentLevel.waves;
         for (int i = 0; i < avEnemyImages.Length; i++)
         {
             avEnemyImages[i].SetActive(false);
         }
 
-        for (int i = 0; i < spawner.currentLevel.availableEnemies.Count; i++)
+        for (int i = 0; i < EnemySpawner.Instance.currentLevel.availableEnemies.Count; i++)
         {
-            avEnemyImages[i].GetComponent<Image>().color = spawner.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().color;
-            avEnemyImages[i].GetComponent<Image>().sprite = spawner.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().sprite;
+            avEnemyImages[i].GetComponent<Image>().color = EnemySpawner.Instance.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().color;
+            avEnemyImages[i].GetComponent<Image>().sprite = EnemySpawner.Instance.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().sprite;
             avEnemyImages[i].SetActive(true);
         }
     }

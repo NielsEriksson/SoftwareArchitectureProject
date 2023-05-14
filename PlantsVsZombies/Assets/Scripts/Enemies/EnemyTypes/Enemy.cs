@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
     public virtual void Die()
     {
         //DeathAnimation
-
+        FindObjectOfType<LevelClearedCheck>().enemiesKilled++;
         Destroy(gameObject);
     }
   

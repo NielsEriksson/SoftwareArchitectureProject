@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelClearedCheck : MonoBehaviour
 {
     public int enemiesKilled;
-    private EnemySpawner spawner;
+
     private MapManager mapManager;
     [SerializeField] GameObject InterLevelUI;
     Enemy[] enemies;
@@ -14,26 +14,24 @@ public class LevelClearedCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawner= GetComponent<EnemySpawner>();
+    
         mapManager = FindObjectOfType<MapManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemiesKilled == spawner.enemiesInLevel.Count)
+        if (enemiesKilled == EnemySpawner.Instance.enemiesSpawned && EnemySpawner.Instance.enemiesSpawned>= EnemySpawner.Instance.enemiesInLevel.Count)
         {
-            if (FindObjectsOfType<Enemy>().Count() == 0)
-            {
-                //Level Cleared Method
-            }
+            LevelCleared();
+            LoadInterLevelUI();
         }
     }
     public void LevelCleared()
     {
-        spawner.levelRunning= false;
+        EnemySpawner.Instance.levelRunning= false;
         //Do something
-        spawner.ResetLevel();
+        EnemySpawner.Instance.ResetLevel();
         enemiesKilled = 0;
         enemies = FindObjectsOfType<Enemy>().ToArray();
         plants = FindObjectsOfType<Plant>().ToArray();

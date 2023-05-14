@@ -5203,7 +5203,7 @@ GameObject:
   - component: {fileID: 1830935202}
   - component: {fileID: 1830935205}
   m_Layer: 0
-  m_Name: LooseBox
+  m_Name: LossManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

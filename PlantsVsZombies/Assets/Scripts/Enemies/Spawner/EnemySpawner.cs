@@ -70,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
         if (currentLevelNum < numberOfLevels-1)
         {
             currentLevelNum++;
-            currentLevel = levels[currentLevelNum];
+            currentLevel = levelsInstances[currentLevelNum];
             currentLevel.UpdateChances();
             ResetLevel();
             GenerateLevel();

@@ -18,6 +18,13 @@ public class PlantRangeChecker : MonoBehaviour
            plant.isInRange = true;
         }
     }
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            plant.isInRange = true;
+        }
+    }
     public void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")

@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void ChangeLevel()
     {
-        if (currentLevelNum < numberOfLevels)
+        if (currentLevelNum < numberOfLevels-1)
         {
             currentLevelNum++;
             currentLevel = levels[currentLevelNum];

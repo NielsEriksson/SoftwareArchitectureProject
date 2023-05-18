@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa95d0512772d1448181b35b60bcc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridScale: 0
   tilemap: {fileID: 1089875366}
   prefab: {fileID: 3242213656316235869, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
   shovelButtonImage: {fileID: 366701099}

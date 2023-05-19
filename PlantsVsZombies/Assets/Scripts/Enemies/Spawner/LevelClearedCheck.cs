@@ -9,6 +9,7 @@ public class LevelClearedCheck : MonoBehaviour
 
     private MapManager mapManager;
     [SerializeField] GameObject InterLevelUI;
+    [SerializeField] GameObject VictoryScreen;
     Enemy[] enemies;
     Plant[] plants;
     // Start is called before the first frame update
@@ -44,13 +45,22 @@ public class LevelClearedCheck : MonoBehaviour
          
         }
         mapManager.ClearGrid();
-        //Clear grid an UnOccupy all tiles.
+        
     }
     public void LoadInterLevelUI()
     {
-        InterLevelUI.SetActive(true);
-        InterLevelUI.GetComponent<InterLevelUi>().cardSelected = false;
-        InterLevelUI.GetComponent<InterLevelUi>().nextLvlButton.enabled = false;
-        Time.timeScale = 0f;
+        if(EnemySpawner.Instance.currentLevelNum == EnemySpawner.Instance.levels.Count-1)
+        {
+            VictoryScreen.SetActive(true);           
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            InterLevelUI.SetActive(true);
+            InterLevelUI.GetComponent<InterLevelUi>().cardSelected = false;
+            InterLevelUI.GetComponent<InterLevelUi>().nextLvlButton.enabled = false;
+            Time.timeScale = 0f;
+        }
+       
     }
 }

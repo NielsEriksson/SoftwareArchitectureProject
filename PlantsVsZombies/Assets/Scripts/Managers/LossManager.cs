@@ -23,12 +23,5 @@ public class LossManager : MonoBehaviour
             LooseScreen.SetActive(true);
         }
     }
-    public void RetryLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void LoadMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+   
 }

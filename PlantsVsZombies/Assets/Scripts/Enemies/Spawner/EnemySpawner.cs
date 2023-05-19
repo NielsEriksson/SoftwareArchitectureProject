@@ -7,10 +7,10 @@ public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
     [SerializeField] List<GameObject> spawnPoints;
-    [SerializeField] List<Level> levels;
+    [SerializeField] public List<Level> levels;
     public Level[] levelsInstances;
     public Level currentLevel;
-    private int currentLevelNum;
+    public int currentLevelNum;
     private int currentWave=0;
     [SerializeField] int numberOfLevels;
     [SerializeField] private int currentEnemy;
@@ -45,6 +45,12 @@ public class EnemySpawner : MonoBehaviour
         }
         enemiesInLevel = new List<Enemy>();
         currentEnemy = 0;
+        if (!PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            PlayerPrefs.SetInt("CurrentLevel", 0);
+        }
+        currentLevelNum = PlayerPrefs.GetInt("CurrentLevel");
+       
         currentLevel = levelsInstances[currentLevelNum];
         currentLevel.UpdateChances();
         GenerateLevel();   
@@ -69,7 +75,8 @@ public class EnemySpawner : MonoBehaviour
     {
         if (currentLevelNum < numberOfLevels-1)
         {
-            currentLevelNum++;
+            PlayerPrefs.SetInt("CurrentLevel", currentLevelNum++);
+            currentLevelNum = PlayerPrefs.GetInt("CurrentLevel");
             currentLevel = levelsInstances[currentLevelNum];
             currentLevel.UpdateChances();
             ResetLevel();
@@ -77,6 +84,7 @@ public class EnemySpawner : MonoBehaviour
             waveUI.ResetUI();
             Time.timeScale = 1f;
             levelRunning = true;
+          
         }
 
     }

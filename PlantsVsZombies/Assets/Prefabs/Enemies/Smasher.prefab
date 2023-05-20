@@ -179,7 +179,7 @@ MonoBehaviour:
   speed: 1
   enemyWeigth: 1
   health: 4
-  attackTimerReset: 100
+  attackTimerReset: 1
   isInRange: 0
   lvlClearer: {fileID: 0}
 --- !u!50 &7744831846276795902

@@ -89,7 +89,7 @@ public class PlayerCards : MonoBehaviour
         } while (baseDeck.Count < startDeckSize);
     }
 
-    Card[] GenerateCardChoices()
+    public Card[] GenerateCardChoices()
     {
         Card[] tempChoices = new Card[cardSelectionAmount];
 
@@ -107,7 +107,7 @@ public class PlayerCards : MonoBehaviour
         return tempChoices;
     }
 
-    void AddCardToDeck(Card aCard)
+    public void AddCardToDeck(Card aCard)
     {
         baseDeck.Add(aCard);
     }

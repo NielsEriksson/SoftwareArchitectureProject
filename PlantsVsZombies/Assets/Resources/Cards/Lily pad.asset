@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388f49ce43e2d2468b96a678982e01c, type: 3}
   m_Name: Lily pad
   m_EditorClassIdentifier: 
+  isStartingCard: 1
   cardName: Lily pad
   cardDescription: Gain 1 Water
+  conditions: 
+  extraDescription: 
   plantPrefab: {fileID: 2204621723749222130, guid: 64618673957a77640841bd6fed1fefdb, type: 3}

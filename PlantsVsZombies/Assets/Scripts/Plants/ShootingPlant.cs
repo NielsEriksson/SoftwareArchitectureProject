@@ -16,6 +16,7 @@ public class ShootingPlant : Plant
     }
     public override void Attack()
     {
+        base.Attack();
         StartCoroutine(Shoot());
     }
     public override void StopAttack()
@@ -24,7 +25,7 @@ public class ShootingPlant : Plant
     }
     public override void Idle()
     {
-
+        base.Idle();
     }
     public override void Action()
     {

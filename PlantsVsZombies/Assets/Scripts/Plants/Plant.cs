@@ -11,8 +11,10 @@ public abstract class Plant : MonoBehaviour
     [HideInInspector] public bool isInRange;
     [SerializeField] public int health;
 
-    [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject elementManager;
     [SerializeField] public List<Element> containsElements;
+
+    Animator animator;
 
     [HideInInspector] public enum Element { Light, Water, Poison };
 
@@ -23,12 +25,14 @@ public abstract class Plant : MonoBehaviour
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        mainCamera.GetComponent<ElementControl>().UpdateElements();
+        elementManager.GetComponent<ElementControl>().UpdateElements();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        
+
     }
 
     protected virtual void SetRange(int width)
@@ -51,21 +55,27 @@ public abstract class Plant : MonoBehaviour
             isInRange = false;
         }
     }
-    public abstract void Attack(); 
+    public virtual void Attack()
+    {
+        animator.SetInteger("AnimChange", 1);
+    }
     public virtual void StopAttack() { }
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
     }
     public abstract void Action();
-    public abstract void Idle(); //Animation etc, do nothing
+    public virtual void Idle()
+    {
+        animator.SetInteger("AnimChange", 0);
+    }
     public virtual void Die()
     {
-        //Animation
+        animator.SetTrigger("Die");
 
-        Destroy(gameObject);
+        Destroy(gameObject, 1.0f);
 
         containsElements.Clear();
-        mainCamera.GetComponent<ElementControl>().UpdateElements();
+        elementManager.GetComponent<ElementControl>().UpdateElements();
     }
 }

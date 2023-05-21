@@ -166,6 +166,7 @@ MonoBehaviour:
   startRange: 1
   isInRange: 0
   health: 5
+  elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 
   vine: {fileID: 3837138063910632341, guid: bacbc87ee75cde84192ba8baff2db6be, type: 3}
 --- !u!1 &6263452542390926098

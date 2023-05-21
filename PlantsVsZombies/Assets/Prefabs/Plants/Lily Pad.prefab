@@ -162,6 +162,7 @@ MonoBehaviour:
   startRange: 0
   isInRange: 0
   health: 0
+  elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 01000000
 --- !u!50 &877719419
 Rigidbody2D:

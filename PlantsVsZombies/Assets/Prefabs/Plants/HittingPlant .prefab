@@ -163,6 +163,7 @@ MonoBehaviour:
   startRange: 2
   isInRange: 0
   health: 5
+  elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 
   pushBackArea: {fileID: 480393770066067595, guid: 738c415918693bd41b4c1c5badb31208, type: 3}
 --- !u!114 &3242213656316235870

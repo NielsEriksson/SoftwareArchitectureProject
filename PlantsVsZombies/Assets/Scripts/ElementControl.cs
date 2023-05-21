@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class ElementControl : MonoBehaviour
 {
-    [SerializeField] public List<Plant.Element> elements;
+    [SerializeField] public List<Plant.Element> elements = new List<Plant.Element>();
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateElements();
     }
 
     public void UpdateElements()
     {
-        elements = new List<Plant.Element>();
+        elements.Clear();
         
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Plant");
         List<Plant> plants = new List<Plant>();

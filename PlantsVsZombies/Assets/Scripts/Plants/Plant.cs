@@ -32,7 +32,7 @@ public abstract class Plant : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
     protected virtual void SetRange(int width)

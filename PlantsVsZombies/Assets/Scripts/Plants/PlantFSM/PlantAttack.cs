@@ -22,6 +22,10 @@ public class PlantAttack : PlantBaseState
         {
             sm.ChangeState(sm.idleState);
         }
+        if (sm.plant.health <= 0)
+        {
+            sm.ChangeState(sm.dieState);
+        }
     }
     public override void Exit()
     {

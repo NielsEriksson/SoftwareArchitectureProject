@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 2107177595}
   - component: {fileID: 2107177594}
   - component: {fileID: 2107177593}
+  - component: {fileID: 2107177596}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -329,6 +330,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2107177596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107177592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0135aed8d9c3447b6a1b04b1aaf013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elements: 
 --- !u!1001 &3242213656307319197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -340,6 +354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'HittingPlant '
       objectReference: {fileID: 0}
+    - target: {fileID: 3242213656316235869, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2107177592}
     - target: {fileID: 3242213656316235871, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -393,6 +411,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2204621723749222130, guid: 64618673957a77640841bd6fed1fefdb, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2107177592}
     - target: {fileID: 3641899352046476782, guid: 64618673957a77640841bd6fed1fefdb, type: 3}
       propertyPath: m_Name
       value: Lily Pad
@@ -507,6 +529,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6263452541585083728, guid: baf649b29be5f9e449e7918aba874c2b, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2107177592}
     - target: {fileID: 6263452541585083729, guid: baf649b29be5f9e449e7918aba874c2b, type: 3}
       propertyPath: plant
       value: 
@@ -572,6 +598,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cactus
       objectReference: {fileID: 0}
+    - target: {fileID: 6377732276819539555, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2107177592}
     - target: {fileID: 6377732276819539557, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -669,6 +699,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3826359532087050108, guid: 4918093876d523e4faf743f388f67287, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2107177592}
     - target: {fileID: 6789070137586656709, guid: 4918093876d523e4faf743f388f67287, type: 3}
       propertyPath: m_Name
       value: Sunflower

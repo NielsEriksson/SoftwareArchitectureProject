@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388f49ce43e2d2468b96a678982e01c, type: 3}
   m_Name: Shooting Plant
   m_EditorClassIdentifier: 
+  isStartingCard: 1
   cardName: Shooting Plant
   cardDescription: Shoot
+  conditions: 
+  extraDescription: 
   plantPrefab: {fileID: 6377732276819539555, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}

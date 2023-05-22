@@ -6,6 +6,7 @@ public class PlantBullet : MonoBehaviour
 {
     public Rigidbody2D rb;
     [SerializeField] int speed;
+    [SerializeField] int damage;
 
     void Start()
     {
@@ -23,8 +24,12 @@ public class PlantBullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.tag =="Enemy")
+        {
+            collision.GetComponent<Enemy>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

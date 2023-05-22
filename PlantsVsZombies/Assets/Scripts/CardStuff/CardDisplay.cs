@@ -14,7 +14,7 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text extraDescriptionText;
 
     Plant.Element[] conditions;
-    public Image[] elementIcons = new Image[Enum.GetNames(typeof(Plant.Element)).Length];
+    public Texture2D[] elementIcons = new Texture2D[Enum.GetNames(typeof(Plant.Element)).Length];
 
     // Start is called before the first frame update
     void Start()

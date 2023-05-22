@@ -6,30 +6,61 @@ using UnityEngine;
 public class LevelClearedCheck : MonoBehaviour
 {
     public int enemiesKilled;
-    private EnemySpawner spawner;
+
+    private MapManager mapManager;
+    [SerializeField] GameObject InterLevelUI;
+    [SerializeField] GameObject VictoryScreen;
+    Enemy[] enemies;
+    Plant[] plants;
     // Start is called before the first frame update
     void Start()
     {
-        spawner= GetComponent<EnemySpawner>();
+    
+        mapManager = FindObjectOfType<MapManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemiesKilled == spawner.enemiesInLevel.Count)
+        if (enemiesKilled == EnemySpawner.Instance.enemiesSpawned && EnemySpawner.Instance.enemiesSpawned>= EnemySpawner.Instance.enemiesInLevel.Count)
         {
-            if (FindObjectsOfType<Enemy>().Count() == 0)
-            {
-                //Level Cleared Method
-            }
+            LevelCleared();
+            LoadInterLevelUI();
         }
     }
     public void LevelCleared()
     {
-        spawner.levelRunning= false;
+        EnemySpawner.Instance.levelRunning= false;
         //Do something
-        spawner.ResetLevel();
+        EnemySpawner.Instance.ResetLevel();
         enemiesKilled = 0;
-
+        enemies = FindObjectsOfType<Enemy>().ToArray();
+        plants = FindObjectsOfType<Plant>().ToArray();
+        for (int i = 0; i < enemies.Length ; i++)
+        {
+            if (enemies[i]!=null)
+            {
+                Destroy(enemies[i].gameObject);
+            }
+         
+        }
+        mapManager.ClearGrid();
+        
+    }
+    public void LoadInterLevelUI()
+    {
+        if(EnemySpawner.Instance.currentLevelNum == EnemySpawner.Instance.levels.Count-1)
+        {
+            VictoryScreen.SetActive(true);           
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            InterLevelUI.SetActive(true);
+            InterLevelUI.GetComponent<InterLevelUi>().cardSelected = false;
+            InterLevelUI.GetComponent<InterLevelUi>().nextLvlButton.enabled = false;
+            Time.timeScale = 0f;
+        }
+       
     }
 }

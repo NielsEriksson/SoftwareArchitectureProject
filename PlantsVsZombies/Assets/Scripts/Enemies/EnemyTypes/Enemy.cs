@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private float attackTimer;  
     [SerializeField] private float attackTimerReset;
     private bool canAttack;
-    [HideInInspector] public bool isInRange;
+     public bool isInRange;
     [HideInInspector] public LevelClearedCheck lvlClearer;
     // Start is called before the first frame update
     public virtual void Start()

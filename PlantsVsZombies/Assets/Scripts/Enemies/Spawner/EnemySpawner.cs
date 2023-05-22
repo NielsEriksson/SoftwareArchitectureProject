@@ -97,7 +97,7 @@ public class EnemySpawner : MonoBehaviour
         int enemy3SpawnChance = currentLevel.ArcherSpawnChance + enemy2SpawnChance;
         int enemy4SpawnChance = currentLevel.CamouflageSpawnChance + enemy3SpawnChance;
         int enemy5SpawnChance = currentLevel.BomberSpawnChance + enemy4SpawnChance;
-        for (int i = 0; i <= currentLevel.enemyMaxWieght;)
+        for (int i = 0; i < currentLevel.enemyMaxWieght;)
         {
             int enemySpawnChance = Random.Range(0, 100);
 

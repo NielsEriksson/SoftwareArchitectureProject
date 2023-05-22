@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,14 +30,22 @@ public class CardSelection : MonoBehaviour
 
         for (int i = 0; i < cardChoices.Length; i++)
         {
-            Debug.Log("card generated");
             GameObject tempObject = Instantiate(playerCards.baseCard, transform);
             tempObject.GetComponent<CardDisplay>().card = cardChoices[i];
             tempObject.GetComponent<DragDrop>().isChoice = true;
-            tempObject.GetComponent<DragDrop>().enabled = false;
+            //tempObject.GetComponent<DragDrop>().enabled = false;
             tempObject.transform.localScale = new Vector2(2, 2);
             tempObject.transform.localPosition = Vector2.zero;
             cardObjects.Add(tempObject);
         }
+    }
+
+    public void DeleteCards()
+    {
+        foreach (var card in cardObjects)
+        {
+            Destroy(card);
+        }
+        FindObjectOfType<InterLevelUi>().cardSelected = true;
     }
 }

@@ -21,4 +21,25 @@ public class SceneLoaader : MonoBehaviour
         PlayerPrefs.SetInt("CurrentLevel", 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void LoadNextLevel()
+    {
+        EnemySpawner.Instance.ChangeLevel();
+        ReloadScene();
+    }
+    public void NewGame()
+    {
+
+    }
+    public void LoadSavedGame()
+    {
+
+    }
 }

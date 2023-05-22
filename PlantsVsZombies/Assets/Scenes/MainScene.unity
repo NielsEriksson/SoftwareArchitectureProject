@@ -4228,7 +4228,7 @@ MonoBehaviour:
   numberOfLevels: 0
   currentEnemy: 45
   enemiesInLevel: []
-  timeBetweenWaves: 0
+  timeBetweenWaves: 45
   spawnEnemyDelay: 1.5
   levelRunning: 1
   enemiesSpawned: 0

@@ -4773,7 +4773,7 @@ GameObject:
   - component: {fileID: 1647008197}
   m_Layer: 5
   m_Name: Cards
-  m_TagString: Untagged
+  m_TagString: Choice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4811,7 +4811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: -170
     m_Right: 0
     m_Top: 0
     m_Bottom: 0

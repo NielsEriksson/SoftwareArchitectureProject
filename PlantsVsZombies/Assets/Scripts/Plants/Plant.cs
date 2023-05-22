@@ -4,14 +4,16 @@ using UnityEngine;
 
 public abstract class Plant : MonoBehaviour
 {
-    // Start is called before the first frame update
     protected Rigidbody2D rb;
     [SerializeField] public BoxCollider2D rangeHitBox;
     [SerializeField] protected int startRange;
     [HideInInspector] public bool isInRange;
     [SerializeField] public int health;
 
+    [SerializeField] GameObject elementManager;
     [SerializeField] public List<Element> containsElements;
+
+    Animator animator;
 
     [HideInInspector] public enum Element { Light, Water, Poison };
 
@@ -21,7 +23,12 @@ public abstract class Plant : MonoBehaviour
     }
     public virtual void Start()
     {
-        rb = GetComponent<Rigidbody2D>();      
+        elementManager = FindObjectOfType<ElementControl>().gameObject;
+
+        rb = GetComponent<Rigidbody2D>();
+        elementManager.GetComponent<ElementControl>().UpdateElements();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -36,18 +43,31 @@ public abstract class Plant : MonoBehaviour
     }
 
  
-    public abstract void Attack(); 
+    public virtual void Attack()
+    {
+        animator.SetInteger("AnimChange", 1);
+    }
     public virtual void StopAttack() { }
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
     }
     public abstract void Action();
-    public abstract void Idle(); //Animation etc, do nothing
+    public virtual void Idle() 
+    {
+        animator.SetInteger("AnimChange", 0);
+    }
     public virtual void Die()
     {
-        //Animation
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
 
-        Destroy(gameObject);
+            Destroy(gameObject, 1.0f);
+        }
+        else { Destroy(gameObject); }
+
+        containsElements.Clear();
+        elementManager.GetComponent<ElementControl>().UpdateElements();
     }
 }

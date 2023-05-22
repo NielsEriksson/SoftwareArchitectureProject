@@ -24,6 +24,8 @@ public abstract class Plant : MonoBehaviour
     }
     public virtual void Start()
     {
+        elementManager = FindObjectOfType<ElementControl>().gameObject;
+
         rb = GetComponent<Rigidbody2D>();
         elementManager.GetComponent<ElementControl>().UpdateElements();
 

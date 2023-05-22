@@ -14,6 +14,6 @@ public class LilyPad : Plant
     }
     public override void Idle()
     {
-        
+        base.Idle();
     }
 }

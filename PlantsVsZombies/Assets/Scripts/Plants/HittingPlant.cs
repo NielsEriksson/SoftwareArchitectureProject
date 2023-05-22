@@ -19,6 +19,6 @@ public class HittingPlant : Plant
     }
     public override void Idle()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        
     }
 }

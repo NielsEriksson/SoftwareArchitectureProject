@@ -11,7 +11,10 @@ public abstract class Plant : MonoBehaviour
     [HideInInspector] public bool isInRange;
     [SerializeField] public int health;
 
+    [SerializeField] GameObject elementManager;
     [SerializeField] public List<Element> containsElements;
+
+    Animator animator;
 
     [HideInInspector] public enum Element { Light, Water, Poison };
 
@@ -21,8 +24,12 @@ public abstract class Plant : MonoBehaviour
     }
     public virtual void Start()
     {
+        elementManager = FindObjectOfType<ElementControl>().gameObject;
+
         rb = GetComponent<Rigidbody2D>();
-      
+        elementManager.GetComponent<ElementControl>().UpdateElements();
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -38,7 +45,6 @@ public abstract class Plant : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("COLLIDING!!!!");
         if (other.gameObject.tag == "Enemy")
         {
             isInRange = true;
@@ -51,18 +57,27 @@ public abstract class Plant : MonoBehaviour
             isInRange = false;
         }
     }
-    public abstract void Attack(); 
+    public virtual void Attack()
+    {
+        animator.SetInteger("AnimChange", 1);
+    }
     public virtual void StopAttack() { }
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
     }
     public abstract void Action();
-    public abstract void Idle(); //Animation etc, do nothing
+    public virtual void Idle()
+    {
+        animator.SetInteger("AnimChange", 0);
+    }
     public virtual void Die()
     {
-        //Animation
+        animator.SetTrigger("Die");
 
-        Destroy(gameObject);
+        Destroy(gameObject, 1.0f);
+
+        containsElements.Clear();
+        elementManager.GetComponent<ElementControl>().UpdateElements();
     }
 }

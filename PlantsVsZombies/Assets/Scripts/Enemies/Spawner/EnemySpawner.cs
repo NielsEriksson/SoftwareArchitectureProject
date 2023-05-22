@@ -8,19 +8,30 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner Instance;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<Level> levels;
-    private Level currentLevel;
+    public Level[] levelsInstances;
+    public Level currentLevel;
     private int currentLevelNum;
     [SerializeField] private int currentEnemy;
     [SerializeField] public List<Enemy> enemiesInLevel;
     private Enemy enemyToSpawn;
-    [SerializeField] float spawnWaveTimer;
-    [SerializeField] float spawnWaveTimerReset;
+    float spawnWaveTimer;
+    [SerializeField] public float timeBetweenWaves;
     [SerializeField] float spawnEnemyDelay;
+    WaveUI waveUI;
     bool isSpawningWave;
+    public bool levelRunning = true;
+ 
 
     // Start is called before the first frame update
     void Awake()
     {
+        levelsInstances = new Level[levels.Count];
+        Debug.Log(Resources.Load<Level>("Level1"));
+       
+        for (int i =0; i < levels.Count ; i++)
+        {            
+            levelsInstances[i] = Resources.Load<Level>(levels[i].name);
+        }
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -31,19 +42,23 @@ public class EnemySpawner : MonoBehaviour
         }
         enemiesInLevel = new List<Enemy>();
         currentEnemy = 0;
-        currentLevelNum = 0;        
-        currentLevel = levels[currentLevelNum];
+        currentLevel = levelsInstances[currentLevelNum];
         currentLevel.UpdateChances();
-        GenerateLevel();    
+        GenerateLevel();   
+        waveUI = FindObjectOfType<WaveUI>();
+
     }
     public void FixedUpdate()
     {
-        spawnWaveTimer -= Time.deltaTime;
-        if (spawnWaveTimer < 0 && !isSpawningWave)
+        if (levelRunning)
         {
-            isSpawningWave = true;
-            StartCoroutine(SpawnWave());
-            spawnWaveTimer = spawnWaveTimerReset;
+            spawnWaveTimer -= Time.deltaTime;
+            if (spawnWaveTimer < 0 && !isSpawningWave)
+            {
+                isSpawningWave = true;
+                StartCoroutine(SpawnWave());
+                spawnWaveTimer = timeBetweenWaves;
+            }
         }
     }
     public void ChangeLevel()
@@ -51,35 +66,47 @@ public class EnemySpawner : MonoBehaviour
         currentLevelNum++;
         currentLevel= levels[currentLevelNum];
         currentLevel.UpdateChances();
+        ResetLevel();
+        GenerateLevel();
+        waveUI.ResetUI();
+        levelRunning = true;
+
     }
     public void GenerateLevel()
     {
         if (enemiesInLevel.Count > 0) { enemiesInLevel.Clear(); }
         //Can be made better to automatically add new enemy types without manually adding anything here
+        int enemy1SpawnChance = currentLevel.SmasherSpawnChance;
+        int enemy2SpawnChance = currentLevel.ShieldedSmasherSpawnChance + enemy1SpawnChance;
+        int enemy3SpawnChance = currentLevel.ArcherSpawnChance + enemy2SpawnChance;
+        int enemy4SpawnChance = currentLevel.CamouflageSpawnChance + enemy3SpawnChance;
+        int enemy5SpawnChance = currentLevel.BomberSpawnChance + enemy4SpawnChance;
         for (int i = 0; i <= currentLevel.enemyMaxWieght;)
         {
             int enemySpawnChance = Random.Range(0, 100);
-            if (enemySpawnChance <= currentLevel.SmasherSpawnChance && currentLevel.SmasherSpawnChance > 0)
+           
+            if (enemySpawnChance <= enemy1SpawnChance && currentLevel.SmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[0]);
                 i += currentLevel.availableEnemies[0].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.ShieldedSmasherSpawnChance && currentLevel.ShieldedSmasherSpawnChance > 0)
+           
+            else if (enemySpawnChance <= enemy2SpawnChance && currentLevel.ShieldedSmasherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[1]);
                 i += currentLevel.availableEnemies[1].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.ArcherSpawnChance && currentLevel.ArcherSpawnChance > 0)
+            else if (enemySpawnChance <= enemy3SpawnChance && currentLevel.ArcherSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[2]);
                 i += currentLevel.availableEnemies[2].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.CamouflageSpawnChance && currentLevel.CamouflageSpawnChance > 0)
+            else if (enemySpawnChance <= enemy4SpawnChance && currentLevel.CamouflageSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[3]);
                 i += currentLevel.availableEnemies[3].enemyWeigth;
             }
-            else if (enemySpawnChance <= currentLevel.BomberSpawnChance && currentLevel.BomberSpawnChance > 0)
+            else if (enemySpawnChance <= enemy5SpawnChance && currentLevel.BomberSpawnChance > 0)
             {
                 enemiesInLevel.Add(currentLevel.availableEnemies[4]);
                 i += currentLevel.availableEnemies[4].enemyWeigth;
@@ -120,5 +147,6 @@ public class EnemySpawner : MonoBehaviour
     {
         currentEnemy = 0;
         enemiesInLevel.Clear();
+        spawnWaveTimer=0;
     }
 }

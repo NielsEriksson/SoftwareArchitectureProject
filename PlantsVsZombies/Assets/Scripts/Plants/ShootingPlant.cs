@@ -6,16 +6,17 @@ public class ShootingPlant : Plant
 {
     [SerializeField] protected Transform bulletSpawn;
     [SerializeField] protected GameObject bullet;
-    [SerializeField] private float shootingSpeed;
-    private WaitForSeconds shootingDelay;
+    [SerializeField] float shootingSpeed;
+    [SerializeField] float shootingDelay;
 
     public override void Start()
     {
         base.Start();
-        shootingDelay = new WaitForSeconds(shootingSpeed);
+        //shootingDelay = new WaitForSeconds(shootingSpeed);
     }
     public override void Attack()
     {
+        base.Attack();
         StartCoroutine(Shoot());
     }
     public override void StopAttack()
@@ -24,7 +25,7 @@ public class ShootingPlant : Plant
     }
     public override void Idle()
     {
-
+        base.Idle();
     }
     public override void Action()
     {
@@ -32,10 +33,11 @@ public class ShootingPlant : Plant
     }
     public IEnumerator Shoot()
     {
+        yield return new WaitForSeconds(shootingDelay);
         while (true)
         {
             GameObject.Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
-            yield return shootingDelay;
+            yield return new WaitForSeconds(shootingSpeed);
         }
     }
 }

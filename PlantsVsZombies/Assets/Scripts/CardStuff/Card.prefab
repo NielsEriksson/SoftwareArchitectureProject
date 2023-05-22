@@ -100,9 +100,9 @@ MonoBehaviour:
   descriptionText: {fileID: 7671259468403499833}
   extraDescriptionText: {fileID: 3633524816939851278}
   elementIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: fb04c571f58176a46bbd7f226a48da59, type: 3}
+  - {fileID: 2800000, guid: 971bb4d126c9d284190bf06a67955f22, type: 3}
+  - {fileID: 2800000, guid: e32567aff7b9e7f40b6e56db70817fc7, type: 3}
 --- !u!114 &558776957166954441
 MonoBehaviour:
   m_ObjectHideFlags: 0

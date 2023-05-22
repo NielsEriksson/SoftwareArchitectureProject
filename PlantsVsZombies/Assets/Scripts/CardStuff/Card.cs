@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
+    public bool isStartingCard;
     public string cardName;
     public Image cardImage; 
     public string cardDescription;

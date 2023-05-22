@@ -20,6 +20,11 @@ public class PlayerCards : MonoBehaviour
     List<GameObject> cardObjects = new List<GameObject>();
     List<GameObject> discardingCards = new List<GameObject>();
 
+    List<Card> baseDeck = new List<Card>();
+
+    int startDeckSize = 20;
+    int cardSelectionAmount = 3;
+
     float handCardDistance = 10f;
     float cardWidth;
 
@@ -29,13 +34,10 @@ public class PlayerCards : MonoBehaviour
         tempCards = Resources.LoadAll<Card>("Cards");
 
         cardWidth = baseCard.GetComponent<RectTransform>().sizeDelta.x;
-        for (int i = 0; i < 20; i++)
-        {
-            deckCards.Add(tempCards[Random.Range(0, tempCards.Length)]);
-        }
 
-        DrawCard(handLimit);
+        CreateStartingDeck();
 
+        ShuffleDeck();
         //CreateHand();
     }
 
@@ -58,16 +60,56 @@ public class PlayerCards : MonoBehaviour
                 i--;
             }
         }
+    }
 
-        //for (int i = 0; i < discardingCards.Count; i++)
-        //{
-        //    if (discardingCards[i].transform.position == discard.transform.position)
-        //    {
-        //        Debug.Log("Card Discarded");
-        //        discardingCards.RemoveAt(i);
-        //        i--;
-        //    }
-        //}
+    void ShuffleDeck()
+    {
+        handCards.Clear();
+        deckCards.Clear();
+        discardCards.Clear();
+
+        foreach (Card card in baseDeck)
+        {
+            deckCards.Add(card);
+        }
+
+        DrawCard(handLimit);
+    }
+
+    void CreateStartingDeck()
+    {
+        do
+        {
+            int tempIndex = Random.Range(0, tempCards.Length);
+            if (tempCards[tempIndex].isStartingCard)
+            {
+                baseDeck.Add(tempCards[tempIndex]);
+            }
+
+        } while (baseDeck.Count < startDeckSize);
+    }
+
+    public Card[] GenerateCardChoices()
+    {
+        Card[] tempChoices = new Card[cardSelectionAmount];
+
+        for (int i = 0; i < tempChoices.Length; i++)
+        {
+            int tempIndex = 0;
+            do
+            {
+                tempIndex = Random.Range(0, tempCards.Length);
+            } while (tempCards[tempIndex].isStartingCard);
+
+            tempChoices[i] = tempCards[tempIndex];
+        }
+
+        return tempChoices;
+    }
+
+    public void AddCardToDeck(Card aCard)
+    {
+        baseDeck.Add(aCard);
     }
 
     void CreateCard(int aCard)

@@ -9,6 +9,7 @@ using static UnityEditor.PlayerSettings;
 
 public class DragDrop : MonoBehaviour
 {
+    [HideInInspector] public bool isChoice = false;
     bool isDragging = false;
     bool isHovering = false;
     Vector2 startPosition;
@@ -52,35 +53,41 @@ public class DragDrop : MonoBehaviour
 
     public void StartDrag()
     {
-        // Move card to held canvas
-        transform.parent = heldCardCanvas;
+        if (!isChoice)
+        {
+            // Move card to held canvas
+            transform.parent = heldCardCanvas;
 
-        scaleDestination = new Vector2(1f, 1f);
-        startPosition = transform.position;
-        rotationDestination = Quaternion.Euler(0, 0, 0);
-        isDragging = true;
-        playerCards.selectedCard = handIndex;
-        playerCards.UpdateHand();
+            scaleDestination = new Vector2(1f, 1f);
+            startPosition = transform.position;
+            rotationDestination = Quaternion.Euler(0, 0, 0);
+            isDragging = true;
+            playerCards.selectedCard = handIndex;
+            playerCards.UpdateHand();
+        }
     }
 
     public void EndDrag()
     {
-        // Move card back to hand
-        transform.parent = playerCards.transform;
+        if (!isChoice)
+        {
+            // Move card back to hand
+            transform.parent = playerCards.transform;
 
-        isDragging = false;
-        playerCards.selectedCard = 0;
-        if (IsDestinationValid())
-        {
-            moveDestination = playerCards.discard.transform.position;
-            scaleDestination = startScale;
-            isDiscarded = true;
-        }
-        else
-        {
-            moveDestination = startPosition;
-            playerCards.UpdateHand();
-        }
+            isDragging = false;
+            playerCards.selectedCard = 0;
+            if (IsDestinationValid())
+            {
+                moveDestination = playerCards.discard.transform.position;
+                scaleDestination = startScale;
+                isDiscarded = true;
+            }
+            else
+            {
+                moveDestination = startPosition;
+                playerCards.UpdateHand();
+            }
+        } 
     }
 
     bool IsDestinationValid()
@@ -95,7 +102,7 @@ public class DragDrop : MonoBehaviour
 
     public void StartHover()
     {
-        if (!isDragging)
+        if (!isDragging && !isChoice)
         {
             isHovering = true;
             transform.parent = heldCardCanvas;
@@ -133,7 +140,7 @@ public class DragDrop : MonoBehaviour
 
     public void EndHover()
     {
-        if (!isDragging)
+        if (!isDragging && isChoice)
         {
             isHovering = false;
             transform.parent = playerCards.transform;

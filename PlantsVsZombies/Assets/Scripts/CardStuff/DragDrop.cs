@@ -37,18 +37,30 @@ public class DragDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDragging)
+        if (!isChoice)
         {
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        }
-        else
-        {
-            transform.position = Vector2.Lerp(transform.position, moveDestination, Time.deltaTime * transitionSpeed);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, moveDestination.rotation, Time.deltaTime * transitionSpeed);
-        }
+            if (isDragging)
+            {
+                transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            }
+            else
+            {
+                transform.position = Vector2.Lerp(transform.position, moveDestination, Time.deltaTime * transitionSpeed);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, moveDestination.rotation, Time.deltaTime * transitionSpeed);
+            }
 
-        transform.localScale = Vector2.Lerp(transform.localScale, scaleDestination, Time.deltaTime * transitionSpeed);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotationDestination, Time.deltaTime * transitionSpeed);
+            transform.localScale = Vector2.Lerp(transform.localScale, scaleDestination, Time.deltaTime * transitionSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotationDestination, Time.deltaTime * transitionSpeed);
+        }
+    }
+
+    public void Select()
+    {
+        if (isChoice)
+        {
+            playerCards.AddCardToDeck(GetComponent<CardDisplay>().card);
+            FindObjectOfType<CardSelection>().DeleteCards();
+        }
     }
 
     public void StartDrag()
@@ -140,7 +152,7 @@ public class DragDrop : MonoBehaviour
 
     public void EndHover()
     {
-        if (!isDragging && isChoice)
+        if (!isDragging && !isChoice)
         {
             isHovering = false;
             transform.parent = playerCards.transform;

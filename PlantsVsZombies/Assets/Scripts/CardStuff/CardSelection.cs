@@ -12,31 +12,28 @@ public class CardSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCards = GameObject.FindGameObjectWithTag("Hand").GetComponent<PlayerCards>();
+        playerCards = FindObjectOfType<PlayerCards>();
     }
 
     // Update is called once per frame
-    void Update()
+  
+
+    public void GenetateCards()
     {
         if (cardChoices == null)
         {
-            GenetateCards();
-        }
-    }
+            cardChoices = playerCards.GenerateCardChoices();
 
-    void GenetateCards()
-    {
-        cardChoices = playerCards.GenerateCardChoices();
-
-        for (int i = 0; i < cardChoices.Length; i++)
-        {
-            GameObject tempObject = Instantiate(playerCards.baseCard, transform);
-            tempObject.GetComponent<CardDisplay>().card = cardChoices[i];
-            tempObject.GetComponent<DragDrop>().isChoice = true;
-            //tempObject.GetComponent<DragDrop>().enabled = false;
-            tempObject.transform.localScale = new Vector2(2, 2);
-            tempObject.transform.localPosition = Vector2.zero;
-            cardObjects.Add(tempObject);
+            for (int i = 0; i < cardChoices.Length; i++)
+            {
+                GameObject tempObject = Instantiate(playerCards.baseCard, transform);
+                tempObject.GetComponent<CardDisplay>().card = cardChoices[i];
+                tempObject.GetComponent<DragDrop>().isChoice = true;
+                //tempObject.GetComponent<DragDrop>().enabled = false;
+                tempObject.transform.localScale = new Vector2(2, 2);
+                tempObject.transform.localPosition = Vector2.zero;
+                cardObjects.Add(tempObject);
+            }
         }
     }
 

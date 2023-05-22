@@ -32,11 +32,7 @@ public class Enemy : MonoBehaviour
         if (attackTimer < 0)
         {
             canAttack = true;
-        }
-        if(health<= 0)
-        {
-            Die();
-        }
+        }    
     }
 
     // Update is called once per frame
@@ -59,13 +55,14 @@ public class Enemy : MonoBehaviour
     }
    
     public virtual void TakeDamage(int damage)
-    {       
+    {
+        Debug.Log("TakingDamage");
         health -= damage;
     }
     public virtual void Die()
     {
         //DeathAnimation
-
+        FindObjectOfType<LevelClearedCheck>().enemiesKilled++;
         Destroy(gameObject);
     }
   

@@ -33,7 +33,7 @@ public abstract class Plant : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     protected virtual void SetRange(int width)
@@ -42,7 +42,7 @@ public abstract class Plant : MonoBehaviour
         rangeHitBox.offset = new Vector2(width / 2, rangeHitBox.offset.y);
     }
 
- 
+
     public virtual void Attack()
     {
         animator.SetInteger("AnimChange", 1);
@@ -53,22 +53,34 @@ public abstract class Plant : MonoBehaviour
         health -= damage;
     }
     public abstract void Action();
-    public virtual void Idle() 
+    public virtual void Idle()
     {
         animator.SetInteger("AnimChange", 0);
     }
     public virtual void Die()
     {
-        //if (animator != null)
-        //{
-        //    animator.SetTrigger("Die");
-
-        //    Destroy(gameObject, 1.0f);
-        //}
-        //else { Destroy(gameObject); }
-        Destroy(gameObject);
+        StartCoroutine(AnimationThenDie());
 
         containsElements.Clear();
         elementManager.GetComponent<ElementControl>().UpdateElements();
+    }
+    public IEnumerator AnimationThenDie()
+    {
+        while (true)
+        {
+            if (animator == null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                animator.SetTrigger("Die");
+
+                yield return new WaitForSeconds(1);
+
+                Destroy(gameObject);
+            }
+            break;
+        }
     }
 }

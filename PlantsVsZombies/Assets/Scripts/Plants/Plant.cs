@@ -59,9 +59,13 @@ public abstract class Plant : MonoBehaviour
     }
     public virtual void Die()
     {
-        animator.SetTrigger("Die");
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
 
-        Destroy(gameObject, 1.0f);
+            Destroy(gameObject, 1.0f);
+        }
+        else { Destroy(gameObject); }
 
         containsElements.Clear();
         elementManager.GetComponent<ElementControl>().UpdateElements();

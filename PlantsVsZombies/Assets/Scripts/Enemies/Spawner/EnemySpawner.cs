@@ -49,13 +49,16 @@ public class EnemySpawner : MonoBehaviour
         {
             PlayerPrefs.SetInt("CurrentLevel", 0);
         }
+        //Remove this when done
+        //PlayerPrefs.SetInt("CurrentLevel", 0);
         currentLevelNum = PlayerPrefs.GetInt("CurrentLevel");
        
         currentLevel = levelsInstances[currentLevelNum];
         currentLevel.UpdateChances();
         GenerateLevel();   
         waveUI = FindObjectOfType<WaveUI>();
-        Time.timeScale = 1.0f;  
+        Time.timeScale = 1.0f;
+        
     }
     public void FixedUpdate()
     {
@@ -75,7 +78,9 @@ public class EnemySpawner : MonoBehaviour
     {
         if (currentLevelNum < numberOfLevels-1)
         {
-            PlayerPrefs.SetInt("CurrentLevel", currentLevelNum++);
+            Debug.Log("Chaning LEvel");
+            currentLevelNum++;
+            PlayerPrefs.SetInt("CurrentLevel", currentLevelNum);
             currentLevelNum = PlayerPrefs.GetInt("CurrentLevel");
             currentLevel = levelsInstances[currentLevelNum];
             currentLevel.UpdateChances();
@@ -84,6 +89,7 @@ public class EnemySpawner : MonoBehaviour
             waveUI.ResetUI();
             Time.timeScale = 1f;
             levelRunning = true;
+         
           
         }
 

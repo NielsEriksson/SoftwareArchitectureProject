@@ -14,11 +14,35 @@ public class SceneLoaader : MonoBehaviour
     public void LoadMenu()
     {
         PlayerPrefs.SetInt("HighestLevel", EnemySpawner.Instance.currentLevelNum);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Menu");
     }
     public void RestartGame()
     {
         PlayerPrefs.SetInt("CurrentLevel", 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void LoadNextLevel()
+    {
+        EnemySpawner.Instance.ChangeLevel();
+        ReloadScene();
+    }
+    public void NewGame()
+    {
+        PlayerPrefs.SetInt("CurrentLevel", 0);
+        SceneManager.LoadScene("MainScene");
+    }
+    public void LoadSavedGame()
+    {
+        int level = PlayerPrefs.GetInt("HighestLevel");
+        PlayerPrefs.SetInt("CurrentLevel", level);
+        SceneManager.LoadScene("MainScene");
     }
 }

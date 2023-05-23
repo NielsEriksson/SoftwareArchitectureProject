@@ -14,7 +14,7 @@ public class SceneLoaader : MonoBehaviour
     public void LoadMenu()
     {
         PlayerPrefs.SetInt("HighestLevel", EnemySpawner.Instance.currentLevelNum);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Menu");
     }
     public void RestartGame()
     {
@@ -36,10 +36,13 @@ public class SceneLoaader : MonoBehaviour
     }
     public void NewGame()
     {
-
+        PlayerPrefs.SetInt("CurrentLevel", 0);
+        SceneManager.LoadScene("MainScene");
     }
     public void LoadSavedGame()
     {
-
+        int level = PlayerPrefs.GetInt("HighestLevel");
+        PlayerPrefs.SetInt("CurrentLevel", level);
+        SceneManager.LoadScene("MainScene");
     }
 }

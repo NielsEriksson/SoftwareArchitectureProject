@@ -105,7 +105,6 @@ public class MapManager : MonoBehaviour
             shovel = true;
             shovelButtonImage.SetActive(false);
             Cursor.SetCursor(shovelMouseTexture, Vector2.zero, CursorMode.Auto);
-            int i = 0;
         }
     }
     public void ClearGrid()

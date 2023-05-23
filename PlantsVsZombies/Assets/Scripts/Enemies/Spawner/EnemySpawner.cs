@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
             PlayerPrefs.SetInt("CurrentLevel", 0);
         }
         //Remove this when done
-        PlayerPrefs.SetInt("CurrentLevel", 0);
+        //PlayerPrefs.SetInt("CurrentLevel", 0);
         currentLevelNum = PlayerPrefs.GetInt("CurrentLevel");
        
         currentLevel = levelsInstances[currentLevelNum];

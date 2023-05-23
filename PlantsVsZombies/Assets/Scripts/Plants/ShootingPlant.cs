@@ -8,20 +8,37 @@ public class ShootingPlant : Plant
     [SerializeField] protected GameObject bullet;
     [SerializeField] float shootingSpeed;
     [SerializeField] float shootingDelay;
+    float baseAnimationSpeed; 
 
     public override void Start()
     {
         base.Start();
-        //shootingDelay = new WaitForSeconds(shootingSpeed);
+        if (isUpgraded)
+        {
+            shootingSpeed /= 2;
+            shootingDelay /= 2;
+        }
+        baseAnimationSpeed = animator.speed;
     }
     public override void Attack()
     {
         base.Attack();
+        if (isUpgraded)
+        {
+            animator.speed *= 2;
+        }
+
         StartCoroutine(Shoot());
+
     }
     public override void StopAttack()
     {
         StopAllCoroutines();
+
+        if (isUpgraded)
+        {
+            animator.speed = baseAnimationSpeed;
+        }
     }
     public override void Idle()
     {

@@ -13,7 +13,7 @@ public abstract class Plant : MonoBehaviour
     [SerializeField] GameObject elementManager;
     [SerializeField] public List<Element> containsElements;
 
-    Animator animator;
+    protected Animator animator;
 
     [HideInInspector] public enum Element { Light, Water, Poison };
 
@@ -45,17 +45,18 @@ public abstract class Plant : MonoBehaviour
 
     public virtual void Attack()
     {
-        animator.SetInteger("AnimChange", 1);
+        animator.SetInteger("FSMState", 1);
     }
     public virtual void StopAttack() { }
     public virtual void TakeDamage(int damage)
     {
+        animator.SetTrigger("Hurt");
         health -= damage;
     }
     public abstract void Action();
     public virtual void Idle()
     {
-        animator.SetInteger("AnimChange", 0);
+        animator.SetInteger("FSMState", 0);
     }
     public virtual void Die()
     {

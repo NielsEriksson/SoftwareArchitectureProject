@@ -179,7 +179,9 @@ MonoBehaviour:
   health: 5
   elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 
-  pushBackArea: {fileID: 480393770066067595, guid: 738c415918693bd41b4c1c5badb31208, type: 3}
+  card: {fileID: 11400000, guid: 217fefd8ca79add459da08b621c69f46, type: 2}
+  isUpgraded: 0
+  hitArea: {fileID: 0}
 --- !u!114 &3242213656316235870
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,6 @@ MonoBehaviour:
   isStartingCard: 1
   cardName: Shooting Plant
   cardDescription: Shoot
-  conditions: 
-  extraDescription: 
+  conditions: 0000000000000000
+  extraDescription: Shoot Faster
   plantPrefab: {fileID: 6377732276819539555, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}

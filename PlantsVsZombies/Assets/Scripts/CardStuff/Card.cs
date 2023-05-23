@@ -8,7 +8,7 @@ public class Card : ScriptableObject
 {
     public bool isStartingCard;
     public string cardName;
-    public Image cardImage; 
+    public Texture2D cardImage; 
     public string cardDescription;
     public Plant.Element[] conditions;
     public string extraDescription;

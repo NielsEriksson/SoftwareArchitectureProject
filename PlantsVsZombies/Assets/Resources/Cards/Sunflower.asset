@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388f49ce43e2d2468b96a678982e01c, type: 3}
   m_Name: Sunflower
   m_EditorClassIdentifier: 
+  isStartingCard: 1
   cardName: SunFlower
   cardDescription: Gain 1 Sun
+  conditions: 
+  extraDescription: 
   plantPrefab: {fileID: 3826359532087050108, guid: 4918093876d523e4faf743f388f67287, type: 3}

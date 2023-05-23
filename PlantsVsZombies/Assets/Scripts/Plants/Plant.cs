@@ -34,6 +34,8 @@ public abstract class Plant : MonoBehaviour
         animator = GetComponent<Animator>();
 
         isUpgraded = CheckElementCondition();
+
+        Debug.Log(isUpgraded);
     }
 
     private void Update()
@@ -73,7 +75,8 @@ public abstract class Plant : MonoBehaviour
             }
         }
 
-        return false;
+        Debug.Log("Water: " + waterCondition + " < " + tempWater + " Sun: " + sunCondition + " < " + tempSun + " Poison: " + poisonCondition + " < " + tempPoison);
+        return (waterCondition <= tempWater && sunCondition <= tempSun && poisonCondition <= tempPoison);
     }
     public virtual void Attack()
     {

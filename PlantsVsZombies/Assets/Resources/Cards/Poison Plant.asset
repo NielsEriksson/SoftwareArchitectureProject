@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388f49ce43e2d2468b96a678982e01c, type: 3}
   m_Name: Poison Plant
   m_EditorClassIdentifier: 
-  isStartingCard: 0
-  cardName: 
-  cardDescription: 
-  conditions: 
-  extraDescription: 
-  plantPrefab: {fileID: 0}
+  isStartingCard: 1
+  cardName: Poison Plant
+  cardDescription: Gain 1 Poison
+  conditions: 0200000002000000
+  extraDescription: Double health
+  plantPrefab: {fileID: 7973165592490684057, guid: cf55b03e29ea0184ca9f4ae3bb999509, type: 3}

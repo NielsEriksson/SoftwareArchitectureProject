@@ -12,6 +12,7 @@ public abstract class Plant : MonoBehaviour
 
     [SerializeField] GameObject elementManager;
     [SerializeField] public List<Element> containsElements;
+    [SerializeField] Card card;
 
     protected Animator animator;
 
@@ -31,6 +32,8 @@ public abstract class Plant : MonoBehaviour
         elementManager.GetComponent<ElementControl>().UpdateElements();
 
         animator = GetComponent<Animator>();
+
+        isUpgraded = CheckElementCondition();
     }
 
     private void Update()
@@ -44,7 +47,34 @@ public abstract class Plant : MonoBehaviour
         rangeHitBox.offset = new Vector2(width / 2, rangeHitBox.offset.y);
     }
 
+    bool CheckElementCondition()
+    {
+        int tempWater = elementManager.GetComponent<ElementControl>().WaterNumber;
+        int tempSun = elementManager.GetComponent<ElementControl>().SunNumber;
+        int tempPoison = elementManager.GetComponent<ElementControl>().PoisonNumber;
 
+        int waterCondition = 0;
+        int sunCondition = 0;
+        int poisonCondition = 0;
+
+        foreach (var element in card.conditions)
+        {
+            switch (element)
+            {
+                case Element.Light:
+                    sunCondition++;
+                    break;
+                case Element.Water:
+                    waterCondition++;
+                    break;
+                case Element.Poison:
+                    poisonCondition++;
+                    break;
+            }
+        }
+
+        return false;
+    }
     public virtual void Attack()
     {
         animator.SetInteger("FSMState", 1);

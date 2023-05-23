@@ -449,6 +449,8 @@ MonoBehaviour:
   health: 3
   elementManager: {fileID: 0}
   containsElements: 00000000
+  card: {fileID: 11400000, guid: 5ecc8322b7bb69f4297f48ddfc544707, type: 2}
+  isUpgraded: 0
 --- !u!50 &7811030106336014779
 Rigidbody2D:
   serializedVersion: 4

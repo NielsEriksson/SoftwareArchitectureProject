@@ -10,9 +10,9 @@ public class ElementControl : MonoBehaviour
     [SerializeField] private TMP_Text Water;
     [SerializeField] private TMP_Text Sun;
     [SerializeField] private TMP_Text Poison;
-    int WaterNumber;
-    int SunNumber;
-    int PoisonNumber;
+    [HideInInspector] public int WaterNumber;
+    [HideInInspector] public int SunNumber;
+    [HideInInspector] public int PoisonNumber;
     // Start is called before the first frame update
     void Start()
     {

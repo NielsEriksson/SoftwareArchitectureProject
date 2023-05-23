@@ -168,6 +168,8 @@ MonoBehaviour:
   health: 5
   elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 
+  card: {fileID: 11400000, guid: 217fefd8ca79add459da08b621c69f46, type: 2}
+  isUpgraded: 0
   vine: {fileID: 3837138063910632341, guid: bacbc87ee75cde84192ba8baff2db6be, type: 3}
 --- !u!1 &6263452542390926098
 GameObject:

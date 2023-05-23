@@ -180,6 +180,8 @@ MonoBehaviour:
   health: 7
   elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 
+  card: {fileID: 11400000, guid: 8dacff58a6e6a5949839da5ab11f3036, type: 2}
+  isUpgraded: 0
   bulletSpawn: {fileID: 6377732277052643164}
   bullet: {fileID: 2540091938956344995, guid: 40075ec30252ac24e91ec2e3fd688de3, type: 3}
   shootingSpeed: 2

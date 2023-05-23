@@ -396,6 +396,8 @@ MonoBehaviour:
   health: 5
   elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 
+  card: {fileID: 11400000, guid: ccadd54a091a3b14facbb18d10cbba06, type: 2}
+  isUpgraded: 0
 --- !u!1 &7973165593032570481
 GameObject:
   m_ObjectHideFlags: 0

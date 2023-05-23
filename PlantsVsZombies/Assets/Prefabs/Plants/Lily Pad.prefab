@@ -391,9 +391,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeHitBox: {fileID: 741447200708002406}
-  startRange: 3
+  startRange: 1
   isInRange: 0
-  health: 2
+  health: 4
   elementManager: {fileID: 0}
   containsElements: 01000000
 --- !u!50 &877719419

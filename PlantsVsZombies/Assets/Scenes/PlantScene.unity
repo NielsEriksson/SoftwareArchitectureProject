@@ -509,21 +509,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'HittingPlant '
       objectReference: {fileID: 0}
-    - target: {fileID: 3242213656316235869, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 2107177592}
     - target: {fileID: 3242213656316235871, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3242213656316235871, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.17
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3242213656316235871, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 3242213656316235871, guid: c7f0da60e98fb19488f519ef29dd6758, type: 3}
       propertyPath: m_LocalPosition.z

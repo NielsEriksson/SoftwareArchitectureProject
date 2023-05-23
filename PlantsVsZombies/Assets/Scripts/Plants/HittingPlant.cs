@@ -7,6 +7,7 @@ public class HittingPlant : Plant
     [SerializeField] GameObject pushBackArea;
     public override void Attack()
     {
+        base.Attack();
         Instantiate(pushBackArea, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
     }
     public override void StopAttack()
@@ -19,6 +20,6 @@ public class HittingPlant : Plant
     }
     public override void Idle()
     {
-        
+        base.Idle();
     }
 }

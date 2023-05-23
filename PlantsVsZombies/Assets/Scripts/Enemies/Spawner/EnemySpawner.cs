@@ -23,7 +23,8 @@ public class EnemySpawner : MonoBehaviour
     bool isSpawningWave;
     public bool levelRunning = true;
     public int enemiesSpawned;
- 
+    [SerializeField] private int cardsPerWave;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -50,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
             PlayerPrefs.SetInt("CurrentLevel", 0);
         }
         //Remove this when done
-        //PlayerPrefs.SetInt("CurrentLevel", 0);
+
         currentLevelNum = PlayerPrefs.GetInt("CurrentLevel");
        
         currentLevel = levelsInstances[currentLevelNum];
@@ -142,6 +143,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public IEnumerator SpawnWave()
     {
+        FindObjectOfType<PlayerCards>().DrawCard(cardsPerWave);
         int amountOfEnemiesToSpawn = currentLevel.enemiesPerWave;
         if(currentWave == currentLevel.waves) 
         {

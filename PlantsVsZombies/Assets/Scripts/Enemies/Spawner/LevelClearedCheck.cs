@@ -57,8 +57,7 @@ public class LevelClearedCheck : MonoBehaviour
         else
         {
             InterLevelUI.SetActive(true);
-            InterLevelUI.GetComponent<InterLevelUi>().cardSelected = false;
-            InterLevelUI.GetComponent<InterLevelUi>().nextLvlButton.enabled = false;
+       
             Time.timeScale = 0f;
         }
         FindObjectOfType<CardSelection>().GenetateCards();

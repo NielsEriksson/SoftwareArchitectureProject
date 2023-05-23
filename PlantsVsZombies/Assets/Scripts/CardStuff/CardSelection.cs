@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CardSelection : MonoBehaviour
 {
-    PlayerCards playerCards;
+    [SerializeField] PlayerCards playerCards;
+    [SerializeField] InterLevelUi interLevelUi;
     Card[] cardChoices;
     List<GameObject> cardObjects = new List<GameObject>();
 
@@ -22,6 +23,7 @@ public class CardSelection : MonoBehaviour
     {
         if (cardChoices == null)
         {
+           
             cardChoices = playerCards.GenerateCardChoices();
 
             for (int i = 0; i < cardChoices.Length; i++)
@@ -39,10 +41,12 @@ public class CardSelection : MonoBehaviour
 
     public void DeleteCards()
     {
+    
+        interLevelUi.cardSelected = true;
         foreach (var card in cardObjects)
         {
             Destroy(card);
         }
-        FindObjectOfType<InterLevelUi>().cardSelected = true;
+     
     }
 }

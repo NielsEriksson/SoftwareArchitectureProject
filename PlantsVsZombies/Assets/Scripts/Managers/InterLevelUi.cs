@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InterLevelUi : MonoBehaviour
 {
     public bool cardSelected =false;
-    [SerializeField] public  Button nextLvlButton;
+    [SerializeField] public  GameObject nextLvlButton;
     // Start is called before the first frame update
   
 
@@ -15,7 +15,7 @@ public class InterLevelUi : MonoBehaviour
     {
         if(cardSelected)
         {
-            nextLvlButton.enabled = true;
+           nextLvlButton.SetActive(true);
         }
     }
 }

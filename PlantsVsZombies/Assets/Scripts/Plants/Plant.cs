@@ -17,6 +17,8 @@ public abstract class Plant : MonoBehaviour
 
     [HideInInspector] public enum Element { Light, Water, Poison };
 
+    public bool isUpgraded = false;
+
     public void Awake()
     {
         SetRange(startRange);

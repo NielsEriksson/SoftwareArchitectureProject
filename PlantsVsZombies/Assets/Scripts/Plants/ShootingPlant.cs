@@ -23,12 +23,13 @@ public class ShootingPlant : Plant
     public override void Attack()
     {
         base.Attack();
-        StartCoroutine(Shoot());
-
-        if(isUpgraded)
+        if (isUpgraded)
         {
             animator.speed *= 2;
         }
+
+        StartCoroutine(Shoot());
+
     }
     public override void StopAttack()
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 480393770066067639}
   - component: {fileID: 480393770066067638}
   - component: {fileID: 480393770066067637}
-  - component: {fileID: 480393770066067636}
+  - component: {fileID: 1585784661259006573}
   m_Layer: 0
   m_Name: water
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  m_Color: {r: 0, g: 0.005422592, b: 1, a: 1}
+  m_Color: {r: 0.5943396, g: 0, b: 0.05409487, a: 0.59607846}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &480393770066067636
+--- !u!114 &1585784661259006573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 480393770066067595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb83edc92f6b404eb5f106382af8ed3, type: 3}
+  m_Script: {fileID: 11500000, guid: f402c8a1254dde4438c0cf69d1cc76bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 2

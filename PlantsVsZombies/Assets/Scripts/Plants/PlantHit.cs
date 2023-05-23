@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knockback : MonoBehaviour
+public class PlantHit : MonoBehaviour
 {
-    //Unused class, new version is PlantHit.cs
+    [SerializeField] int dealDamage;
 
     List<Enemy> enemyList = new List<Enemy>();
-    [SerializeField] private float destroyTimer;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -22,17 +21,18 @@ public class Knockback : MonoBehaviour
             enemyList.Remove(collision.GetComponent<Enemy>());
         }
     }
-    private void Update()
+
+    public void DealDamageToEachEnemy()
     {
-        foreach(Enemy enemy in enemyList)
+        foreach (Enemy enemy in enemyList)
         {
-            //enemy.PushBack();
-            Debug.Log("Enemy PushBack");
-        }
-        destroyTimer -= Time.deltaTime;
-        if (destroyTimer <= 0)
-        {
-            Destroy(gameObject);
+            enemy.TakeDamage(dealDamage);
         }
     }
+
+    public void DestroyArea()
+    {
+        Destroy(gameObject);
+    }
+
 }

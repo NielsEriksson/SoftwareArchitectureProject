@@ -20,6 +20,8 @@ public abstract class Plant : MonoBehaviour
 
     public bool isUpgraded = false;
 
+    [SerializeField] public float heightOffSet;
+
     public void Awake()
     {
         SetRange(startRange);

@@ -398,6 +398,7 @@ MonoBehaviour:
   containsElements: 01000000
   card: {fileID: 11400000, guid: 310e88e418e97ff449ce22fa7d494926, type: 2}
   isUpgraded: 0
+  heightOffSet: -0.5
 --- !u!50 &877719419
 Rigidbody2D:
   serializedVersion: 4

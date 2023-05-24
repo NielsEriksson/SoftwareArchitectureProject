@@ -102,7 +102,7 @@ Transform:
   m_GameObject: {fileID: 6377732276819539552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6377732277052643164}
@@ -182,6 +182,7 @@ MonoBehaviour:
   containsElements: 
   card: {fileID: 11400000, guid: 8dacff58a6e6a5949839da5ab11f3036, type: 2}
   isUpgraded: 0
+  heightOffSet: 0.3
   bulletSpawn: {fileID: 6377732277052643164}
   bullet: {fileID: 2540091938956344995, guid: 40075ec30252ac24e91ec2e3fd688de3, type: 3}
   shootingSpeed: 2

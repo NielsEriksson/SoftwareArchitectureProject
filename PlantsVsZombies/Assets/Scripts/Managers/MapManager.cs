@@ -88,7 +88,9 @@ public class MapManager : MonoBehaviour
 
     public Plant SpawnPrefab(Plant prefab)
     {
-        Plant planty = Instantiate(prefab, GetTilePosWithOffset(), Quaternion.identity);
+        Vector2 pos = GetTilePosWithOffset();
+        pos.y += prefab.heightOffSet;
+        Plant planty = Instantiate(prefab, pos , Quaternion.identity);
         return planty;
     }
 

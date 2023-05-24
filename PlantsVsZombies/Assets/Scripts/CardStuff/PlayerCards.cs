@@ -56,10 +56,7 @@ public class PlayerCards : MonoBehaviour
         deck.GetComponent<Text>().text = deckCards.Count.ToString();
         discard.GetComponent<Text>().text = discardCards.Count.ToString();
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            DrawCard(1);
-        }
+     
 
         for (int i = 0; i < cardObjects.Count; i++)
         {

@@ -26,13 +26,14 @@ public class PlantHit : MonoBehaviour
     {
         foreach (Enemy enemy in enemyList)
         {
+            Debug.Break();
             enemy.TakeDamage(dealDamage);
         }
     }
 
     public void DestroyArea()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
 }

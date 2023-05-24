@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 7973165592490684063}
   - component: {fileID: 7973165592490684060}
   - component: {fileID: 7973165592490684057}
+  - component: {fileID: 2453042627714427967}
   m_Layer: 0
   m_Name: PoisonPlant
   m_TagString: Plant
@@ -398,6 +399,21 @@ MonoBehaviour:
   containsElements: 02000000
   card: {fileID: 11400000, guid: ccadd54a091a3b14facbb18d10cbba06, type: 2}
   isUpgraded: 0
+  heightOffSet: 0
+--- !u!114 &2453042627714427967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973165592490684050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62bd981e029f844392480db15f855ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInRange: 0
+  plant: {fileID: 7973165592490684057}
 --- !u!1 &7973165593032570481
 GameObject:
   m_ObjectHideFlags: 0

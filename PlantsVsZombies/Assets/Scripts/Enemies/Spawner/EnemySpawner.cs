@@ -142,7 +142,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public IEnumerator SpawnWave()
     {
-        FindObjectOfType<PlayerCards>().DrawCard(cardsPerWave);
+        
         int amountOfEnemiesToSpawn = currentLevel.enemiesPerWave;
         if(currentWave == currentLevel.waves) 
         {
@@ -176,5 +176,12 @@ public class EnemySpawner : MonoBehaviour
         spawnWaveTimer=0;
         enemiesSpawned = 0;
         isSpawningWave=false;
+    }
+    public void DrawCardsWaveCleared()
+    {
+        if( (currentEnemy % currentLevel.enemiesPerWave == 0) && FindObjectOfType<LevelClearedCheck>().enemiesKilled == currentEnemy)
+        {
+            FindObjectOfType<PlayerCards>().DrawCard(cardsPerWave);
+        }
     }
 }

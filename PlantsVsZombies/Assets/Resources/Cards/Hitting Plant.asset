@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartingCard: 1
   cardName: Hitting Plant
-  cardImage: {fileID: 2800000, guid: e5ab8842e7d83ca479491fe21a64f414, type: 3}
+  cardImage: {fileID: 2800000, guid: 5e3c3e83e8278e74d83e1f09215dbe39, type: 3}
   cardDescription: Hits close enemies
   conditions: 0100000001000000
   extraDescription: Hits enemies on adjacent rows

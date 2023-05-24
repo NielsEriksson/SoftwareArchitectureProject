@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartingCard: 1
   cardName: Lily pad
+  cardImage: {fileID: 2800000, guid: 617e9676a0c1d4c4688aae8e0dcbe425, type: 3}
   cardDescription: Gain 1 Water
   conditions: 
   extraDescription: 

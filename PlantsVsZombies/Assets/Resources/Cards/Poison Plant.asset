@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartingCard: 1
   cardName: Poison Plant
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 2800000, guid: c1be91753de9b544781b41773ad23f33, type: 3}
   cardDescription: Gain 1 Poison
   conditions: 0200000002000000
   extraDescription: Double health

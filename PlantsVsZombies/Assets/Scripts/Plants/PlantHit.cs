@@ -1,15 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlantHit : MonoBehaviour
 {
     [SerializeField] int dealDamage;
+    [SerializeField] float timeBetweenHits = 1f;
+
+    private float timer = 0;
 
     List<Enemy> enemyList = new List<Enemy>();
     private void Update()
     {
-        DealDamageToEachEnemy();
+        timer += Time.deltaTime;
+
+        if (timer > timeBetweenHits)
+        {
+            DealDamageToEachEnemy();
+            timer = 0;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,7 +40,6 @@ public class PlantHit : MonoBehaviour
     {
         foreach (Enemy enemy in enemyList)
         {
-            //Debug.Break();
             enemy.TakeDamage(dealDamage);
         }
     }

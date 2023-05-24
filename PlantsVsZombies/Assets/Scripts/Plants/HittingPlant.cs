@@ -24,21 +24,10 @@ public class HittingPlant : Plant
         }
 
         plantHit = hitArea.GetComponent<PlantHit>();
-        StartCoroutine(Hit());
-    }
-
-    public IEnumerator Hit()
-    {
-        while (true)
-        {
-            plantHit.DealDamageToEachEnemy();
-            yield return new WaitForSeconds(hitTime);
-        }
     }
 
     public override void StopAttack()
     {
-        StopAllCoroutines();
     }
     public override void Action()
     {

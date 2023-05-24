@@ -23,11 +23,15 @@ public class HittingPlant : Plant
             instantiation.transform.localScale = new Vector3(baseScale.x, baseScale.y * 3, baseScale.z);
         }
 
-        plantHit = hitArea.GetComponent<PlantHit>();
+        plantHit = instantiation.GetComponent<PlantHit>();
     }
 
     public override void StopAttack()
     {
+        if (plantHit != null)
+        {
+            plantHit.isAlive = false;
+        }
     }
     public override void Action()
     {

@@ -9,10 +9,20 @@ public class PlantHit : MonoBehaviour
     [SerializeField] float timeBetweenHits = 1f;
 
     private float timer = 0;
+    public bool isAlive;
 
     List<Enemy> enemyList = new List<Enemy>();
+    private void Start()
+    {
+        isAlive = true;
+    }
     private void Update()
     {
+        if (!isAlive)
+        {
+            Destroy(gameObject);
+        }
+
         timer += Time.deltaTime;
 
         if (timer > timeBetweenHits)
@@ -20,6 +30,7 @@ public class PlantHit : MonoBehaviour
             DealDamageToEachEnemy();
             timer = 0;
         }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,10 +54,4 @@ public class PlantHit : MonoBehaviour
             enemy.TakeDamage(dealDamage);
         }
     }
-
-    public void DestroyArea()
-    {
-        Destroy(this.gameObject);
-    }
-
 }

@@ -856,10 +856,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cactus
       objectReference: {fileID: 0}
-    - target: {fileID: 6377732276819539555, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}
-      propertyPath: isUpgraded
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6377732276819539557, guid: f80cf6d15067acb43818f0be6af0da98, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1018,9 +1014,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7973165592490684062, guid: cf55b03e29ea0184ca9f4ae3bb999509, type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: eb340672e17c0af4089e561b61cdc548, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf55b03e29ea0184ca9f4ae3bb999509, type: 3}

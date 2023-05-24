@@ -32,6 +32,7 @@ public class PlayerCards : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
         tempCards = Resources.LoadAll<Card>("Cards");
 
         cardWidth = baseCard.GetComponent<RectTransform>().sizeDelta.x;
@@ -103,9 +104,16 @@ public class PlayerCards : MonoBehaviour
         {
             deckCards.Add(savedDeck.savedCards[i]);
         }
+        for (int i = 0;i < deckCards.Count-1;i++)
+        {
+            var temp = deckCards[i];
+            int rand = Random.Range(i, deckCards.Count);
+            deckCards[i] = deckCards[rand];
+            deckCards[rand] = temp;
+        }        
         DrawCard(handLimit);
     }
-    
+
 
     public Card[] GenerateCardChoices()
     {

@@ -62,7 +62,9 @@ public class Enemy : MonoBehaviour
     public virtual void Die()
     {
         //DeathAnimation
+       
         FindObjectOfType<LevelClearedCheck>().enemiesKilled++;
+        FindObjectOfType<EnemySpawner>().DrawCardsWaveCleared();
         Destroy(gameObject);
     }
   

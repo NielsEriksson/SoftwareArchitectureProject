@@ -16,6 +16,7 @@ public class LossManager : MonoBehaviour
         if(collision.tag == "Enemy")
         {
             playerHealths--;
+            collision.GetComponent<Enemy>().Die();
             UpdateHealthUI();
             CheckDeath();
         }

@@ -19,6 +19,7 @@ public class SceneLoaader : MonoBehaviour
     }
     public void RestartGame()
     {
+        savedDeck.savedCards.Clear();
         PlayerPrefs.SetInt("CurrentLevel", 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

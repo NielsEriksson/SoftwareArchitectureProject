@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoaader : MonoBehaviour
 {
+    [SerializeField] SavedDeck savedDeck;
     public void RetryLevel()
     {
         PlayerPrefs.SetInt("CurrentLevel", EnemySpawner.Instance.currentLevelNum);
@@ -36,6 +37,7 @@ public class SceneLoaader : MonoBehaviour
     }
     public void NewGame()
     {
+        savedDeck.savedCards.Clear();
         PlayerPrefs.SetInt("CurrentLevel", 0);
         SceneManager.LoadScene("MainScene");
     }

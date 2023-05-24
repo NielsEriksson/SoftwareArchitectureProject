@@ -819,6 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c498b79e173dd8442a97763d9c2e286e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savedDeck: {fileID: 11400000, guid: 245baffb7bd873c40ba0e22b053c8901, type: 2}
 --- !u!1 &1541103493
 GameObject:
   m_ObjectHideFlags: 0

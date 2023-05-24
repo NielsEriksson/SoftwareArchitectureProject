@@ -12,7 +12,7 @@ public class DisplayEnemies : MonoBehaviour
         {
             if(i <EnemySpawner.Instance.currentLevel.availableEnemies.Count)
             {
-                Debug.Log(EnemySpawner.Instance.currentLevel.availableEnemies[i]);
+         
                 enemies[i].GetComponent<SpriteRenderer>().color = EnemySpawner.Instance.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().color;
                 enemies[i].GetComponent<SpriteRenderer>().sprite = EnemySpawner.Instance.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().sprite;
             }

@@ -572,7 +572,7 @@ RectTransform:
   - {fileID: 474181416}
   - {fileID: 976911945}
   m_Father: {fileID: 925409763}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1292,7 +1292,7 @@ RectTransform:
   - {fileID: 1312538850}
   - {fileID: 1388889721}
   m_Father: {fileID: 925409763}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1879,7 +1879,7 @@ RectTransform:
   - {fileID: 1497896132}
   - {fileID: 1167139488}
   m_Father: {fileID: 925409763}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSelected: 0
-  nextLvlButton: {fileID: 1167139489}
+  nextLvlButton: {fileID: 1167139487}
 --- !u!114 &425217933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2181,7 +2181,7 @@ RectTransform:
   - {fileID: 1696204116}
   - {fileID: 215146764}
   m_Father: {fileID: 925409763}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3398,7 +3398,7 @@ RectTransform:
   - {fileID: 1745779512}
   - {fileID: 1436847171}
   m_Father: {fileID: 925409763}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3604,12 +3604,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 465325456}
   - {fileID: 1791866587}
   - {fileID: 843972621}
   - {fileID: 70804947}
   - {fileID: 425217931}
   - {fileID: 219699890}
-  - {fileID: 465325456}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4727,7 +4727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1167139488
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4737,7 +4737,7 @@ RectTransform:
   m_GameObject: {fileID: 1167139487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1438501890}
@@ -4746,7 +4746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 271, y: -175}
+  m_AnchoredPosition: {x: -0, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1167139489
@@ -4756,7 +4756,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167139487}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -4793,9 +4793,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
-        m_MethodName: ChangeLevel
+      - m_Target: {fileID: 1678245856}
+        m_TargetAssemblyTypeName: SceneLoaader, Assembly-CSharp
+        m_MethodName: LoadNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4904,6 +4904,7 @@ MonoBehaviour:
   spawnEnemyDelay: 1.5
   levelRunning: 1
   enemiesSpawned: 0
+  cardsPerWave: 7
 --- !u!4 &1172345758
 Transform:
   m_ObjectHideFlags: 0
@@ -6128,6 +6129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58526ae6f0f9fde4aadec99dc1fc1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCards: {fileID: 2010755442}
+  interLevelUi: {fileID: 425217932}
+  numberOfCardsToAdd: 5
 --- !u!1001 &1542130285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6756,6 +6760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c498b79e173dd8442a97763d9c2e286e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savedDeck: {fileID: 0}
 --- !u!61 &1678245857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6796,6 +6801,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealths: 3
   LooseScreen: {fileID: 70804944}
+  healthPot1: {fileID: 0}
+  healthPot2: {fileID: 0}
+  healthPot3: {fileID: 0}
 --- !u!4 &1678245859
 Transform:
   m_ObjectHideFlags: 0
@@ -7022,7 +7030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 180}
+  m_AnchoredPosition: {x: -0.77, y: 180}
   m_SizeDelta: {x: 680, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745779513
@@ -7043,7 +7051,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 25.4
+  m_Spacing: 25.5
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -7161,7 +7169,7 @@ RectTransform:
   - {fileID: 887924678}
   - {fileID: 366701100}
   m_Father: {fileID: 925409763}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7414,6 +7422,7 @@ MonoBehaviour:
   deck: {fileID: 973894077}
   discard: {fileID: 624756976}
   selectedCard: 0
+  savedDeck: {fileID: 11400000, guid: 245baffb7bd873c40ba0e22b053c8901, type: 2}
 --- !u!1 &2081254497
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -21,7 +22,7 @@ public class PlayerCards : MonoBehaviour
     List<GameObject> discardingCards = new List<GameObject>();
 
     List<Card> baseDeck = new List<Card>();
-
+    [SerializeField] public SavedDeck savedDeck;
     int startDeckSize = 20;
     int cardSelectionAmount = 3;
 
@@ -29,15 +30,23 @@ public class PlayerCards : MonoBehaviour
     float cardWidth;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        
         tempCards = Resources.LoadAll<Card>("Cards");
 
         cardWidth = baseCard.GetComponent<RectTransform>().sizeDelta.x;
 
-        CreateStartingDeck();
-
-        ShuffleDeck();
+        if (savedDeck.savedCards.Count == 0)
+        {
+            CreateStartingDeck();
+            ShuffleDeck();
+        }
+        else
+        {
+            CreateSavedDeck();
+        }
+   
         //CreateHand();
     }
 
@@ -84,10 +93,27 @@ public class PlayerCards : MonoBehaviour
             if (tempCards[tempIndex].isStartingCard)
             {
                 baseDeck.Add(tempCards[tempIndex]);
+                savedDeck.savedCards.Add(tempCards[tempIndex]);
             }
 
         } while (baseDeck.Count < startDeckSize);
+    }   
+    public void CreateSavedDeck()
+    {
+        for (int i = 0; i < savedDeck.savedCards.Count; i++) 
+        {
+            deckCards.Add(savedDeck.savedCards[i]);
+        }
+        for (int i = 0;i < deckCards.Count-1;i++)
+        {
+            var temp = deckCards[i];
+            int rand = Random.Range(i, deckCards.Count);
+            deckCards[i] = deckCards[rand];
+            deckCards[rand] = temp;
+        }        
+        DrawCard(handLimit);
     }
+
 
     public Card[] GenerateCardChoices()
     {

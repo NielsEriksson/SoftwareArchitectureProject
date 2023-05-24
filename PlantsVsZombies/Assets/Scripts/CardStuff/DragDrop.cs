@@ -58,7 +58,11 @@ public class DragDrop : MonoBehaviour
     {
         if (isChoice)
         {
-            playerCards.AddCardToDeck(GetComponent<CardDisplay>().card);
+            for(int i = 0; i< FindObjectOfType<CardSelection>().numberOfCardsToAdd; i++)
+            {
+                playerCards.AddCardToDeck(GetComponent<CardDisplay>().card);
+                playerCards.savedDeck.savedCards.Add(GetComponent<CardDisplay>().card);
+            }           
             FindObjectOfType<CardSelection>().DeleteCards();
         }
     }

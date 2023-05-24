@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSelected: 0
-  nextLvlButton: {fileID: 1167139489}
+  nextLvlButton: {fileID: 0}
 --- !u!114 &425217933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4900,10 +4900,11 @@ MonoBehaviour:
   numberOfLevels: 0
   currentEnemy: 45
   enemiesInLevel: []
-  timeBetweenWaves: 45
+  timeBetweenWaves: 10
   spawnEnemyDelay: 1.5
   levelRunning: 1
   enemiesSpawned: 0
+  cardsPerWave: 0
 --- !u!4 &1172345758
 Transform:
   m_ObjectHideFlags: 0
@@ -6128,6 +6129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58526ae6f0f9fde4aadec99dc1fc1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCards: {fileID: 0}
+  interLevelUi: {fileID: 0}
+  numberOfCardsToAdd: 5
 --- !u!1001 &1542130285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6756,6 +6760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c498b79e173dd8442a97763d9c2e286e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savedDeck: {fileID: 0}
 --- !u!61 &1678245857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6796,6 +6801,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealths: 3
   LooseScreen: {fileID: 70804944}
+  healthPot1: {fileID: 0}
+  healthPot2: {fileID: 0}
+  healthPot3: {fileID: 0}
 --- !u!4 &1678245859
 Transform:
   m_ObjectHideFlags: 0
@@ -7414,6 +7422,7 @@ MonoBehaviour:
   deck: {fileID: 973894077}
   discard: {fileID: 624756976}
   selectedCard: 0
+  savedDeck: {fileID: 11400000, guid: 245baffb7bd873c40ba0e22b053c8901, type: 2}
 --- !u!1 &2081254497
 GameObject:
   m_ObjectHideFlags: 0

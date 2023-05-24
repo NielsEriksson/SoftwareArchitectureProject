@@ -19,7 +19,7 @@ public class WaveUI : MonoBehaviour
     private void Start()
     {
         
-        waveTimer.maxValue = EnemySpawner.Instance.timeBetweenWaves * EnemySpawner.Instance.currentLevel.waves;
+        waveTimer.maxValue = EnemySpawner.Instance.timeBetweenWaves * (EnemySpawner.Instance.currentLevel.waves-1);
         for (int i = 0; i < EnemySpawner.Instance.currentLevel.availableEnemies.Count; i++)
         {
             avEnemyImages[i].GetComponent<Image>().color = EnemySpawner.Instance.currentLevel.availableEnemies[i].GetComponent<SpriteRenderer>().color ;

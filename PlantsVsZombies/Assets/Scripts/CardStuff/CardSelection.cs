@@ -9,6 +9,7 @@ public class CardSelection : MonoBehaviour
     [SerializeField] InterLevelUi interLevelUi;
     Card[] cardChoices;
     List<GameObject> cardObjects = new List<GameObject>();
+    public int numberOfCardsToAdd = 5;
 
     // Start is called before the first frame update
     void Start()

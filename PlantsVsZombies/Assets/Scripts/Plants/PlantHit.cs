@@ -7,6 +7,10 @@ public class PlantHit : MonoBehaviour
     [SerializeField] int dealDamage;
 
     List<Enemy> enemyList = new List<Enemy>();
+    private void Update()
+    {
+        DealDamageToEachEnemy();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -26,7 +30,7 @@ public class PlantHit : MonoBehaviour
     {
         foreach (Enemy enemy in enemyList)
         {
-            Debug.Break();
+            //Debug.Break();
             enemy.TakeDamage(dealDamage);
         }
     }

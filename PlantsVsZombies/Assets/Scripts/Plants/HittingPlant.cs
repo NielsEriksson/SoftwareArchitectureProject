@@ -5,6 +5,9 @@ using UnityEngine;
 public class HittingPlant : Plant
 {
     [SerializeField] GameObject hitArea;
+    [SerializeField] float hitTime;
+    private PlantHit plantHit;
+
     public override void Start()
     {
         base.Start();
@@ -12,7 +15,7 @@ public class HittingPlant : Plant
     public override void Attack()
     {
         base.Attack();
-        GameObject instantiation = Instantiate(hitArea, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+        GameObject instantiation = Instantiate(hitArea, transform.position + new Vector3(1, 0, 0), Quaternion.identity, transform);
 
         if (isUpgraded)
         {
@@ -20,29 +23,25 @@ public class HittingPlant : Plant
             instantiation.transform.localScale = new Vector3(baseScale.x, baseScale.y * 3, baseScale.z);
         }
 
-        StartCoroutine(Hit());
-    }
-
-    public IEnumerator Hit()
-    {
-        while (true)
-        {
-            PlantHit ph = hitArea.GetComponent<PlantHit>();
-            ph.DealDamageToEachEnemy();
-
-        }
+        plantHit = instantiation.GetComponent<PlantHit>();
     }
 
     public override void StopAttack()
     {
-        StopAllCoroutines();
+        if (plantHit != null)
+        {
+            plantHit.isAlive = false;
+        }
     }
     public override void Action()
     {
-        //throw new System.NotImplementedException();
     }
     public override void Idle()
     {
         base.Idle();
+    }
+    public override void Die()
+    {
+        base.Die();
     }
 }

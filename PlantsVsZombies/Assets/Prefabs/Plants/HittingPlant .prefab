@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0017758906, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 0.71230334, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &8794804091375313737
 MonoBehaviour:
@@ -102,7 +102,7 @@ Transform:
   m_GameObject: {fileID: 3242213656316235810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3242213654790223690}
@@ -174,15 +174,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeHitBox: {fileID: 3242213654790223691}
-  startRange: 2
+  startRange: 1
   isInRange: 0
-  health: 5
+  health: 6
   elementManager: {fileID: 8085401048364188390, guid: a7c8533c03743a248a2b1569a98847d5, type: 3}
   containsElements: 
   card: {fileID: 11400000, guid: 217fefd8ca79add459da08b621c69f46, type: 2}
   isUpgraded: 0
-  heightOffSet: 0.2
-  hitArea: {fileID: 0}
+  heightOffSet: 0
+  hitArea: {fileID: 480393770066067595, guid: 738c415918693bd41b4c1c5badb31208, type: 3}
 --- !u!114 &3242213656316235870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06748441, y: -0.07458807}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -242,7 +242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.57378256, y: 0.5808861}
   m_EdgeRadius: 0
 --- !u!95 &1227323641
 Animator:

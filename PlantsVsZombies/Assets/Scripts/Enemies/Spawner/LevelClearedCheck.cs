@@ -14,15 +14,14 @@ public class LevelClearedCheck : MonoBehaviour
     Plant[] plants;
     // Start is called before the first frame update
     void Start()
-    {
-    
+    {    
         mapManager = FindObjectOfType<MapManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemiesKilled == EnemySpawner.Instance.enemiesSpawned && EnemySpawner.Instance.enemiesSpawned>= EnemySpawner.Instance.enemiesInLevel.Count)
+        if (enemiesKilled == EnemySpawner.Instance.enemiesSpawned && EnemySpawner.Instance.enemiesSpawned >= EnemySpawner.Instance.enemiesInLevel.Count)
         {
             LevelCleared();
             LoadInterLevelUI();
@@ -45,19 +44,19 @@ public class LevelClearedCheck : MonoBehaviour
          
         }
         mapManager.ClearGrid();
-        
+
     }
     public void LoadInterLevelUI()
     {
-        if(EnemySpawner.Instance.currentLevelNum == EnemySpawner.Instance.levels.Count-1)
+        if (EnemySpawner.Instance.currentLevelNum == EnemySpawner.Instance.levels.Count - 1)
         {
-            VictoryScreen.SetActive(true);           
+            VictoryScreen.SetActive(true);
             Time.timeScale = 0f;
         }
         else
         {
             InterLevelUI.SetActive(true);
-       
+
             Time.timeScale = 0f;
         }
         FindObjectOfType<CardSelection>().GenetateCards();

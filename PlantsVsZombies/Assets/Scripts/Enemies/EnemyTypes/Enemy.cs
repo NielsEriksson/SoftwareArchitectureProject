@@ -64,7 +64,10 @@ public class Enemy : MonoBehaviour
         //DeathAnimation
        
         FindObjectOfType<LevelClearedCheck>().enemiesKilled++;
-        FindObjectOfType<EnemySpawner>().DrawCardsWaveCleared();
+        if (FindObjectOfType<EnemySpawner>().currentWave < FindObjectOfType<EnemySpawner>().currentLevel.waves)
+        {
+            FindObjectOfType<EnemySpawner>().DrawCardsWaveCleared();
+        }
         Destroy(gameObject);
     }
   

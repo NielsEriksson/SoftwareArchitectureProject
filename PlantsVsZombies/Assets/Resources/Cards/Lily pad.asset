@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388f49ce43e2d2468b96a678982e01c, type: 3}
   m_Name: Lily pad
   m_EditorClassIdentifier: 
-  isStartingCard: 1
+  isStartingCard: 0
   cardName: Lily pad
   cardImage: {fileID: 2800000, guid: 617e9676a0c1d4c4688aae8e0dcbe425, type: 3}
   cardDescription: Gain 1 Water

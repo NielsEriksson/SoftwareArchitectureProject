@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public Level[] levelsInstances;
     public Level currentLevel;
     public int currentLevelNum;
-    private int currentWave=0;
+    public int currentWave=0;
     [SerializeField] int numberOfLevels;
     [SerializeField] private int currentEnemy;
     [SerializeField] public List<Enemy> enemiesInLevel;
@@ -24,13 +24,12 @@ public class EnemySpawner : MonoBehaviour
     public bool levelRunning = true;
     public int enemiesSpawned;
     [SerializeField] private int cardsPerWave;
-
+    public bool DrawCardsWaves = true;
 
     // Start is called before the first frame update
     void Awake()
     {
-        levelsInstances = new Level[levels.Count];
-        Debug.Log(Resources.Load<Level>("Level1"));
+        levelsInstances = new Level[levels.Count];     
        
         for (int i =0; i < levels.Count ; i++)
         {            
@@ -65,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
         if (levelRunning)
         {
             spawnWaveTimer -= Time.deltaTime;
-            if (spawnWaveTimer < 0 && !isSpawningWave)
+            if (spawnWaveTimer < 0 && !isSpawningWave && currentWave<currentLevel.waves)
             {
                 currentWave++;
                 isSpawningWave = true;
@@ -142,7 +141,12 @@ public class EnemySpawner : MonoBehaviour
     }
     public IEnumerator SpawnWave()
     {
-        
+        if(DrawCardsWaves == true)
+        {
+            FindObjectOfType<PlayerCards>().DrawCard(cardsPerWave);
+        }
+
+        DrawCardsWaves = true;
         int amountOfEnemiesToSpawn = currentLevel.enemiesPerWave;
         if(currentWave == currentLevel.waves) 
         {
@@ -181,7 +185,9 @@ public class EnemySpawner : MonoBehaviour
     {
         if( (currentEnemy % currentLevel.enemiesPerWave == 0) && FindObjectOfType<LevelClearedCheck>().enemiesKilled == currentEnemy)
         {
+            DrawCardsWaves = false;
             FindObjectOfType<PlayerCards>().DrawCard(cardsPerWave);
+           
         }
     }
 }

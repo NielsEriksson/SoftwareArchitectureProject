@@ -16,9 +16,9 @@ MonoBehaviour:
   availableEnemies:
   - {fileID: 7744831846276795897, guid: 5d7996d5b2e09f54c9aad5dbd23aa0f2, type: 3}
   - {fileID: 4791922840396213189, guid: 70d351956e4b52842bec028f976c0b11, type: 3}
-  enemyMaxWieght: 30
-  waves: 8
-  enemiesPerWave: 3
+  enemyMaxWieght: 50
+  waves: 10
+  enemiesPerWave: 2
   SmasherSpawnChance: 70
   ShieldedSmasherSpawnChance: 30
   ArcherSpawnChance: 0

@@ -104,11 +104,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   rb: {fileID: 0}
-  damage: 0
+  damage: 2
   speed: 2
   enemyWeigth: 3
   health: 2
-  attackTimerReset: 2
+  attackTimerReset: 1.5
   isInRange: 0
   lvlClearer: {fileID: 0}
   arrowPrefab: {fileID: 8155216280138295702, guid: f91142938bc95ba4790c162dce11bbf6, type: 3}

@@ -213,7 +213,7 @@ MonoBehaviour:
   speed: 1
   enemyWeigth: 2
   health: 3
-  attackTimerReset: 2.81
+  attackTimerReset: 2.5
   isInRange: 0
   lvlClearer: {fileID: 0}
   shieldHealth: 2

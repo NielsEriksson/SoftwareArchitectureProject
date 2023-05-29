@@ -210,7 +210,7 @@ MonoBehaviour:
   target: {fileID: 0}
   rb: {fileID: 0}
   damage: 1
-  speed: 3
+  speed: 2.3
   enemyWeigth: 3
   health: 3
   attackTimerReset: 0.5
